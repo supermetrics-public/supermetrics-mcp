@@ -1,0 +1,86 @@
+name: Validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    # Daily, so a broken endpoint surfaces here before a user finds it.
+    - cron: '17 6 * * *'
+  workflow_dispatch:
+
+jobs:
+  manifests:
+    name: Validate manifests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Parse every JSON manifest
+        run: |
+          fail=0
+          while IFS= read -r f; do
+            if python3 -c "import json,sys; json.load(open(sys.argv[1]))" "$f"; then
+              echo "ok    $f"
+            else
+              echo "FAIL  $f"
+              fail=1
+            fi
+          done < <(find . -name '*.json' -not -path './.git/*')
+          exit $fail
+
+      - name: Check required manifests and docs are present
+        run: |
+          fail=0
+          for f in \
+            server.json \
+            .mcp.json \
+            .vscode/mcp.json \
+            gemini-extension.json \
+            .claude-plugin/marketplace.json \
+            .claude-plugin/plugin.json \
+            .codex-plugin/plugin.json \
+            .cursor-plugin/plugin.json \
+            GEMINI.md \
+            llms.txt \
+            CHANGELOG.md \
+            skills/marketing-data-analysis/SKILL.md \
+            skills/campaign-management/SKILL.md
+          do
+            if [ -f "$f" ]; then echo "ok    $f"; else echo "MISSING $f"; fail=1; fi
+          done
+          exit $fail
+
+      - name: Check the server URL is consistent everywhere
+        run: |
+          echo "Occurrences of the server URL:"
+          grep -rn 'mcp\.supermetrics\.com/mcp' --include='*.json' --include='*.md' . | sed 's/^/  /'
+          # Any other mcp.supermetrics.com path in a manifest is a typo.
+          if grep -rn 'mcp\.supermetrics\.com' --include='*.json' . | grep -v '/mcp"'; then
+            echo "Unexpected Supermetrics MCP URL above."
+            exit 1
+          fi
+
+  endpoint:
+    name: Endpoint reachable
+    runs-on: ubuntu-latest
+    steps:
+      - name: Health endpoint
+        run: |
+          code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 https://mcp.supermetrics.com/health)
+          echo "GET /health -> $code"
+          [ "$code" = "200" ]
+
+      - name: MCP endpoint responds
+        run: |
+          code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 \
+            -X POST https://mcp.supermetrics.com/mcp \
+            -H 'Content-Type: application/json' \
+            -H 'Accept: application/json, text/event-stream' \
+            -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"ci","version":"1.0.0"}}}')
+          echo "HTTP $code"
+          # 401 is a pass: the server is up and correctly demanding OAuth.
+          case "$code" in
+            200|401) exit 0 ;;
+            *) echo "Unexpected status from the MCP endpoint."; exit 1 ;;
+          esac

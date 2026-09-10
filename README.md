@@ -73,7 +73,7 @@ Or install the plugin, which bundles the server together with the two
 [skills](#bundled-skills) below:
 
 ```text
-/plugin marketplace add supermetrics/supermetrics-mcp
+/plugin marketplace add supermetrics-public/supermetrics-mcp
 /plugin install supermetrics
 ```
 
@@ -82,7 +82,7 @@ Or install the plugin, which bundles the server together with the two
 Add the Supermetrics marketplace:
 
 ```text
-codex plugin marketplace add supermetrics/supermetrics-mcp
+codex plugin marketplace add supermetrics-public/supermetrics-mcp
 ```
 
 Then run `/plugins` in Codex and install `supermetrics`. The plugin includes the server and both
@@ -102,32 +102,6 @@ Open **Settings → MCP** and add:
   }
 }
 ```
-
-### Antigravity CLI
-
-Install the repository as a native Antigravity plugin:
-
-```text
-agy plugin install https://github.com/supermetrics/supermetrics-mcp
-```
-
-Then run `/mcp` in Antigravity CLI to authenticate and inspect the Supermetrics server.
-
-### Google Antigravity IDE
-
-Open **Manage MCP Servers → View raw config** and add:
-
-```json
-{
-  "mcpServers": {
-    "supermetrics": {
-      "serverUrl": "https://mcp.supermetrics.com/mcp"
-    }
-  }
-}
-```
-
-Antigravity uses `serverUrl` for remote MCP servers.
 
 ### VS Code (Copilot agent mode)
 
@@ -165,7 +139,7 @@ Add the server to Zed's `context_servers` settings:
 Install as a Gemini CLI extension:
 
 ```bash
-gemini extensions install https://github.com/supermetrics/supermetrics-mcp
+gemini extensions install https://github.com/supermetrics-public/supermetrics-mcp
 ```
 
 The extension ships a `GEMINI.md` context file so Gemini knows the discovery-then-query workflow
@@ -285,7 +259,7 @@ See [SECURITY.md](SECURITY.md) and the [Supermetrics privacy policy](https://sup
 
 ## Support
 
-- **Issues**: [GitHub Issues](https://github.com/supermetrics/supermetrics-mcp/issues)
+- **Issues**: [GitHub Issues](https://github.com/supermetrics-public/supermetrics-mcp/issues)
 - **Knowledge base**: [docs.supermetrics.com](https://docs.supermetrics.com/)
 - **Privacy**: [Supermetrics privacy policy](https://supermetrics.com/privacy-policy)
 - **Terms**: [Terms of service and DPA](https://supermetrics.com/terms-of-service)
