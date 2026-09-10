@@ -1,0 +1,45 @@
+# Supermetrics MCP
+
+> Supermetrics MCP is a remote Model Context Protocol server that gives AI agents live access to
+> marketing performance data from 174 advertising, analytics, e-commerce and CRM platforms, plus
+> read-write campaign management and live dashboard publishing. This repository contains the public
+> listing manifests and install configurations — the server itself is hosted by Supermetrics.
+
+Server URL: https://mcp.supermetrics.com/mcp (streamable HTTP, OAuth 2.0, DCR and CIMD supported)
+
+A Supermetrics account with a 14-day free trial is created automatically on first login.
+
+## What it does
+
+- Query live marketing data across Google Ads, Meta Ads, LinkedIn Ads, TikTok Ads, Microsoft
+  Advertising, Amazon Ads, Google Analytics 4, Google Search Console, Shopify, HubSpot, Salesforce,
+  Klaviyo, Stripe and 160+ other platforms.
+- Discover data sources, accounts, report types, fields, metrics and dimensions before querying.
+- Create, update, pause and audit ad campaigns on Google, Meta, Microsoft, TikTok, LinkedIn and
+  ChatGPT Ads, including ad groups, ads, targeting and creatives.
+- Publish live, shareable dashboards to Supermetrics Studio that re-query data on every view.
+- Store team reporting conventions as business context and apply them consistently across sessions.
+
+## Tools
+
+supermetrics_guide, data_source_discovery, accounts_discovery, field_discovery, data_query,
+get_async_query_results, get_today, manage_business_context, campaign_and_resource_get,
+manage_campaign, manage_dashboards, resources_manage, manage_user_and_team, contact_supermetrics
+
+## Install
+
+- Claude and ChatGPT: available as a ready-made connector in the app directory.
+- Claude Code: `claude mcp add --transport http supermetrics https://mcp.supermetrics.com/mcp`
+- Codex: `codex plugin marketplace add supermetrics/supermetrics-mcp`
+- Gemini CLI: `gemini extensions install https://github.com/supermetrics/supermetrics-mcp`
+- Antigravity: `agy plugin install https://github.com/supermetrics/supermetrics-mcp`
+- Cursor, VS Code, Zed, Windsurf, Cline, n8n: point the client at the server URL over streamable HTTP.
+
+## Docs
+
+- Repository README: https://github.com/supermetrics/supermetrics-mcp
+- Server documentation: https://mcp.supermetrics.com/docs
+- Full data source list: https://mcp.supermetrics.com/datasources
+- Server changelog: https://mcp.supermetrics.com/changelog
+- LLM reference: https://mcp.supermetrics.com/llms-full.txt
+- Knowledge base: https://docs.supermetrics.com/

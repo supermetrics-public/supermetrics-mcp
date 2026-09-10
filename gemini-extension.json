@@ -1,0 +1,11 @@
+{
+	"name": "supermetrics",
+	"version": "1.0.0",
+	"description": "Query live marketing data and manage ad campaigns across 174 platforms with Supermetrics.",
+	"contextFileName": "GEMINI.md",
+	"mcpServers": {
+		"supermetrics": {
+			"httpUrl": "https://mcp.supermetrics.com/mcp"
+		}
+	}
+}
