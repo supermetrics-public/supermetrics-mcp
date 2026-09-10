@@ -30,14 +30,13 @@ manage_campaign, manage_dashboards, resources_manage, manage_user_and_team, cont
 
 - Claude and ChatGPT: available as a ready-made connector in the app directory.
 - Claude Code: `claude mcp add --transport http supermetrics https://mcp.supermetrics.com/mcp`
-- Codex: `codex plugin marketplace add supermetrics/supermetrics-mcp`
-- Gemini CLI: `gemini extensions install https://github.com/supermetrics/supermetrics-mcp`
-- Antigravity: `agy plugin install https://github.com/supermetrics/supermetrics-mcp`
+- Codex: `codex plugin marketplace add supermetrics-public/supermetrics-mcp`
+- Gemini CLI: `gemini extensions install https://github.com/supermetrics-public/supermetrics-mcp`
 - Cursor, VS Code, Zed, Windsurf, Cline, n8n: point the client at the server URL over streamable HTTP.
 
 ## Docs
 
-- Repository README: https://github.com/supermetrics/supermetrics-mcp
+- Repository README: https://github.com/supermetrics-public/supermetrics-mcp
 - Server documentation: https://mcp.supermetrics.com/docs
 - Full data source list: https://mcp.supermetrics.com/datasources
 - Server changelog: https://mcp.supermetrics.com/changelog

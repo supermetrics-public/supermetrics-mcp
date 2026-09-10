@@ -1,0 +1,39 @@
+{
+	"name": "supermetrics",
+	"version": "1.0.0",
+	"displayName": "Supermetrics",
+	"description": "Connect your AI agent to Supermetrics marketing data to query performance across 174 platforms, analyze campaigns, and manage ads.",
+	"author": {
+		"name": "Supermetrics",
+		"url": "https://supermetrics.com"
+	},
+	"homepage": "https://github.com/supermetrics-public/supermetrics-mcp",
+	"repository": "https://github.com/supermetrics-public/supermetrics-mcp",
+	"license": "MIT",
+	"keywords": [
+		"marketing",
+		"analytics",
+		"advertising",
+		"supermetrics",
+		"reporting",
+		"google-ads",
+		"facebook-ads",
+		"meta-ads",
+		"google-analytics",
+		"ga4",
+		"tiktok-ads",
+		"linkedin-ads",
+		"microsoft-ads",
+		"shopify",
+		"hubspot",
+		"roas",
+		"campaigns",
+		"dashboards"
+	],
+	"mcpServers": {
+		"supermetrics": {
+			"type": "http",
+			"url": "https://mcp.supermetrics.com/mcp"
+		}
+	}
+}

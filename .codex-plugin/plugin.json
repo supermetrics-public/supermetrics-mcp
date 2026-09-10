@@ -1,0 +1,45 @@
+{
+	"name": "supermetrics",
+	"version": "1.0.0",
+	"description": "Connect your AI agent to Supermetrics marketing data to query performance across 174 platforms, analyze campaigns, and manage ads.",
+	"author": {
+		"name": "Supermetrics",
+		"url": "https://supermetrics.com"
+	},
+	"homepage": "https://github.com/supermetrics-public/supermetrics-mcp",
+	"repository": "https://github.com/supermetrics-public/supermetrics-mcp",
+	"license": "MIT",
+	"keywords": [
+		"marketing",
+		"analytics",
+		"advertising",
+		"supermetrics",
+		"reporting",
+		"google-ads",
+		"facebook-ads",
+		"meta-ads",
+		"google-analytics",
+		"ga4",
+		"tiktok-ads",
+		"linkedin-ads",
+		"microsoft-ads",
+		"shopify",
+		"hubspot",
+		"roas",
+		"campaigns",
+		"dashboards"
+	],
+	"mcpServers": "./.mcp.json",
+	"interface": {
+		"displayName": "Supermetrics",
+		"shortDescription": "Live marketing data and ad campaign management across 174 platforms.",
+		"longDescription": "Connect Codex to Supermetrics to query live marketing data from 174 advertising, analytics, e-commerce and CRM platforms, explore available metrics and dimensions, create and update ad campaigns, and publish live dashboards — all via natural language. A 14-day free trial is created automatically on first login, no credit card required.",
+		"developerName": "Supermetrics",
+		"category": "Productivity",
+		"capabilities": ["Read", "Write"],
+		"websiteURL": "https://supermetrics.com",
+		"privacyPolicyURL": "https://supermetrics.com/privacy-policy",
+		"termsOfServiceURL": "https://supermetrics.com/terms-of-service",
+		"brandColor": "#F6252F"
+	}
+}

@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Supermetrics support
+    url: https://supermetrics.com/support
+    about: Account, billing, access or connection problems.
+  - name: Product wishlist
+    url: https://wishlist.supermetrics.com
+    about: Submit and vote on new data sources and features.
+  - name: Documentation
+    url: https://supermetrics.com/docs/product-mcp-introduction/
+    about: Setup guides and reference for the MCP server.

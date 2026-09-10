@@ -3,6 +3,10 @@
 	"name": "com.supermetrics/mcp",
 	"description": "Query live marketing data and manage ad campaigns across 174 platforms with Supermetrics.",
 	"version": "1.0.0",
+	"repository": {
+		"url": "https://github.com/supermetrics-public/supermetrics-mcp",
+		"source": "github"
+	},
 	"remotes": [
 		{
 			"type": "streamable-http",
