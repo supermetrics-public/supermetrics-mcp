@@ -69,7 +69,7 @@ Add Supermetrics as a remote HTTP server:
 claude mcp add --transport http supermetrics https://mcp.supermetrics.com/mcp
 ```
 
-Or install the plugin, which bundles the server together with the two
+Or install the plugin, which bundles the server together with the
 [skills](#bundled-skills) below:
 
 ```text
@@ -85,7 +85,7 @@ Add the Supermetrics marketplace:
 codex plugin marketplace add supermetrics-public/supermetrics-mcp
 ```
 
-Then run `/plugins` in Codex and install `supermetrics`. The plugin includes the server and both
+Then run `/plugins` in Codex and install `supermetrics`. The plugin includes the server and all
 [bundled skills](#bundled-skills).
 
 ### Cursor
@@ -173,9 +173,10 @@ For server-to-server use, an API key can be sent as a bearer token instead. Crea
 | `get_today` | Returns the current date, for resolving relative date references in queries. |
 | `manage_business_context` | Stores and retrieves team guidelines and reporting preferences, scoped team-wide, per data source, or per account. |
 | `campaign_and_resource_get` *(Beta)* | Lists campaigns and explores related resources — keywords, audiences, assets, recommendations and change history. |
-| `manage_campaign` *(Beta)* | Creates or updates campaigns, ad groups and ads across Google, Meta, Microsoft, TikTok, LinkedIn and ChatGPT Ads. |
+| `manage_campaign` *(Beta)* | Creates or updates campaigns, ad groups and ads across Google, Meta, Microsoft, TikTok, LinkedIn, ChatGPT Ads and Snapchat. |
+| `instagram_insights` | Instagram and Facebook organic social analytics, same parameters and result shape as `data_query`. |
 | `manage_dashboards` *(Beta)* | Uploads, reads and edits live, shareable dashboards in Supermetrics Studio. |
-| `resources_manage` *(Beta)* | Browses, uploads or AI-generates ad creatives for use in campaigns. |
+| `creative_picker` *(Beta)* | Browses, uploads, AI-generates or imports ad creatives for use in campaigns. |
 | `manage_user_and_team` | Returns profile, license and team info; invites members; issues data source login links. |
 | `contact_supermetrics` | Sends product feedback, or creates a support ticket or sales enquiry. |
 
@@ -183,14 +184,32 @@ Campaign write actions must be enabled per advertising account at [hub.supermetr
 
 ## Bundled skills
 
-Plugin installs (Claude Code, Codex) also install two skills. A skill is loaded only when the model
+Plugin installs (Claude Code, Codex) also install nine skills. A skill is loaded only when the model
 decides it is relevant, so it costs nothing until it is needed — and it means the agent knows how to
 use these tools well on its very first attempt instead of learning by trial and error.
 
+Two cover the general workflow:
+
 | Skill | What it covers |
 |-------|----------------|
-| `marketing-data-analysis` | The discovery-then-query workflow, date ranges and period comparisons, filter syntax, how to read the 2D result array correctly, and how to interpret numbers rather than just restate them. |
-| `campaign-management` | Safe campaign writes: read before write, create paused, per-platform creative rules for Google, Meta, Microsoft, TikTok and LinkedIn, and how to check `write_status` instead of blindly retrying. |
+| `marketing-data-analysis` | The discovery-then-query workflow, date ranges and period comparisons, filter syntax, how to read the 2D result array correctly, and how to interpret numbers rather than just restate them. Used for cross-channel questions and for connectors without a dedicated skill. |
+| `campaign-management` | Safe campaign writes: read before write, create paused, approval levels, targeting that replaces rather than merges, and how to check `write_status` instead of blindly retrying. |
+
+Seven go deeper on a single connector, with its real field IDs, the field combinations that fail,
+the limits that make numbers misleading, and a set of common requests worked through end to end:
+
+| Skill | Connector |
+|-------|-----------|
+| `google-ads` | Google Ads — impression share, quality score, search terms, Performance Max |
+| `meta-ads` | Meta Ads — attribution windows, placement splits, creative fatigue, ranking diagnostics |
+| `google-analytics-4` | GA4 — channel attribution, landing pages, ecommerce funnel, sampling and thresholding |
+| `linkedin-ads` | LinkedIn Ads — cost per lead, member firmographics, CRM-attributed revenue |
+| `tiktok-ads` | TikTok Ads — hook retention, creative velocity, SKAN, GMV Max |
+| `microsoft-ads` | Microsoft Advertising — search queries, impression share, quality score |
+| `instagram-insights` | Instagram Insights — organic reach, saves and shares, reels and stories, follower demographics |
+
+Where both apply, the connector skill wins: it carries the platform's exact field IDs and quirks,
+while the general skills carry the shared workflow and the campaign-write safety rules.
 
 Clients without a plugin system get the same server and tools — the skills are simply not preloaded.
 

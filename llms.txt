@@ -24,7 +24,8 @@ A Supermetrics account with a 14-day free trial is created automatically on firs
 
 supermetrics_guide, data_source_discovery, accounts_discovery, field_discovery, data_query,
 get_async_query_results, get_today, manage_business_context, campaign_and_resource_get,
-manage_campaign, manage_dashboards, resources_manage, manage_user_and_team, contact_supermetrics
+manage_campaign, manage_dashboards, creative_picker, instagram_insights, manage_user_and_team,
+contact_supermetrics
 
 ## Install
 

@@ -1,6 +1,6 @@
 ---
 name: marketing-data-analysis
-description: Query and analyze live marketing performance data through the Supermetrics MCP server. Use when the user asks about ad spend, ROAS, CPA, campaign performance, website traffic, conversions, channel comparisons, or any metric from Google Ads, Meta Ads, GA4, LinkedIn Ads, TikTok Ads, Microsoft Advertising, Shopify, HubSpot or any other connected marketing platform.
+description: The general Supermetrics querying workflow — discovery, date ranges, filters, reading results — for any of the 174 connected platforms. Use for cross-channel and multi-source questions, for blending data from several platforms, and for any connector without its own dedicated skill (Shopify, HubSpot, Amazon Ads, Klaviyo, Salesforce, Search Console and the rest). For a question about a single platform that has a dedicated skill — Google Ads, Meta Ads, GA4, LinkedIn Ads, TikTok Ads, Microsoft Advertising or Instagram Insights — use that skill instead.
 ---
 
 # Marketing data analysis with Supermetrics
@@ -41,8 +41,10 @@ campaigns", "we report in EUR"), offer to save it with `action="save"`.
 
 - **Dates**: prefer relative ranges (`last_30_days`, `last_month`, `this_month_inc`).
   For anything relative to "now", call `get_today` first — do not assume the date.
-- **Comparisons**: `compare_type="prev_period"` or `"prev_year"` answers "how does that
-  compare?" in one query instead of two.
+- **Comparisons**: `compare_type="prev_range"` or `"prev_year"` answers "how does that
+  compare?" in one query instead of two. Other values: `prev_year_weekday`, or `custom` with
+  `compare_start_date`/`compare_end_date`. `compare_show` picks `perc_change` (default),
+  `abs_change` or `value`.
 - **Filters**: `filters="country == US AND clicks > 100"`. Operators include `==`, `!=`,
   `>`, `>=`, `=@` (contains), `=~` (regex), `[]` (in list).
 - **Row limits**: default is 1000. Raise `max_rows` for long date ranges broken out by day.
@@ -54,7 +56,17 @@ Rows come back as a 2D array: row 0 is display headers, rows 1+ are data. Map co
 that differ from field IDs (`screenPageViews` displays as "Views"), so matching on labels
 silently reads the wrong column.
 
-Values may be strings. Parse numbers before arithmetic.
+**Check `canonical_field_ids` too.** Supermetrics resolves loose field names through an alias
+layer, so a name you guessed can succeed while quietly returning a *different* metric instead of
+erroring — asking Meta Ads for `purchases` returns `action_omni_purchase` (web, app and in-store),
+not website purchases. When `canonical_field_ids` is present and differs from what you requested,
+report the metric that actually came back.
+
+Values may be strings. Parse numbers before arithmetic. An empty cell is `null`, not zero — say
+"no data" rather than reporting it as a zero.
+
+If the response carries a `currency_recommendation`, the monetary columns have no currency attached.
+Add the currency dimension it names before stating an amount.
 
 ## Interpreting, not just reporting
 

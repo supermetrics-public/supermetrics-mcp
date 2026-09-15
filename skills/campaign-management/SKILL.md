@@ -1,6 +1,6 @@
 ---
 name: campaign-management
-description: Create, update, pause and audit advertising campaigns through the Supermetrics MCP server across Google Ads, Meta Ads, Microsoft Advertising, TikTok Ads, LinkedIn Ads and ChatGPT Ads. Use when the user wants to launch a campaign, change a budget or bid, pause or enable ads, edit targeting, manage creatives, or review what changed.
+description: The shared safety rules and payload shape for writing advertising campaigns through the Supermetrics MCP server — read before write, created paused, approval levels, targeting that replaces rather than merges, checking write_status. Use when the user wants to launch a campaign, change a budget or bid, pause or enable ads, edit targeting or manage creatives on ChatGPT Ads or Snapchat, when writing across several platforms at once, or alongside a connector skill for Google Ads, Meta Ads, Microsoft Advertising, TikTok Ads or LinkedIn Ads.
 ---
 
 # Campaign management with Supermetrics
@@ -10,8 +10,9 @@ These tools spend real money. Treat every write as consequential.
 ## Before writing anything
 
 1. Campaign writes must be enabled per advertising account at
-   [hub.supermetrics.com/write-settings](https://hub.supermetrics.com/write-settings).
-   If a write fails with a permissions error, that is usually why.
+   [hub.supermetrics.com/write-settings](https://hub.supermetrics.com/write-settings), where the
+   account owner also sets an approval level: no human approval, going live, budget + going live,
+   or all live changes. If a write fails with a permissions error, that is usually why.
 2. Read before you write. `campaign_and_resource_get` shows current state — campaigns,
    ad groups, ads, keywords, audiences, budgets. Never update a campaign you have not read.
 3. Check business context with `manage_business_context` (`action="get"`, plus `ds_id`
@@ -43,8 +44,8 @@ Use `manage_campaign` without a `campaign_id`. `budget_amount` is required. Stru
 
 Creatives accept, in order of preference: `asset_url` (a public URL), `asset_id` (already
 in the ad account — find them via `campaign_and_resource_get` with
-`resource_type="assets"`), or `upload_ref` from `resources_manage`. If the user has no
-creative yet, open `resources_manage` to browse, upload or generate one.
+`resource_type="assets"`), or `upload_ref` from `creative_picker`. If the user has no
+creative yet, open `creative_picker` to browse, upload, AI-generate or import one.
 
 Platform quirks worth knowing before you build the payload:
 
@@ -63,6 +64,9 @@ are fixed at creation and cannot be changed afterwards.
 Partial success is possible on multi-entity writes. Always check `write_status` and
 `failures` in the response — do not assume success and do not blindly retry, which can
 create duplicates.
+
+Known Google Ads limitation: newly added keywords can report success without actually being added.
+Tell the user to verify new keywords in the Google Ads UI.
 
 ## After writing
 
