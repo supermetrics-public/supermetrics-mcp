@@ -1,7 +1,7 @@
 # Supermetrics MCP
 
 > Supermetrics MCP is a remote Model Context Protocol server that gives AI agents live access to
-> marketing performance data from 174 advertising, analytics, e-commerce and CRM platforms, plus
+> marketing performance data from every major advertising, analytics, e-commerce and CRM platform, plus
 > read-write campaign management and live dashboard publishing. This repository contains the public
 > listing manifests and install configurations — the server itself is hosted by Supermetrics.
 
@@ -13,10 +13,10 @@ A Supermetrics account with a 14-day free trial is created automatically on firs
 
 - Query live marketing data across Google Ads, Meta Ads, LinkedIn Ads, TikTok Ads, Microsoft
   Advertising, Amazon Ads, Google Analytics 4, Google Search Console, Shopify, HubSpot, Salesforce,
-  Klaviyo, Stripe and 160+ other platforms.
+  Klaviyo, Stripe and many more.
 - Discover data sources, accounts, report types, fields, metrics and dimensions before querying.
-- Create, update, pause and audit ad campaigns on Google, Meta, Microsoft, TikTok, LinkedIn and
-  ChatGPT Ads, including ad groups, ads, targeting and creatives.
+- Create, update, pause and audit ad campaigns on Google, Meta, Microsoft, TikTok, LinkedIn,
+  ChatGPT and Snapchat Ads, including ad groups, ads, targeting and creatives.
 - Publish live, shareable dashboards to Supermetrics Studio that re-query data on every view.
 - Store team reporting conventions as business context and apply them consistently across sessions.
 

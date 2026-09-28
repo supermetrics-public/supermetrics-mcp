@@ -1,6 +1,6 @@
 ---
 name: marketing-data-analysis
-description: The general Supermetrics querying workflow — discovery, date ranges, filters, reading results — for any of the 174 connected platforms. Use for cross-channel and multi-source questions, for blending data from several platforms, and for any connector without its own dedicated skill (Shopify, HubSpot, Amazon Ads, Klaviyo, Salesforce, Search Console and the rest). For a question about a single platform that has a dedicated skill — Google Ads, Meta Ads, GA4, LinkedIn Ads, TikTok Ads, Microsoft Advertising or Instagram Insights — use that skill instead.
+description: The general Supermetrics querying workflow — discovery, date ranges, filters, reading results — for any connected platform. Use for cross-channel and multi-source questions, for blending data from several platforms, and for any connector without its own dedicated skill (Shopify, HubSpot, Amazon Ads, Klaviyo, Salesforce, Search Console and the rest). For a question about a single platform that has a dedicated skill — Google Ads, Meta Ads, GA4, LinkedIn Ads, TikTok Ads, Microsoft Advertising or Instagram Insights — use that skill instead.
 ---
 
 # Marketing data analysis with Supermetrics

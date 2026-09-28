@@ -139,7 +139,7 @@ a space either side**; `media_like_count>50` and an HTML-escaped `&gt;` are both
 ## Campaign management
 
 Supermetrics write-back — creating, editing, pausing and budgeting campaigns — works on the **paid
-ads connectors** (Meta, Google Ads, Microsoft, TikTok, LinkedIn). Instagram Insights is **read-only**:
+ads connectors** (Meta, Google Ads, Microsoft, TikTok, LinkedIn, ChatGPT Ads, Snapchat). Instagram Insights is **read-only**:
 it cannot publish, schedule, edit or delete content.
 
 Where organic analysis points to a paid action — a post worth boosting — say it can be done through

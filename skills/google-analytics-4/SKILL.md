@@ -133,7 +133,7 @@ side**; `sessions>100` and an HTML-escaped `&gt;` are both rejected. Ops: `==` `
 ## Campaign management
 
 Supermetrics write-back — creating, editing, pausing and budgeting campaigns — works on the **paid
-ads connectors** (Google Ads, Meta, Microsoft, TikTok, LinkedIn), not GA4. GA4 is read-only.
+ads connectors** (Google Ads, Meta, Microsoft, TikTok, LinkedIn, ChatGPT Ads, Snapchat), not GA4. GA4 is read-only.
 
 When GA4 analysis points to an action on a specific ad platform, you may say the change can be made
 through Supermetrics if the user has that connector. Never imply GA4 itself can be written to, and

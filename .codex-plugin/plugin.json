@@ -1,7 +1,7 @@
 {
 	"name": "supermetrics",
-	"version": "1.0.0",
-	"description": "Connect your AI agent to Supermetrics marketing data to query performance across 174 platforms, analyze campaigns, and manage ads.",
+	"version": "1.1.0",
+	"description": "Connect your AI agent to Supermetrics to query live performance from Google Ads, Meta Ads, GA4, LinkedIn Ads, TikTok Ads, Shopify, HubSpot and more, analyze campaigns, and manage ads.",
 	"author": {
 		"name": "Supermetrics",
 		"url": "https://supermetrics.com"
@@ -32,8 +32,8 @@
 	"mcpServers": "./.mcp.json",
 	"interface": {
 		"displayName": "Supermetrics",
-		"shortDescription": "Live marketing data and ad campaign management across 174 platforms.",
-		"longDescription": "Connect Codex to Supermetrics to query live marketing data from 174 advertising, analytics, e-commerce and CRM platforms, explore available metrics and dimensions, create and update ad campaigns, and publish live dashboards — all via natural language. A 14-day free trial is created automatically on first login, no credit card required.",
+		"shortDescription": "Live marketing data and ad campaign management.",
+		"longDescription": "Connect Codex to Supermetrics to query live marketing data from Google Ads, Meta Ads, GA4, LinkedIn Ads, TikTok Ads, Shopify, HubSpot and other advertising, analytics, e-commerce and CRM platforms, explore available metrics and dimensions, create and update ad campaigns, and publish live dashboards — all via natural language. A 14-day free trial is created automatically on first login, no credit card required.",
 		"developerName": "Supermetrics",
 		"category": "Productivity",
 		"capabilities": ["Read", "Write"],

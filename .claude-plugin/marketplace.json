@@ -1,6 +1,6 @@
 {
 	"name": "supermetrics",
-	"description": "Live marketing data and ad campaign management across 174 platforms",
+	"description": "Live marketing data and ad campaign management",
 	"owner": {
 		"name": "Supermetrics"
 	},
@@ -8,7 +8,7 @@
 		{
 			"name": "supermetrics",
 			"source": "./",
-			"description": "Connect your AI agent to Supermetrics marketing data to query performance across 174 platforms, analyze campaigns, and manage ads."
+			"description": "Connect your AI agent to Supermetrics to query live performance from Google Ads, Meta Ads, GA4, LinkedIn Ads, TikTok Ads, Shopify, HubSpot and more, analyze campaigns, and manage ads."
 		}
 	]
 }

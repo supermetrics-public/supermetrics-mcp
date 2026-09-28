@@ -5,13 +5,13 @@
 [![MCP](https://img.shields.io/badge/Model_Context_Protocol-streamable_HTTP-black)](https://modelcontextprotocol.io/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-Connect your AI agent to Supermetrics marketing data. Query live performance across 174 advertising, analytics, e-commerce and CRM platforms, explore metrics and dimensions, manage ad campaigns, and publish live dashboards — directly from your MCP-compatible client.
+Connect your AI agent to Supermetrics marketing data. Query live performance across every major advertising, analytics, e-commerce and CRM platform, explore metrics and dimensions, manage ad campaigns, and publish live dashboards — directly from your MCP-compatible client.
 
 With the Supermetrics MCP server, you can:
 
-- **Query live marketing data** from 174 platforms including Google Ads, Meta Ads, LinkedIn Ads, Google Analytics 4, TikTok Ads, Microsoft Advertising, Shopify, HubSpot and Salesforce.
+- **Query live marketing data** from Google Ads, Meta Ads, LinkedIn Ads, Google Analytics 4, TikTok Ads, Microsoft Advertising, Shopify, HubSpot, Salesforce and the rest of your marketing stack.
 - **Discover what's available** — browse data sources, accounts, fields, metrics and dimensions before you write a query.
-- **Create and update ad campaigns** across Google, Meta, Microsoft, TikTok, LinkedIn and ChatGPT Ads, including ad groups, ads and creatives.
+- **Create and update ad campaigns** across Google, Meta, Microsoft, TikTok, LinkedIn, ChatGPT and Snapchat Ads, including ad groups, ads and creatives.
 - **Publish live, shareable dashboards** to Supermetrics Studio that re-query your data on every view.
 - **Keep your team's reporting conventions** — store business context once and have it applied consistently across sessions.
 
@@ -175,9 +175,9 @@ For server-to-server use, an API key can be sent as a bearer token instead. Crea
 | `campaign_and_resource_get` *(Beta)* | Lists campaigns and explores related resources — keywords, audiences, assets, recommendations and change history. |
 | `manage_campaign` *(Beta)* | Creates or updates campaigns, ad groups and ads across Google, Meta, Microsoft, TikTok, LinkedIn, ChatGPT Ads and Snapchat. |
 | `instagram_insights` | Instagram and Facebook organic social analytics, same parameters and result shape as `data_query`. |
-| `manage_dashboards` *(Beta)* | Uploads, reads and edits live, shareable dashboards in Supermetrics Studio. |
+| `manage_dashboards` *(Beta)* | Uploads, lists, reads and edits live, shareable dashboards in Supermetrics Studio. |
 | `creative_picker` *(Beta)* | Browses, uploads, AI-generates or imports ad creatives for use in campaigns. |
-| `manage_user_and_team` | Returns profile, license and team info; invites members; issues data source login links. |
+| `manage_user_and_team` | Returns profile, license and team info; invites members; issues data source login links; logs out to switch teams. |
 | `contact_supermetrics` | Sends product feedback, or creates a support ticket or sales enquiry. |
 
 Campaign write actions must be enabled per advertising account at [hub.supermetrics.com/write-settings](https://hub.supermetrics.com/write-settings). Every edit is logged at [hub.supermetrics.com/campaign-history](https://hub.supermetrics.com/campaign-history).
@@ -215,45 +215,45 @@ Clients without a plugin system get the same server and tools — the skills are
 
 ## Data sources
 
-174 platforms, all reachable through the same tools and the same query shape. Supermetrics maintains
-every connector, so schema changes and API deprecations upstream are handled for you.
+All connectors are reachable through the same tools and the same query shape. Supermetrics maintains
+each one, so schema changes and API deprecations upstream are handled for you.
 
 Call `data_source_discovery` for the live list with authentication status, or see
 [mcp.supermetrics.com/datasources](https://mcp.supermetrics.com/datasources).
 
-**Advertising and media buying** (66)
+**Advertising and media buying**
 
 AdRoll, Adform, Adthena, Amazon Ads, Amazon DSP, Apple Search Ads, Axon by AppLovin, Basis, Beeswax, Capterra PPC, Celtra, ChatGPT Ads, Criteo, Criteo Retail Media, DoubleVerify, Eskimi, Facebook Ads, Facebook Billing Data, Flashtalking, Google Ad Manager, Google AdSense, Google Ads, Google Ads Account Explorer, Google Ads Keyword Planner, Google Campaign Manager 360, Google Display & Video 360, Google Search Ads 360, IQM, Ignite, Integral Ad Science, Kwai Ads, LINE Ads, LY Ads Display Ads, LY Ads Search Ads, Lazada Ads, Liftoff, LinkedIn Ads, LiveIntent, MNTN, Microsoft Advertising (Bing), Moloco DSP, Nexxen DSP, Nielsen Digital Ad Ratings, Outbrain Amplify, Outbrain DSP (Zemanta), Pinterest Ads, Quantcast, Quora Ads, RTB House, Readpeak, Reddit Ads, Shopee Ads, Snapchat Marketing, Spotify Ads, StackAdapt, Taboola, Teads, The Trade Desk, TikTok Ads, Vibe, Walmart Connect (Display), Walmart Connect (Search), X Ads (Twitter), Xing Ads, Yahoo DSP, Yandex.Direct
 
-**Social and organic** (21)
+**Social and organic**
 
-Apple Public Data, Bambuser, Facebook Insights, Facebook Public Data, Google My Business, Instagram Insights, Instagram Public Data, LinkedIn Company Pages, Meltwater, Pinterest Organic, Pinterest Public Data, Slack, Smarp, Sprinklr, Sprout Social, Threads Insights, TikTok Organic, Vimeo Public Data, X Organic (Twitter), YouTube, YouTube Public Data
+Apple Public Data, Bambuser, Bluesky Public Data, Facebook Insights, Facebook Public Data, Google My Business, Instagram Insights, Instagram Public Data, LinkedIn Company Pages, Meltwater, Pinterest Organic, Pinterest Public Data, Slack, Smarp, Sprinklr, Sprout Social, Threads Insights, TikTok Organic, Vimeo Public Data, X Organic (Twitter), YouTube, YouTube Public Data
 
-**Web, product and app analytics** (15)
+**Web, product and app analytics**
 
 Adjust, Adobe Analytics, Amplitude, AppsFlyer, Branch, Google Analytics 4, Google PageSpeed Insights, Google Play Console, Hotjar, Matomo, Mixpanel, Piano Analytics (AT Internet), Piwik PRO, Plausible, Yandex.Metrica
 
-**SEO and competitive intelligence** (8)
+**SEO and competitive intelligence**
 
 Ahrefs, Bing Webmaster Tools, Google Search Console, Google Trends, Semrush Analytics, Semrush Projects, Similarweb, Yext
 
-**E-commerce and retail** (19)
+**E-commerce and retail**
 
 Adobe Commerce (Magento 2), Amazon Seller Central, Amazon Vendor Central, BigCommerce, Centra, Ecwid, Google Merchant Center, Lazada Commerce, PrestaShop, Prisjakt, Recharge, Shopee Commerce, Shopify, Shopware, Squarespace Commerce, Stripe, TikTok Shop, Wix Commerce, WooCommerce
 
-**CRM, email and marketing automation** (21)
+**CRM, email and marketing automation**
 
 ActiveCampaign, Braze, Brevo, CallRail, Campaign Monitor, Close CRM, Eloqua, Gong, HubSpot, HubSpot Contacts, HubSpot Content Analytics, HubSpot Marketing Emails, HubSpot Marketing Forms, Klaviyo, MailChimp, Marketo, Odoo CRM, Omnisend, Pipedrive, Salesforce, Zoho CRM
 
-**Affiliate and partner** (9)
+**Affiliate and partner**
 
 Adtraction, Affluent, Awin, CJ Affiliate, Everflow, Impact, Partnerize, Rakuten Advertising, Tradedoubler
 
-**Reviews and reputation** (8)
+**Reviews and reputation**
 
 Capterra Reviews, G2 Reviews, Glassdoor Reviews, Google Play Reviews, Indeed Reviews, Simplesat, Tripadvisor Reviews, Yelp Reviews
 
-**Warehouses, spreadsheets and utilities** (7)
+**Warehouses, spreadsheets and utilities**
 
 Clockify, Data Blending, Google BigQuery, Google Sheets, Harvest, Snowflake, Snowflake (Legacy)
 
@@ -262,7 +262,8 @@ Clockify, Data Blending, Google BigQuery, Google Sheets, Harvest, Snowflake, Sno
 - [Server documentation](https://mcp.supermetrics.com/docs)
 - [Full data source list](https://mcp.supermetrics.com/datasources)
 - [Server changelog](https://mcp.supermetrics.com/changelog) · [repository changelog](CHANGELOG.md)
-- [OpenAPI specification](https://mcp.supermetrics.com/openapi.json)
+- [OpenAPI specification](https://mcp.supermetrics.com/openapi.json) · [Swagger 2.0](https://mcp.supermetrics.com/swagger.json)
+- [Health check](https://mcp.supermetrics.com/health)
 - [LLM summary](https://mcp.supermetrics.com/llms.txt) · [full reference](https://mcp.supermetrics.com/llms-full.txt)
 - [Supermetrics Hub](https://hub.supermetrics.com/)
 - [Knowledge base](https://docs.supermetrics.com/)

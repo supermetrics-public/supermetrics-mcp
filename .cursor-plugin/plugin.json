@@ -1,8 +1,8 @@
 {
 	"name": "supermetrics",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"displayName": "Supermetrics",
-	"description": "Connect your AI agent to Supermetrics marketing data to query performance across 174 platforms, analyze campaigns, and manage ads.",
+	"description": "Connect your AI agent to Supermetrics to query live performance from Google Ads, Meta Ads, GA4, LinkedIn Ads, TikTok Ads, Shopify, HubSpot and more, analyze campaigns, and manage ads.",
 	"author": {
 		"name": "Supermetrics",
 		"url": "https://supermetrics.com"

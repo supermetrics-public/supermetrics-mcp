@@ -1,8 +1,8 @@
 {
 	"$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
 	"name": "com.supermetrics/mcp",
-	"description": "Query live marketing data and manage ad campaigns across 174 platforms with Supermetrics.",
-	"version": "1.0.0",
+	"description": "Query live marketing data and manage ad campaigns with Supermetrics.",
+	"version": "1.1.0",
 	"repository": {
 		"url": "https://github.com/supermetrics-public/supermetrics-mcp",
 		"source": "github"

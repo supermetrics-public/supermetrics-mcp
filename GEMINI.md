@@ -1,6 +1,6 @@
 # Supermetrics
 
-This project has the Supermetrics MCP server available. It provides live access to 174
+This project has the Supermetrics MCP server available. It provides live access to
 marketing, advertising, analytics and e-commerce platforms — Google Ads, Meta Ads,
 Google Analytics 4, LinkedIn Ads, TikTok Ads, Microsoft Advertising, Shopify, HubSpot,
 Amazon Ads, Klaviyo, Salesforce and more.
@@ -10,7 +10,7 @@ Amazon Ads, Klaviyo, Salesforce and more.
 - Marketing performance questions — spend, ROAS, CPA, conversions, traffic, engagement.
 - Cross-channel comparisons and period-over-period analysis.
 - Reading and writing advertising campaigns on Google, Meta, Microsoft, TikTok,
-  LinkedIn and ChatGPT Ads.
+  LinkedIn, ChatGPT and Snapchat Ads.
 - Building shareable live dashboards in Supermetrics Studio.
 
 Never answer a performance question from memory. Query the data.
