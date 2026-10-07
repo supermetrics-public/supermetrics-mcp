@@ -1,6 +1,6 @@
 {
 	"name": "supermetrics",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"description": "Connect your AI agent to Supermetrics to query live performance from Google Ads, Meta Ads, GA4, LinkedIn Ads, TikTok Ads, Shopify, HubSpot and more, analyze campaigns, and manage ads.",
 	"author": {
 		"name": "Supermetrics",
@@ -33,7 +33,7 @@
 	"interface": {
 		"displayName": "Supermetrics",
 		"shortDescription": "Live marketing data and ad campaign management.",
-		"longDescription": "Connect Codex to Supermetrics to query live marketing data from Google Ads, Meta Ads, GA4, LinkedIn Ads, TikTok Ads, Shopify, HubSpot and other advertising, analytics, e-commerce and CRM platforms, explore available metrics and dimensions, create and update ad campaigns, and publish live dashboards — all via natural language. A 14-day free trial is created automatically on first login, no credit card required.",
+		"longDescription": "Connect Codex to Supermetrics to query live marketing data from Google Ads, Meta Ads, GA4, LinkedIn Ads, TikTok Ads, Shopify, HubSpot and other advertising, analytics, e-commerce and CRM platforms, explore available metrics and dimensions, create and update ad campaigns, and publish live dashboards — all via natural language.",
 		"developerName": "Supermetrics",
 		"category": "Productivity",
 		"capabilities": ["Read", "Write"],
