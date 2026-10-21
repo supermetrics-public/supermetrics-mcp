@@ -11,6 +11,15 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- Skills restructured into thirteen focused skills, one per job, so each is matched to the right request:
+  `get-started`, `marketing-data-queries` (replaces `marketing-data-analysis` and the seven connector skills,
+  which are now its per-platform references), `campaign-management`, `wasted-spend-audit`,
+  `ad-creative-performance`, `campaign-performance-review`, `budget-pacing-and-allocation`,
+  `ecommerce-roas-analysis`, `executive-marketing-report`, `funnel-and-tracking-audit`, `b2b-pipeline-analysis`,
+  `seo-and-content-performance` and `event-and-webinar-roi`, with helper scripts and report templates.
+
 ### Fixed
 
 - Skills: campaign `targeting` updates are described as per-field (omitted fields are kept, a sent

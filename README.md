@@ -184,34 +184,33 @@ Campaign write actions must be enabled per advertising account at [hub.supermetr
 
 ## Bundled skills
 
-Plugin installs (Claude Code, Codex) also install nine skills. A skill is loaded only when the model
-decides it is relevant, so it costs nothing until it is needed — and it means the agent knows how to
-use these tools well on its very first attempt instead of learning by trial and error.
+Plugin installs (Claude Code, Codex, ChatGPT) include 13 skills, and the server publishes the same
+set through MCP skill discovery (`skills/list`). A skill is loaded only when the model decides it is relevant,
+so it costs nothing until it is needed. Each one covers one job, so its description matches what users
+actually ask for.
 
-Two cover the general workflow:
+| Skill | What it does |
+|-------|--------------|
+| `get-started` | Sign-in check, connect a first platform, first report, save goals |
+| `marketing-data-queries` | Query workflow and per-platform field references, so queries don't fail |
+| `campaign-management` | Create and update campaigns safely: read first, created paused, approval per change |
+| `wasted-spend-audit` | Zero-conversion spend, expensive CPAs, budget traps, search terms to negate |
+| `ad-creative-performance` | Ad fatigue, creative tests, winning formats, refresh briefs |
+| `campaign-performance-review` | Week-over-week review, daily morning check, attribution differences |
+| `budget-pacing-and-allocation` | Month-to-date pacing and forecast, ROAS benchmarking, budget shifts |
+| `ecommerce-roas-analysis` | Blended ROAS, promo anomalies, SKU, new vs returning, AOV, cohorts |
+| `executive-marketing-report` | 90-day overview, efficiency vs goals, CAC/LTV, planning, Studio dashboards |
+| `funnel-and-tracking-audit` | Ad platforms vs GA4 vs CRM/store, tracking breaks, landing page leaks |
+| `b2b-pipeline-analysis` | Lead-gen efficiency, pipeline by channel, MQL-to-SQL, ABM |
+| `seo-and-content-performance` | Search Console, content attribution, newsletters, video, content gaps |
+| `event-and-webinar-roi` | Event ROI, geo-lift, event pipeline, webinar funnels, partner events |
 
-| Skill | What it covers |
-|-------|----------------|
-| `marketing-data-analysis` | The discovery-then-query workflow, date ranges and period comparisons, filter syntax, how to read the 2D result array correctly, and how to interpret numbers rather than just restate them. Used for cross-channel questions and for connectors without a dedicated skill. |
-| `campaign-management` | Safe campaign writes: read before write, create paused, approval levels, per-field targeting updates, and how to check `write_status` instead of blindly retrying. |
+`marketing-data-queries` carries per-platform references (Google Ads, Meta Ads, GA4, LinkedIn Ads, TikTok Ads,
+Microsoft Advertising, Instagram) with real field IDs and the combinations that fail. The workflow skills include
+Python helper scripts (CSV in, table out) and report templates; agents that can run code use them, others compute
+the same results directly.
 
-Seven go deeper on a single connector, with its real field IDs, the field combinations that fail,
-the limits that make numbers misleading, and a set of common requests worked through end to end:
-
-| Skill | Connector |
-|-------|-----------|
-| `google-ads` | Google Ads — impression share, quality score, search terms, Performance Max |
-| `meta-ads` | Meta Ads — attribution windows, placement splits, creative fatigue, ranking diagnostics |
-| `google-analytics-4` | GA4 — channel attribution, landing pages, ecommerce funnel, sampling and thresholding |
-| `linkedin-ads` | LinkedIn Ads — cost per lead, member firmographics, CRM-attributed revenue |
-| `tiktok-ads` | TikTok Ads — hook retention, creative velocity, SKAN, GMV Max |
-| `microsoft-ads` | Microsoft Advertising — search queries, impression share, quality score |
-| `instagram-insights` | Instagram Insights — organic reach, saves and shares, reels and stories, follower demographics |
-
-Where both apply, the connector skill wins: it carries the platform's exact field IDs and quirks,
-while the general skills carry the shared workflow and the campaign-write safety rules.
-
-Clients without a plugin system get the same server and tools — the skills are simply not preloaded.
+Clients without a plugin system get the same server and tools, and can import the skills through MCP skill discovery.
 
 ## Data sources
 
