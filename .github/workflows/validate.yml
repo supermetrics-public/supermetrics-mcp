@@ -44,7 +44,7 @@ jobs:
             GEMINI.md \
             llms.txt \
             CHANGELOG.md \
-            skills/marketing-data-analysis/SKILL.md \
+            skills/marketing-data-queries/SKILL.md \
             skills/campaign-management/SKILL.md
           do
             if [ -f "$f" ]; then echo "ok    $f"; else echo "MISSING $f"; fail=1; fi

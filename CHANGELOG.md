@@ -11,6 +11,14 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- Skills are consolidated into five, so the same set can be published through MCP skill discovery
+  (OpenAI imports at most five): `marketing-data-queries` (replaces `marketing-data-analysis` and the
+  seven connector skills, which are now its per-platform references), `campaign-management`, and three
+  new workflow skills — `paid-media-optimization`, `marketing-reporting` and `b2b-funnel-and-content` —
+  with helper scripts and report templates.
+
 ### Fixed
 
 - Skills: campaign `targeting` updates are described as per-field (omitted fields are kept, a sent

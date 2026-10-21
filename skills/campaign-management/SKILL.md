@@ -1,11 +1,13 @@
 ---
 name: campaign-management
-description: The shared safety rules and payload shape for writing advertising campaigns through the Supermetrics MCP server — read before write, created paused, approval levels, per-field targeting updates, checking write_status. Use when the user wants to launch a campaign, change a budget or bid, pause or enable ads, edit targeting or manage creatives on ChatGPT Ads or Snapchat, when writing across several platforms at once, or alongside a connector skill for Google Ads, Meta Ads, Microsoft Advertising, TikTok Ads or LinkedIn Ads.
+description: The shared safety rules and payload shape for writing advertising campaigns through the Supermetrics MCP server — read before write, created paused, approval levels, per-field targeting updates, checking write_status. Use when the user wants to launch a campaign, change a budget or bid, pause or enable ads, edit targeting or manage creatives on ChatGPT Ads or Snapchat, when writing across several platforms at once, or for any campaign change on Google Ads, Meta Ads, Microsoft Advertising, TikTok Ads or LinkedIn Ads.
 ---
 
 # Campaign management with Supermetrics
 
 These tools spend real money. Treat every write as consequential.
+
+Platform payload details (Google Ads, Meta, Microsoft, TikTok, LinkedIn) are in the `marketing-data-queries` skill's `references/<platform>.md` files.
 
 ## Before writing anything
 
