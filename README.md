@@ -193,7 +193,7 @@ Two cover the general workflow:
 | Skill | What it covers |
 |-------|----------------|
 | `marketing-data-analysis` | The discovery-then-query workflow, date ranges and period comparisons, filter syntax, how to read the 2D result array correctly, and how to interpret numbers rather than just restate them. Used for cross-channel questions and for connectors without a dedicated skill. |
-| `campaign-management` | Safe campaign writes: read before write, create paused, approval levels, targeting that replaces rather than merges, and how to check `write_status` instead of blindly retrying. |
+| `campaign-management` | Safe campaign writes: read before write, create paused, approval levels, per-field targeting updates, and how to check `write_status` instead of blindly retrying. |
 
 Seven go deeper on a single connector, with its real field IDs, the field combinations that fail,
 the limits that make numbers misleading, and a set of common requests worked through end to end:

@@ -38,8 +38,8 @@ offer to save durable preferences the user states.
 ## Campaign writes
 
 Writes must be enabled per account at hub.supermetrics.com/write-settings. New campaigns
-are always created paused — only enable one on explicit approval. `targeting` replaces
-rather than merges, so always send the complete set. Every change is logged at
+are always created paused — only enable one on explicit approval. On update, omitted
+`targeting` fields are kept; a field you send replaces that whole list, so send its complete value. Every change is logged at
 hub.supermetrics.com/campaign-history.
 
 ## When something fails

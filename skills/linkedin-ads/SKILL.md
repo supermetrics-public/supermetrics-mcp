@@ -36,7 +36,7 @@ which level your numbers are at.
 3. `manage_business_context(action="get", ds_id="LIA", account_id=…)` — target cost per lead, brand
    vs demand gen, how the team defines a qualified lead. **Advisory**: if it errors, continue and tell the user saved conventions
    couldn't be loaded — never block an analysis on a context lookup.
-4. `field_discovery(ds_id="LIA", filter="…")` — filter; 186 fields.
+4. `field_discovery(ds_id="LIA", filter="…")` — filter; there are close to 200 fields.
 5. `data_query(…)` — dimensions before metrics.
 6. `get_async_query_results(schedule_id=…)` — poll until `completed`.
 
@@ -151,7 +151,9 @@ Read first with `campaign_and_resource_get(ds_id="LIA", account_id=…)`. Never 
 - **Update** — pass `campaign_id`; only sent fields change. Objective and campaign type fixed at creation.
 - **Creative** — **single image only** through this tool. `descriptions[0]` = primary text,
   `headlines[0]` = headline. Media via `asset_url` | `asset_id` | `upload_ref` from `creative_picker`.
-- **`targeting` replaces, never merges.** Send the full set.
+- **`targeting` updates per field.** Omitted fields are kept; a field you send replaces that whole
+  list, so send its complete value. `[]` clears a field.
+  Campaign-level targeting doesn't reach existing ad groups — use `ad_groups[].targeting`.
 
 Safety:
 

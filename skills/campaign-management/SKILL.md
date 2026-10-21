@@ -1,6 +1,6 @@
 ---
 name: campaign-management
-description: The shared safety rules and payload shape for writing advertising campaigns through the Supermetrics MCP server — read before write, created paused, approval levels, targeting that replaces rather than merges, checking write_status. Use when the user wants to launch a campaign, change a budget or bid, pause or enable ads, edit targeting or manage creatives on ChatGPT Ads or Snapchat, when writing across several platforms at once, or alongside a connector skill for Google Ads, Meta Ads, Microsoft Advertising, TikTok Ads or LinkedIn Ads.
+description: The shared safety rules and payload shape for writing advertising campaigns through the Supermetrics MCP server — read before write, created paused, approval levels, per-field targeting updates, checking write_status. Use when the user wants to launch a campaign, change a budget or bid, pause or enable ads, edit targeting or manage creatives on ChatGPT Ads or Snapchat, when writing across several platforms at once, or alongside a connector skill for Google Ads, Meta Ads, Microsoft Advertising, TikTok Ads or LinkedIn Ads.
 ---
 
 # Campaign management with Supermetrics
@@ -26,10 +26,11 @@ These tools spend real money. Treat every write as consequential.
   campaign going live.** Enabling starts spend immediately.
 - **Google Performance Max**: enabling the campaign is not enough — its asset groups are
   paused too. Enabling those is a second, separately approved step.
-- **`targeting` replaces, it does not merge.** Send the complete set every time, or you
-  will silently delete targeting the user wanted to keep. The exception is Google and
-  Microsoft keywords, where `add_keywords` / `remove_keywords` append and remove without
-  touching the rest.
+- **`targeting` updates per field.** On update, omitted targeting fields are kept; each field
+  you send replaces that whole list, so send its complete value (all locations, all
+  interests), and `[]` clears it (not on Snapchat). For Google and Microsoft keywords,
+  `ad_groups[].add_keywords` / `remove_keywords` append and remove without touching the rest.
+  TikTok and LinkedIn: target existing ad groups through `ad_groups[].targeting`.
 - **Confirm budgets in writing** before submitting. State the amount, the currency and
   whether it is daily or lifetime.
 
@@ -65,8 +66,8 @@ Partial success is possible on multi-entity writes. Always check `write_status` 
 `failures` in the response — do not assume success and do not blindly retry, which can
 create duplicates.
 
-Known Google Ads limitation: newly added keywords can report success without actually being added.
-Tell the user to verify new keywords in the Google Ads UI.
+When adding Google Ads keywords, read the response notes: a keyword that wasn't added is named
+there with the reason. Report those to the user rather than assuming every keyword landed.
 
 ## After writing
 

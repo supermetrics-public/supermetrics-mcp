@@ -31,7 +31,7 @@ A dedicated `instagram_insights` tool takes the same parameters as `data_query`;
 3. `manage_business_context(action="get", ds_id="IGI", account_id=…)` — how the team defines
    engagement rate, content pillars, cadence targets. **Advisory**: if it errors, continue and tell the user saved conventions
    couldn't be loaded — never block an analysis on a context lookup.
-4. `field_discovery(ds_id="IGI", filter="…")` — filter; 92 fields.
+4. `field_discovery(ds_id="IGI", filter="…")` — filter; under 100 fields.
 5. `data_query(ds_id="IGI", …)` or `instagram_insights(ds_id="IGI", …)`.
 6. `get_async_query_results(schedule_id=…)` — poll until `completed`.
 
@@ -98,15 +98,16 @@ way — compare `report_types` arrays from `field_discovery` before combining, a
   `media_story_taps_forward` and `media_story_exits` against `media_story_reach`.
 - Intent: `media_profile_visits`, `media_follows`, `profile_links_taps` and the profile-activity taps
   show which posts drove action rather than applause.
-- Timing via `timestamp` with `dayOfWeekName` or `hour` — only claim a best time with enough posts to
+- Timing via `timestamp` with `dayOfWeekName` (there is no hour dimension) — only claim a best time with enough posts to
   mean something, and say how many. Ten posts is an anecdote, not a pattern.
 - Compare with `compare_type="prev_range"` or `"prev_year"`.
 
 ## Common requests
 
-- **"How is the account doing?"** → `date` + `reach` `accounts_engaged` `profile_views`
-  `followers_count`, with `compare_type="prev_range"`. Reach and accounts engaged first; followers is
-  a vanity total.
+- **"How is the account doing?"** → `date` + `reach` `accounts_engaged` `profile_views`, with
+  `compare_type="prev_range"`. Get `followers_count` in a separate query — it shares no report group
+  with `accounts_engaged` and comes back null beside it. Reach and accounts engaged first; followers
+  is a vanity total.
 - **"What were our best posts?"** → `media_caption` `media_permalink` `media_product_type` +
   `media_reach` `media_saved` `media_shares` `media_like_count`. Rank on saves and shares — they
   predict reach far better than likes. Quote captions exactly.
@@ -116,7 +117,7 @@ way — compare `report_types` arrays from `field_discovery` before combining, a
   `media_story_exits` `media_story_replies`. Story fields only, and only for recent windows.
 - **"Who follows us?"** → `audience_age` + `audience_gender` with `followers_count`, then
   `audience_country_dim` as a **separate** query. A current snapshot, not a time series — say so.
-- **"When should we post?"** → `timestamp` with `dayOfWeekName` or `hour` + `media_reach`
+- **"When should we post?"** → `timestamp` with `dayOfWeekName` + `media_reach`
   `interactions`. Only claim a best time if the post count supports it, and say how many.
 
 ## Querying

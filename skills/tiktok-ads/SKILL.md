@@ -13,7 +13,7 @@ metric required** (`min_metrics: 1`) — a dimensions-only query fails.
 - **Never invent.** Every number, campaign, ad group, ad, creative and date must come from a tool
   response in this conversation. No estimates, no illustrative examples, no "typical" benchmarks.
   Empty result → say it was empty. Can't retrieve it → say what failed.
-- **Never guess a field ID.** 502 fields across standard, SKAN, onsite, offline and GMV Max families,
+- **Never guess a field ID.** Hundreds of fields across standard, SKAN, onsite, offline and GMV Max families,
   and picking the wrong family silently changes the answer. A loose name like `purchases` can alias
   to any of them. IDs come from `field_discovery`; confirm with `canonical_field_ids`.
 - **On error: discover, then retry.** Never re-send an identical failed call. See *Failures*.
@@ -45,8 +45,9 @@ for. Comparable within an objective, misleading across objectives; always say wh
 **Video — the core diagnostic** `video_play_actions` `video_watched_2s` `video_watched_6s`
 `video_views_p25` `video_views_p50` `video_views_p75` `video_views_p100` `average_video_play`
 `average_video_play_per_user` `engaged_view` `engaged_view_15s`
-**Organic-style engagement on paid** `engagements` `engagement_rate` `likes` `comments` `shares`
-`follows` `profile_visits` `sound_usage_clicks` `duet_clicks` `stitch_clicks`
+**Organic-style engagement on paid** `engagements` `likes` `comments` `shares` `follows`
+`profile_visits` `sound_usage_clicks` `duet_clicks` `stitch_clicks` (`engagement_rate` exists only on
+the Smart+ report types and won't combine with `ad_id` or standard campaign/ad group fields)
 **GMV Max / TikTok Shop** `gmv_max_orders` `gmv_max_gross_revenue` `gmv_max_roi`
 `gmv_max_cost_per_order` `gmv_max_live_views`
 **SKAN (iOS)** the `skan_*` family — a separate, **non-additive** view. Never add to standard conversions.
@@ -85,7 +86,7 @@ for. Comparable within an objective, misleading across objectives; always say wh
 - **Hook retention first**: `video_watched_2s` and `video_watched_6s` against `impressions`. A weak
   hook explains more bad TikTok performance than targeting does.
 - Retention curve p25 → p50 → p75 → p100 locates where viewers leave.
-- **Creative velocity**: rising `frequency` + falling `engagement_rate` + rising `cpm` means new
+- **Creative velocity**: rising `frequency` + falling `ctr` + rising `cpm` means new
   creative, not a bid change.
 - Cost per result **within** an objective, never across objectives.
 - `shares`, `follows`, `profile_visits` show an ad earning attention rather than buying it — often the
@@ -103,7 +104,7 @@ for. Comparable within an objective, misleading across objectives; always say wh
   `video_views_p25` `video_views_p50` `video_views_p100`. The first TikTok query worth running —
   most bad performance is a weak opening, not targeting.
 - **"Which creative wins?"** → `ad_id` (add `ad_text` or `video_id` for labels, not `ad_name`, which
-  can drop rows) + `cost` `cost_per_result` `engagement_rate` `shares`.
+  can drop rows) + `cost` `cost_per_result` `ctr` `shares`.
 - **"Who are we reaching?"** → `age` `gender` or `country_code` + `cost` `impressions` `clicks`.
   Audience report types only: drop `average_video_play_per_user`, `engaged_view`, and generic
   `conversions` — use `total_purchase` or `complete_payment` for conversions by country.
@@ -147,7 +148,9 @@ Read first with `campaign_and_resource_get(ds_id="TIK", account_id=…)`. Never 
 - **Video creatives must use `asset_id`** — a public `asset_url` will not work, and this is the most
   common creation failure. Upload via `creative_picker` first. Spark Ads use `tiktok_item_id` in the
   ad's `platform_settings`.
-- **Targeting needs at least one location** (ISO country codes) and **replaces, never merges**.
+- **Targeting needs at least one location** (ISO country codes). On update, omitted targeting fields
+  are kept and a sent field replaces that whole list. Existing ad groups take `ad_groups[].targeting`;
+  campaign-level targeting doesn't reach them.
 - **Update** — pass `campaign_id`; only sent fields change. Objective fixed at creation.
 
 Safety:

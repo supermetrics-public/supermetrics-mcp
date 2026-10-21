@@ -26,7 +26,7 @@ always required.
 3. `manage_business_context(action="get", ds_id="FA", account_id=…)` — attribution window,
    exclusions, Advantage+ reporting, target ROAS. **Advisory**: if it errors, continue and tell the user saved conventions
    couldn't be loaded — never block an analysis on a context lookup.
-4. `field_discovery(ds_id="FA", filter="…")` — always filter; 226 fields.
+4. `field_discovery(ds_id="FA", filter="…")` — always filter; there are hundreds of fields.
 5. `data_query(…)` — dimensions before metrics.
 6. `get_async_query_results(schedule_id=…)` — poll until `completed`.
 
@@ -152,7 +152,9 @@ Read first with `campaign_and_resource_get(ds_id="FA", account_id=…)`. Never u
   are inherited. `creative_picker` when there's no asset yet.
 - **Update** — pass `campaign_id`; only sent fields change. Objective is fixed at creation; ABO
   campaigns can't switch bidding strategy.
-- **`targeting` replaces, never merges.** Send the full set. `advantage_audience` toggles Advantage+.
+- **`targeting` updates per field.** Omitted fields are kept; a field you send replaces that whole
+  list, so send its complete value. `[]` clears a field.
+  Campaign-level targeting is applied to every existing ad set. `advantage_audience` toggles Advantage+.
 
 Safety:
 
