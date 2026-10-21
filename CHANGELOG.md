@@ -9,6 +9,21 @@ continuously. For tool, data source and capability changes, see
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this repository
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed
+
+- Skills: campaign `targeting` updates are described as per-field (omitted fields are kept, a sent
+  field replaces that list), matching the server, instead of "replaces, never merges". Same fix in
+  the README and `GEMINI.md`.
+- Skills: the Google Ads keyword note now points to the response notes, which name any keyword that
+  wasn't added, instead of a blanket "verify in the UI".
+- `tiktok-ads`: removed `engagement_rate` from standard-report examples; it exists only on Smart+
+  report types and fails beside `ad_id`.
+- `instagram-insights`: removed the non-existent `hour` dimension, and split `followers_count` out of
+  the account-overview example, where it returned nulls.
+- Skills: replaced stale per-connector field counts.
+
 ## [1.1.0] - 2026-09-28
 
 ### Added

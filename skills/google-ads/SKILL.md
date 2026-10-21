@@ -24,7 +24,7 @@ description: Query and manage Google Ads through Supermetrics. Use for ad spend,
 3. `manage_business_context(action="get", ds_id="AW", account_id=…)` — targets, exclusions, naming
    rules. **Advisory**: if it errors, continue and tell the user saved conventions
    couldn't be loaded — never block an analysis on a context lookup.
-4. `field_discovery(ds_id="AW", filter="…")` — always filter; there are 548 fields.
+4. `field_discovery(ds_id="AW", filter="…")` — always filter; the catalogue runs to hundreds of fields.
 5. `data_query(…)` — dimensions before metrics.
 6. `get_async_query_results(schedule_id=…)` — poll until `completed`.
 
@@ -129,7 +129,8 @@ Read first with `campaign_and_resource_get(ds_id="AW", account_id=…)`. Never u
   rejected. Media via `asset_url` | `asset_id` | `upload_ref` from `creative_picker`.
 - **Keywords** — `add_keywords`/`remove_keywords` append and remove; `targeting.keywords` **replaces
   the whole set**; negatives go in `targeting.negative_keywords`, never in `keywords`.
-- **`targeting` replaces, never merges.** Send the full set or you delete what you omit.
+- **`targeting` updates per field.** Omitted fields are kept; a field you send replaces that whole
+  list, so send its complete value. `[]` clears a field.
 
 Safety:
 
@@ -141,7 +142,7 @@ Safety:
 - **PMax needs two approvals**: the campaign, then its asset groups, which stay paused separately.
 - Confirm budget in writing first: amount, currency, daily vs lifetime.
 - Check `write_status` and `failures`; partial success happens, and blind retries duplicate.
-- Google bug: new keywords can report success without being added — tell the user to verify in the UI.
+- Adding keywords: a keyword that wasn't added is named in the response notes with the reason — report it.
 
 Logged at [hub.supermetrics.com/campaign-history](https://hub.supermetrics.com/campaign-history).
 Re-read after writing; state what changed and what is still paused.

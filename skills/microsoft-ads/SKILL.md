@@ -25,7 +25,7 @@ description: Query and manage Microsoft Advertising (Bing) through Supermetrics.
 3. `manage_business_context(action="get", ds_id="AC", account_id=…)` — target CPA/ROAS, which goals
    count, exclusions. **Advisory**: if it errors, continue and tell the user saved conventions
    couldn't be loaded — never block an analysis on a context lookup.
-4. `field_discovery(ds_id="AC", filter="…")` — filter; 163 fields.
+4. `field_discovery(ds_id="AC", filter="…")` — filter; there are hundreds of fields.
 5. `data_query(…)` — dimensions before metrics.
 6. `get_async_query_results(schedule_id=…)` — poll until `completed`.
 
@@ -140,7 +140,8 @@ Read first with `campaign_and_resource_get(ds_id="AC", account_id=…)`. Never u
   (90), `final_urls` required.
 - **Keywords** — `add_keywords`/`remove_keywords` append and remove; `targeting.keywords` **replaces
   the whole set**; negatives go in `targeting.negative_keywords`.
-- **`targeting` replaces, never merges.** Send the full set.
+- **`targeting` updates per field.** Omitted fields are kept; a field you send replaces that whole
+  list, so send its complete value. `[]` clears a field.
 
 Safety:
 
