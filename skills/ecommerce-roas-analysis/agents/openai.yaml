@@ -1,0 +1,6 @@
+interface:
+  display_name: "Ecommerce ROAS Analysis"
+  short_description: "Blended and per-channel ROAS"
+  icon_small: "./assets/icon-small.png"
+  brand_color: "#F6252F"
+  default_prompt: "What was my blended ROAS last month across my store and ads?"

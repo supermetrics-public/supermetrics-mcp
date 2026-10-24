@@ -42,9 +42,9 @@ Make the headline land within two seconds:
 - **Add reference lines** for the baseline average, the target ROAS, or the anomaly threshold
 - **Annotate anomalies** with their cause directly on the chart (e.g. "Pixel failure suspected")
 
-### Step 3 — Build as inline artifact
+### Step 3 — Render it in the conversation
 
-For data visualizations in chat, build a React component using Recharts.
+For data visualizations in chat, render the chart inline with the charting or code-execution capability available in the session.
 
 ### Standard color palette
 
@@ -67,7 +67,7 @@ For heatmaps, use a diverging red-to-green scale where the midpoint is the metri
 
 For one-off questions outside the bundled workflows ("what's the AOV distribution across our top SKUs in this campaign?", "is there a customer-LTV difference between Facebook and Google traffic?", "how does promo-period purchase intent vary by audience segment?"), write fresh analysis code.
 
-## Other Claude capabilities to leverage
+## Other capabilities to leverage
 
 **Built-in document skills.** When the deliverable is a file:
 - Word documents (post-promo retrospectives, day-of-week strategy memos) → use the `docx` skill, if available
@@ -80,7 +80,7 @@ Read the relevant SKILL.md before building.
 
 **Web search.** Useful for recent platform changes affecting attribution (e.g. iOS 14.5+ effects on Facebook), industry promo benchmarks (typical BFCM ROAS lift), or fresh research on cart abandonment / returns trends that explain anomalies.
 
-**Clarifying questions.** Use a multiple-choice question tool if one is available (`ask_user_input_v0` on claude.ai, `AskUserQuestion` in Claude Code) for multiple-choice — attribution model preference, baseline window for anomaly detection (rolling 6-day vs same-week-last-year), which campaigns count as the promo set.
+**Clarifying questions.** Use a multiple-choice question tool if one is available for multiple-choice — attribution model preference, baseline window for anomaly detection (rolling 6-day vs same-week-last-year), which campaigns count as the promo set.
 
 ## Things to watch for
 

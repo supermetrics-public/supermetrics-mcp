@@ -1,0 +1,6 @@
+interface:
+  display_name: "B2B Pipeline Analysis"
+  short_description: "Pipeline and lead quality by channel"
+  icon_small: "./assets/icon-small.png"
+  brand_color: "#F6252F"
+  default_prompt: "Which channels drove the most pipeline last quarter?"

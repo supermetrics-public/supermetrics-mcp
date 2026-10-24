@@ -11,14 +11,24 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- `live-dashboards` skill: plans, builds and publishes live Supermetrics Studio dashboards, including dashboards
+  with campaign actions (pause or enable a campaign, change a budget). It covers when to offer a dashboard, how to
+  plan it and what makes it useful, and defers the code details to the `manage_dashboards` tool instructions.
+- Each skill has an `agents/openai.yaml` with a display name, short description, starter prompt and icon, so the
+  skills show readable names in ChatGPT and Codex.
+
 ### Changed
 
 - Skills restructured into thirteen focused skills, one per job, so each is matched to the right request:
   `get-started`, `marketing-data-queries` (replaces `marketing-data-analysis` and the seven connector skills,
   which are now its per-platform references), `campaign-management`, `wasted-spend-audit`,
-  `ad-creative-performance`, `campaign-performance-review`, `budget-pacing-and-allocation`,
+  `ad-creative-performance`, `campaign-performance-review`, `budget-pacing-allocation`,
   `ecommerce-roas-analysis`, `executive-marketing-report`, `funnel-and-tracking-audit`, `b2b-pipeline-analysis`,
   `seo-and-content-performance` and `event-and-webinar-roi`, with helper scripts and report templates.
+- Skill reference guides no longer name Claude-only features (artifacts, Recharts, `ask_user_input_v0`,
+  `AskUserQuestion`); they describe the same steps in client-neutral terms, as the ChatGPT plugin directory requires.
 
 ### Fixed
 

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Marketing Data Queries"
+  short_description: "Query any connected source reliably"
+  icon_small: "./assets/icon-small.png"
+  brand_color: "#F6252F"
+  default_prompt: "Pull last month's spend and conversions by campaign"

@@ -1,5 +1,5 @@
 ---
-name: budget-pacing-and-allocation
+name: budget-pacing-allocation
 description: Check ad budget pacing and plan reallocation from live data: month-to-date spend vs budget with a month-end forecast per channel, cross-channel ROAS benchmarking, and modelled budget shifts with diminishing returns. Use for "are we on track", "where should the next euro go" and reallocation proposals.
 ---
 

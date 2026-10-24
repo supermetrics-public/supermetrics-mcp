@@ -37,9 +37,9 @@ Make the headline land within two seconds:
 - **Add a reference line** for the registration target or the national baseline
 - **Annotate sample-size caveats** directly on the chart (e.g. "Google: only 18 registrations — directional")
 
-### Step 3 — Build as inline artifact
+### Step 3 — Render it in the conversation
 
-For data visualizations in chat, build a React component using Recharts.
+For data visualizations in chat, render the chart inline with the charting or code-execution capability available in the session.
 
 ### Standard color palette
 
@@ -62,7 +62,7 @@ When sample sizes are small, low-confidence comparisons should be visually disti
 
 For one-off questions outside the bundled workflows ("did email-driven signups outperform ad-driven signups for this event?", "which job titles in the registration list came from which channel?", "what's the no-show rate by channel?"), write fresh analysis code.
 
-## Other Claude capabilities to leverage
+## Other capabilities to leverage
 
 **Built-in document skills.** When the deliverable is a file:
 - Word documents (post-event summaries, ROI memos) → the `docx` skill
@@ -75,7 +75,7 @@ If one of these skills is available, read its SKILL.md before building.
 
 **Web search.** Useful for industry event-marketing benchmarks (CPR norms by event type), competitive intelligence on what other companies are doing in the same region, or recent platform changes affecting geo-targeting accuracy.
 
-**Clarifying questions.** Use a multiple-choice question tool if one is available (`ask_user_input_v0` on claude.ai, `AskUserQuestion` in Claude Code) — which event platform's registration count is the source of truth, which channels to compare, what counts as the "region" for geo analysis (city, metro, state).
+**Clarifying questions.** Use a multiple-choice question tool if one is available — which event platform's registration count is the source of truth, which channels to compare, what counts as the "region" for geo analysis (city, metro, state).
 
 ## Things to watch for
 

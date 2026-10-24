@@ -39,9 +39,9 @@ Make the headline land within two seconds:
 - **Add reference lines** for the conversion-rate target and the minimum-traffic threshold
 - **Annotate the worst offender** with its URL directly on the chart
 
-### Step 3 — Build as inline artifact
+### Step 3 — Render it in the conversation
 
-For data visualizations in chat, build a React component using Recharts.
+For data visualizations in chat, render the chart inline with the charting or code-execution capability available in the session.
 
 ### Standard color palette
 
@@ -64,7 +64,7 @@ Color by *business meaning*. Bounce rate at 80% is red (bad), conversion rate at
 
 For one-off questions ("which referral sources have the lowest bounce rate on our blog?", "what's the correlation between time-on-page and conversion rate?", "which days of the week drive the highest-engagement traffic to our top pages?"), write fresh analysis code.
 
-## Other Claude capabilities to leverage
+## Other capabilities to leverage
 
 **Built-in document skills.** When the deliverable is a file:
 - Word documents (the web team fix doc is the prime case) → the `docx` skill
@@ -77,7 +77,7 @@ If one of these skills is available, read its SKILL.md before building.
 
 **Web search.** Useful for current bounce-rate and conversion-rate benchmarks by content type, recent SEO/UX research, or industry-specific norms.
 
-**Clarifying questions.** Use a multiple-choice question tool if one is available (`ask_user_input_v0` on claude.ai, `AskUserQuestion` in Claude Code) for clarifications — which conversion event matters, which page types to include or exclude, what bounce-rate threshold to flag.
+**Clarifying questions.** Use a multiple-choice question tool if one is available for clarifications — which conversion event matters, which page types to include or exclude, what bounce-rate threshold to flag.
 
 ## Things to watch for
 

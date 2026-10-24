@@ -184,7 +184,7 @@ Campaign write actions must be enabled per advertising account at [hub.supermetr
 
 ## Bundled skills
 
-Plugin installs (Claude Code, Codex, ChatGPT) include 13 skills, and the server publishes the same
+Plugin installs (Claude Code, Codex, ChatGPT) include 14 skills, and the server publishes the same
 set through MCP skill discovery (`skills/list`). A skill is loaded only when the model decides it is relevant,
 so it costs nothing until it is needed. Each one covers one job, so its description matches what users
 actually ask for.
@@ -194,10 +194,11 @@ actually ask for.
 | `get-started` | Sign-in check, connect a first platform, first report, save goals |
 | `marketing-data-queries` | Query workflow and per-platform field references, so queries don't fail |
 | `campaign-management` | Create and update campaigns safely: read first, created paused, approval per change |
+| `live-dashboards` | Plan and publish live Studio dashboards, including campaign actions such as pause or budget changes |
 | `wasted-spend-audit` | Zero-conversion spend, expensive CPAs, budget traps, search terms to negate |
 | `ad-creative-performance` | Ad fatigue, creative tests, winning formats, refresh briefs |
 | `campaign-performance-review` | Week-over-week review, daily morning check, attribution differences |
-| `budget-pacing-and-allocation` | Month-to-date pacing and forecast, ROAS benchmarking, budget shifts |
+| `budget-pacing-allocation` | Month-to-date pacing and forecast, ROAS benchmarking, budget shifts |
 | `ecommerce-roas-analysis` | Blended ROAS, promo anomalies, SKU, new vs returning, AOV, cohorts |
 | `executive-marketing-report` | 90-day overview, efficiency vs goals, CAC/LTV, planning, Studio dashboards |
 | `funnel-and-tracking-audit` | Ad platforms vs GA4 vs CRM/store, tracking breaks, landing page leaks |

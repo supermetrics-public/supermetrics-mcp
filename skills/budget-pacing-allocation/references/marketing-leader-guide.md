@@ -41,9 +41,9 @@ Make the headline land within two seconds of looking at the chart:
 
 If you can't name the headline, the chart isn't ready. Often that means the analysis isn't ready either.
 
-### Step 3 — Build it as an inline artifact
+### Step 3 — Render it in the conversation
 
-For data visualizations in chat, build a React component using Recharts (available in the artifact environment). For visualizations destined for a slide deck or document, embed them inside the file using the relevant built-in skill (see below).
+For data visualizations in chat, render the chart inline with the charting or code-execution capability available in the session. For visualizations destined for a slide deck or document, embed them inside the file using the relevant built-in skill (see below).
 
 ### Standard color palette
 
@@ -67,7 +67,7 @@ Color by *business meaning*, not by sign. If spend is +30%, the bar is red if th
 
 For one-off questions the bundled scripts weren't designed for ("what's the spend concentration across channels — top 3 vs the rest?", "is there a launch-month effect on new campaigns?"), write fresh analysis code in chat. Pull the data, compute the answer, build the visualization that fits the question.
 
-## Other Claude capabilities to leverage
+## Other capabilities to leverage
 
 **Built-in document skills.** When the deliverable is a file:
 - Slide decks (the executive overview is the prime case) → use the `pptx` skill, if available
@@ -80,7 +80,7 @@ Read the relevant SKILL.md *before* building any file. The slide-deck workflow e
 
 **Web search.** Useful for industry benchmarks (CPA / ROAS norms for the user's category), recent platform changes that might explain anomalies, or context for board-level narratives.
 
-**Clarifying questions.** When you need a multiple-choice answer to proceed (which attribution model, which time window, which currency conversion approach), use a multiple-choice question tool if one is available (`ask_user_input_v0` on claude.ai, `AskUserQuestion` in Claude Code). Cleaner than asking in prose on mobile.
+**Clarifying questions.** When you need a multiple-choice answer to proceed (which attribution model, which time window, which currency conversion approach), use a multiple-choice question tool if one is available. Cleaner than asking in prose on mobile.
 
 ## Things to watch for
 

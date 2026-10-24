@@ -1,0 +1,6 @@
+interface:
+  display_name: "Campaign Performance Review"
+  short_description: "Week-over-week changes and actions"
+  icon_small: "./assets/icon-small.png"
+  brand_color: "#F6252F"
+  default_prompt: "Review my paid campaign performance this week vs last week"

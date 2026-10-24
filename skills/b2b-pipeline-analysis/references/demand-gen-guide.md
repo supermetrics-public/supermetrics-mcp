@@ -37,9 +37,9 @@ Make the headline land within two seconds:
 - **Add a reference line** for blended average or industry benchmark
 - **Annotate UTM-flagged channels** directly on the chart
 
-### Step 3 — Build as inline artifact
+### Step 3 — Render it in the conversation
 
-For data visualizations in chat, build a React component using Recharts.
+For data visualizations in chat, render the chart inline with the charting or code-execution capability available in the session.
 
 ### Standard color palette
 
@@ -62,7 +62,7 @@ For paired-bar comparisons (platform-reported vs GA4-measured), use indigo for t
 
 For one-off questions outside the seven bundled workflows (e.g. "do leads coming through landing page A have different MQL rates than leads from landing page B?", "is there a day-of-week effect on lead quality?"), write fresh analysis code in chat.
 
-## Other Claude capabilities to leverage
+## Other capabilities to leverage
 
 **Built-in document skills.** When the deliverable is a file:
 - Word documents (the sales leadership update is often this) → the `docx` skill
@@ -75,7 +75,7 @@ If one of these skills is available, read its SKILL.md *before* building the fil
 
 **Web search.** Useful for industry CPL benchmarks, recent platform changes (e.g. iOS 14.5+ effects on Facebook attribution that might explain a measurement drop), or fresh research on B2B lead-quality patterns.
 
-**Clarifying questions.** Use a multiple-choice question tool if one is available (`ask_user_input_v0` on claude.ai, `AskUserQuestion` in Claude Code) for clarifications — attribution model preference, time window, which lead definition counts.
+**Clarifying questions.** Use a multiple-choice question tool if one is available for clarifications — attribution model preference, time window, which lead definition counts.
 
 ## Things to watch for
 
