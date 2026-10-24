@@ -135,11 +135,12 @@ Read first with `campaign_and_resource_get(ds_id="TIK", account_id=…)`. Never 
 `manage_campaign(ds_id="TIK", account_id=…)`:
 
 - **Create** — omit `campaign_id`; `budget_amount` required; set `platform_settings.objective_type`
-  (`TRAFFIC`|`CONVERSIONS`|`REACH`|`LEAD_GENERATION`|`VIDEO_VIEWS`) and `budget_optimize_switch`
-  (`ON` = budget at campaign level, so ad groups don't need their own).
-- **Ad groups** take `optimization_goal` (`CLICK`|`IMPRESSION`|`REACH`|`ENGAGED_VIEW`|`CONVERSION`|
-  `INSTALL`), `billing_event` (`CPC`|`CPM`|`CPV`), `placement_type`, `placements`. `REACH` also needs
-  a `frequency` cap.
+  (`TRAFFIC`|`WEB_CONVERSIONS`|`REACH`|`LEAD_GENERATION`|`VIDEO_VIEWS`) and `budget_optimize_switch`
+  (`ON` = budget at campaign level, so ad groups must not set their own; create only).
+- **Ad groups** take `optimization_goal` (`CLICK`|`SHOW`|`REACH`|`ENGAGED_VIEW`|`INSTALL`|`CONVERT`;
+  `CONVERT` needs `pixel_id` + `pixel_event`, e.g. `SHOPPING`|`ON_WEB_CART`|`ON_WEB_REGISTER`),
+  `billing_event` (`CPC` for CLICK, `OCPM` for CONVERT/INSTALL, `CPM` for SHOW/REACH, `CPV` for
+  ENGAGED_VIEW), `placement_type`, `placements`. `REACH` also needs a `frequency` cap.
 - **Video creatives must use `asset_id`** — a public `asset_url` will not work, and this is the most
   common creation failure. Upload via `creative_picker` first. Spark Ads use `tiktok_item_id` in the
   ad's `platform_settings`.
