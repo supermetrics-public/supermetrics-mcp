@@ -1,0 +1,6 @@
+interface:
+  display_name: "Wasted Spend Audit"
+  short_description: "Find ad spend that brings no results"
+  icon_small: "./assets/icon-small.png"
+  brand_color: "#F6252F"
+  default_prompt: "Find campaigns and search terms wasting ad spend"

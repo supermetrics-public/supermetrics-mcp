@@ -41,9 +41,9 @@ The chart's design should make the headline land within two seconds of looking a
 
 If you can't name the headline, the visualization isn't ready — the analysis probably isn't either.
 
-### Step 3 — Build it as an inline artifact
+### Step 3 — Render it in the conversation
 
-For data visualizations in chat, build a React component using Recharts (available in the artifact environment). Inline artifacts are the right default — they render immediately and the user doesn't have to leave the conversation.
+For data visualizations in chat, render the chart inline with the charting or code-execution capability available in the session. Inline charts are the right default — they render immediately and the user doesn't have to leave the conversation.
 
 For one-off conceptual visuals (e.g. funnel diagrams, flowcharts) that aren't strictly chart-able, use a diagram or widget tool if one is available, otherwise a simple inline SVG or Mermaid diagram.
 
@@ -69,7 +69,7 @@ Color by *business meaning*, not by sign. If CPC is up 20%, the bar is red becau
 
 The bundled scripts handle repeatable patterns. For one-off questions ("does ad copy length correlate with CPA in this dataset?" or "is there a time-of-day effect on weekend traffic?"), write fresh analysis code in the chat — pull the data, compute the answer, build the right visualization for it. Don't force a one-off question through a script that wasn't designed for it.
 
-## Other Claude capabilities to leverage
+## Other capabilities to leverage
 
 **Built-in document skills.** When a workflow's final step is a file deliverable:
 - Word documents (optimization reports, recommendations) → use the `docx` skill, if available
@@ -82,7 +82,7 @@ Read the relevant SKILL.md *before* writing any code or building any file.
 
 **Web search.** Useful for industry benchmarks, recent platform policy changes (e.g. "new Meta attribution defaults"), or competitive context. Don't over-use it — most performance marketing answers come from the user's own data.
 
-**Clarifying questions.** When a multiple-choice question would resolve ambiguity (attribution window, time period, scope), use a multiple-choice question tool if one is available (`ask_user_input_v0` on claude.ai, `AskUserQuestion` in Claude Code). It renders tappable buttons rather than asking the user to type — much faster on mobile.
+**Clarifying questions.** When a multiple-choice question would resolve ambiguity (attribution window, time period, scope), use a multiple-choice question tool if one is available. It renders tappable buttons rather than asking the user to type — much faster on mobile.
 
 ## Things to watch for
 

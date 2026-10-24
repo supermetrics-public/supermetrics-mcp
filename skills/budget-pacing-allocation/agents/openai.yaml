@@ -1,0 +1,6 @@
+interface:
+  display_name: "Budget Pacing & Allocation"
+  short_description: "Forecast spend and reallocate budget"
+  icon_small: "./assets/icon-small.png"
+  brand_color: "#F6252F"
+  default_prompt: "Am I on pace with my ad budgets this month?"

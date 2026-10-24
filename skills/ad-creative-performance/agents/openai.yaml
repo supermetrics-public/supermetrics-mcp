@@ -1,0 +1,6 @@
+interface:
+  display_name: "Ad Creative Performance"
+  short_description: "Spot ad fatigue and winning creatives"
+  icon_small: "./assets/icon-small.png"
+  brand_color: "#F6252F"
+  default_prompt: "Which of my Meta ads show creative fatigue?"

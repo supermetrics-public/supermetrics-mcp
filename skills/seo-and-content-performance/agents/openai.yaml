@@ -1,0 +1,6 @@
+interface:
+  display_name: "SEO & Content Performance"
+  short_description: "Search Console and content results"
+  icon_small: "./assets/icon-small.png"
+  brand_color: "#F6252F"
+  default_prompt: "Which pages gained or lost organic clicks this month?"

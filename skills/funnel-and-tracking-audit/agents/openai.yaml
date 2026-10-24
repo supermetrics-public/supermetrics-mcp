@@ -1,0 +1,6 @@
+interface:
+  display_name: "Funnel & Tracking Audit"
+  short_description: "Reconcile ad, GA4 and CRM numbers"
+  icon_small: "./assets/icon-small.png"
+  brand_color: "#F6252F"
+  default_prompt: "Compare ad platform conversions with GA4 for last month"
