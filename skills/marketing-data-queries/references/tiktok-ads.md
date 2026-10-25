@@ -17,7 +17,7 @@ metric required** (`min_metrics: 1`) — a dimensions-only query fails.
 
 1. `data_source_discovery(ds_id="TIK")` — if `NOT_AUTHENTICATED`, give the user `login_link` and stop.
 2. `accounts_discovery(ds_id="TIK")`.
-3. `manage_business_context(action="get", ds_id="TIK", account_id=…)` — target cost per result, which
+3. `get_business_context(ds_id="TIK", account_id=…)` — target cost per result, which
    conversion event counts, whether GMV Max is reported separately. **Advisory**: if it errors, continue and tell the user saved conventions
    couldn't be loaded — never block an analysis on a context lookup.
 4. `field_discovery(ds_id="TIK", filter="…")` — always filter. `filter="purchase"` returns the
@@ -171,7 +171,7 @@ Re-read after writing; state what changed and what is still paused.
 | Unknown field | `field_discovery(ds_id="TIK", filter=…)` |
 | Account not found / no access | `accounts_discovery(ds_id="TIK")` |
 | Auth error | `data_source_discovery(ds_id="TIK")`, surface `login_link` |
-| `manage_business_context` auth error | Continue without it; say conventions weren't loaded. Never block on it |
+| `get_business_context` auth error | Continue without it; say conventions weren't loaded. Never block on it |
 | Unexpected empty result | `supermetrics_guide(mode="no_data")` |
 | Disagrees with Ads Manager | `supermetrics_guide(mode="data_discrepancies")` — check which conversion family you used |
 | Ads vs Organic connector confusion | `supermetrics_guide(mode="tiktok_connectors")` |

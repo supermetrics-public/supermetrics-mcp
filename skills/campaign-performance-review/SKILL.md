@@ -137,7 +137,7 @@ Chart choices, principles and gotchas for this area: [references/performance-mar
 
 ## Before you analyze
 
-- Load saved targets, budgets and known context with `manage_business_context` (`action: get`) and judge results against them, not generic benchmarks.
+- Load saved targets, budgets and known context with `get_business_context` and judge results against them, not generic benchmarks.
 - Query correctly: follow the `marketing-data-queries` skill for discovery, field IDs and platform quirks.
 - Check tracking first. If platform conversions and GA4 or backend numbers disagree by more than 20%, or spend continues with zero conversions, say so before any optimization advice.
 - Pull, then analyze, as separate steps. Run one heavy query at a time.

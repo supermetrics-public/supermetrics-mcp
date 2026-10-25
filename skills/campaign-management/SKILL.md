@@ -17,7 +17,7 @@ Platform payload details (Google Ads, Meta, Microsoft, TikTok, LinkedIn) are in 
    or all live changes. If a write fails with a permissions error, that is usually why.
 2. Read before you write. `campaign_and_resource_get` shows current state — campaigns,
    ad groups, ads, keywords, audiences, budgets. Never update a campaign you have not read.
-3. Check business context with `manage_business_context` (`action="get"`, plus `ds_id`
+3. Check business context with `get_business_context` (plus `ds_id`
    and `account_id`). Naming conventions, budget ceilings and excluded campaigns live there.
 
 ## Safety rules
