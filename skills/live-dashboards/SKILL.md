@@ -5,7 +5,7 @@ description: Plan, build and publish live, shareable marketing dashboards in Sup
 
 # Live dashboards in Supermetrics Studio
 
-A Studio dashboard is a page stored in Supermetrics Studio that fetches the user's data every time someone opens it, so a shared link always shows current numbers. Dashboards aren't limited to reading data: they can also include campaign management, such as pausing or enabling a campaign or changing a budget straight from the page. The `manage_dashboards` tool uploads, reads, edits and lists them.
+A Studio dashboard is a page stored in Supermetrics Studio that fetches the user's data every time someone opens it, so a shared link always shows current numbers. Dashboards aren't limited to reading data: they can also include campaign management, such as pausing or enabling a campaign or changing a budget straight from the page. The `manage_dashboards` tool uploads and edits them; `get_dashboards` lists, reads and shows their version history.
 
 **The `manage_dashboards` tool description and its parameter descriptions are the technical source of truth.** Follow them exactly for the code: how to call `smQuery`, how to parse its response, region markers, query keys, date and comparison parameters, `allowed_tools`, `allowed_accounts`, patch types and BigQuery. This skill covers when to offer a dashboard, how to plan it, and what makes it useful.
 
@@ -41,7 +41,7 @@ Check the upload response and act on anything the tool instructions say to fix b
 
 ## Workflow: change an existing dashboard
 
-1. Find it with `list` (filter by a word from the title) unless you have its ID.
+1. Find it with `get_dashboards` (filter by a word from the title) unless you have its ID.
 2. `get` the current code, then `edit` with the smallest patch that does the job, as the tool instructions describe. Add a short `change_summary`.
 3. Use `changelog` when the user asks what changed or when.
 

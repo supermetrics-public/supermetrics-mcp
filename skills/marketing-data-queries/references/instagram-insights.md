@@ -23,7 +23,7 @@ A dedicated `instagram_insights` tool takes the same parameters as `data_query`;
 1. `data_source_discovery(ds_id="IGI")` — if `NOT_AUTHENTICATED`, give the user `login_link` and stop.
    Auth failures are common here: the profile must be business/creator and linked to a Facebook Page.
 2. `accounts_discovery(ds_id="IGI")`.
-3. `manage_business_context(action="get", ds_id="IGI", account_id=…)` — how the team defines
+3. `get_business_context(ds_id="IGI", account_id=…)` — how the team defines
    engagement rate, content pillars, cadence targets. **Advisory**: if it errors, continue and tell the user saved conventions
    couldn't be loaded — never block an analysis on a context lookup.
 4. `field_discovery(ds_id="IGI", filter="…")` — filter; under 100 fields.
@@ -154,7 +154,7 @@ a change as made unless a write tool returned success.
 | `follower_count` returns nothing | Range exceeds 30 days or includes today — shorten it, or use `followers_count` |
 | Profile not found / no access | `accounts_discovery(ds_id="IGI")` |
 | Auth error | `data_source_discovery(ds_id="IGI")`, surface `login_link`; then `supermetrics_guide(mode="meta_instagram")` |
-| `manage_business_context` auth error | Continue without it; say conventions weren't loaded. Never block on it |
+| `get_business_context` auth error | Continue without it; say conventions weren't loaded. Never block on it |
 | Unexpected empty result | `supermetrics_guide(mode="no_data")` |
 | Disagrees with the Instagram app | `supermetrics_guide(mode="data_discrepancies")` — check the UTC-07:00 day boundary first |
 

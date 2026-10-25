@@ -46,7 +46,7 @@ Follow these steps in order. Skipping discovery is the most common cause of fail
 
 ## Business context
 
-Before analyzing a specific account, call `manage_business_context` with `action="get"`
+Before analyzing a specific account, call `get_business_context`
 and the `ds_id` (plus `account_id` where relevant). Teams store reporting conventions
 there — which campaigns to exclude, which attribution window to use, how to segment.
 Applying them is the difference between a correct answer and a plausible one.

@@ -28,7 +28,7 @@ which level your numbers are at.
 
 1. `data_source_discovery(ds_id="LIA")` — if `NOT_AUTHENTICATED`, give the user `login_link` and stop.
 2. `accounts_discovery(ds_id="LIA")`.
-3. `manage_business_context(action="get", ds_id="LIA", account_id=…)` — target cost per lead, brand
+3. `get_business_context(ds_id="LIA", account_id=…)` — target cost per lead, brand
    vs demand gen, how the team defines a qualified lead. **Advisory**: if it errors, continue and tell the user saved conventions
    couldn't be loaded — never block an analysis on a context lookup.
 4. `field_discovery(ds_id="LIA", filter="…")` — filter; there are close to 200 fields.
@@ -171,7 +171,7 @@ Re-read after writing; state what changed and what is still paused.
 | Unknown field | `field_discovery(ds_id="LIA", filter=…)`, check `report_types` overlap |
 | Account not found / no access | `accounts_discovery(ds_id="LIA")` |
 | Auth error | `data_source_discovery(ds_id="LIA")`, surface `login_link` |
-| `manage_business_context` auth error | Continue without it; say conventions weren't loaded. Never block on it |
+| `get_business_context` auth error | Continue without it; say conventions weren't loaded. Never block on it |
 | Unexpected empty result | `supermetrics_guide(mode="no_data")` |
 | Disagrees with Campaign Manager | `supermetrics_guide(mode="data_discrepancies")` |
 | Ads vs Company Pages confusion | `supermetrics_guide(mode="linkedin_connectors")` |

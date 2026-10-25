@@ -18,7 +18,7 @@ always required.
 
 1. `data_source_discovery(ds_id="FA")` — if `NOT_AUTHENTICATED`, give the user `login_link` and stop.
 2. `accounts_discovery(ds_id="FA")`.
-3. `manage_business_context(action="get", ds_id="FA", account_id=…)` — attribution window,
+3. `get_business_context(ds_id="FA", account_id=…)` — attribution window,
    exclusions, Advantage+ reporting, target ROAS. **Advisory**: if it errors, continue and tell the user saved conventions
    couldn't be loaded — never block an analysis on a context lookup.
 4. `field_discovery(ds_id="FA", filter="…")` — always filter; there are hundreds of fields.
@@ -175,7 +175,7 @@ Re-read after writing; state what changed and what is still paused.
 | `[FIELD_NOT_FOUND]` suggesting the same field back | Account-scoped custom conversion — re-run `field_discovery` against the account you're querying |
 | Account not found / no access | `accounts_discovery(ds_id="FA")` |
 | Auth error | `data_source_discovery(ds_id="FA")`, surface `login_link` |
-| `manage_business_context` auth error | Continue without it; say conventions weren't loaded. Never block on it |
+| `get_business_context` auth error | Continue without it; say conventions weren't loaded. Never block on it |
 | Unexpected empty result | `supermetrics_guide(mode="no_data")` |
 | Disagrees with Ads Manager | `supermetrics_guide(mode="data_discrepancies")` — check `conversion_window` first |
 | Missing pages or ad accounts | `supermetrics_guide(mode="meta_instagram")` |
