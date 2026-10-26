@@ -32,6 +32,9 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
+- `tiktok-ads`: campaign writes name the values TikTok accepts — `objective_type` `WEB_CONVERSIONS`,
+  `optimization_goal` `SHOW` and `CONVERT` (not `IMPRESSION`/`CONVERSION`), `pixel_event` examples
+  (`SHOPPING`, `ON_WEB_CART`, `ON_WEB_REGISTER`) and the `billing_event` for each goal, including `OCPM`.
 - Skills: campaign `targeting` updates are described as per-field (omitted fields are kept, a sent
   field replaces that list), matching the server, instead of "replaces, never merges". Same fix in
   the README and `GEMINI.md`.
