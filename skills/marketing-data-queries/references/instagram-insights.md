@@ -77,8 +77,9 @@ way — compare `report_types` arrays from `field_discovery` before combining, a
   user's own time zone. Mention it before someone hunts a one-day gap.
 - **Collaboration posts are readable only by the creator.** If the profile was a collaborator, that
   post's data is unavailable — report it as unavailable, not zero.
-- Meta returns stories for 24h only; Supermetrics keeps captured stories for up to 3 years, starting
-  from the first story query for the account and never earlier than 2026-10-30, when capture began. Older stories can't be recovered — if story data starts
+- Meta returns stories for 24h only; Supermetrics can return up to 3 years of story history, starting
+  from 2026-10-30 or from the date the account's stories were first fetched with Supermetrics,
+  whichever is later. Older stories can't be recovered — if story data starts
   partway through the requested range, say capture began then, not that no stories were posted.
   Recent figures can still move, so a 5-day refresh window is recommended.
 - `settings.comments_maximum_count` raises comments per post above 100 (max 400) at a performance
