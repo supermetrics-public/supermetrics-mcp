@@ -30,6 +30,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - TikTok reference (`marketing-data-queries`): to track a `CLICK` ad group with a pixel, set it on each ad as
   `platform_settings.tracking_pixel_id` (the numeric pixel id); an ad group `pixel_id` with goal `CLICK` is sent
   to its new ads that way. On an existing ad the pixel changes only together with a creative change.
+- TikTok reference (`marketing-data-queries`): `locations` takes country codes or TikTok numeric location ids
+  (not city names or GeoNames ids), and `location_details` is not supported.
 - Skill reference guides no longer name Claude-only features (artifacts, Recharts, `ask_user_input_v0`,
   `AskUserQuestion`); they describe the same steps in client-neutral terms, as the ChatGPT plugin directory requires.
 

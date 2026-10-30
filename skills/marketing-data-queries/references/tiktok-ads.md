@@ -147,7 +147,10 @@ Read first with `campaign_and_resource_get(ds_id="TIK", account_id=…)`. Never 
 - **Video creatives must use `asset_id`** — a public `asset_url` will not work, and this is the most
   common creation failure. Upload via `creative_picker` first. Spark Ads use `tiktok_item_id` in the
   ad's `platform_settings`.
-- **Targeting needs at least one location** (ISO country codes). On update, omitted targeting fields
+- **Targeting needs at least one location**: `locations` takes country codes or TikTok numeric
+  location ids (reuse ids from an existing ad group's targeting; do not guess ids or send GeoNames ids).
+  City names are not resolved and there is no city search. `location_details` is not supported: a
+  create is refused, and on update the location change is refused. On update, omitted targeting fields
   are kept and a sent field replaces that whole list. Existing ad groups take `ad_groups[].targeting`;
   campaign-level targeting doesn't reach them.
 - **Update** — pass `campaign_id`; only sent fields change. Objective fixed at creation.
