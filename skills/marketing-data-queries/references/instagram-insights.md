@@ -72,7 +72,7 @@ way — compare `report_types` arrays from `field_discovery` before combining, a
   sees several posts. Never sum or average across rows.
 - **Engagement rate is not a field.** If you calculate one, state the formula and denominator (reach
   or followers) — they give very different numbers.
-- **Metrics are stored 2 years.** The media endpoint returns at most the **10,000 most recent** objects.
+- **Metrics are stored 2 years, except stories — 3 years.** The media endpoint returns at most the **10,000 most recent** objects.
 - **Meta determines days in UTC-07:00**, so daily numbers won't always match the Instagram app in the
   user's own time zone. Mention it before someone hunts a one-day gap.
 - **Collaboration posts are readable only by the creator.** If the profile was a collaborator, that
