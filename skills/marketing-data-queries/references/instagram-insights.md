@@ -77,8 +77,9 @@ way — compare `report_types` arrays from `field_discovery` before combining, a
   user's own time zone. Mention it before someone hunts a one-day gap.
 - **Collaboration posts are readable only by the creator.** If the profile was a collaborator, that
   post's data is unavailable — report it as unavailable, not zero.
-- Stories expire after 24h, so story metrics only exist for recent windows. A 5-day refresh window is
-  recommended, so very recent figures can still move.
+- Meta returns stories for 24h only; Supermetrics keeps captured stories for up to 3 years, starting
+  from the first story query for the account. Older stories can't be recovered. Recent figures can
+  still move, so a 5-day refresh window is recommended.
 - `settings.comments_maximum_count` raises comments per post above 100 (max 400) at a performance
   cost — only when the user wants comment-level analysis.
 - **No spend, no ROAS, no CPA.** Cost-per-result questions need the Meta Ads connector.
@@ -109,7 +110,7 @@ way — compare `report_types` arrays from `field_discovery` before combining, a
 - **"How are reels doing?"** → `media_caption` + `media_reel_video_views` `media_reel_avg_watch_time`
   `media_reels_skip_rate` `media_reel_total_interactions`. Reel fields only.
 - **"Where do stories lose people?"** → `media_story_reach` `media_story_taps_forward`
-  `media_story_exits` `media_story_replies`. Story fields only, and only for recent windows.
+  `media_story_exits` `media_story_replies`. Story fields only.
 - **"Who follows us?"** → `audience_age` + `audience_gender` with `followers_count`, then
   `audience_country_dim` as a **separate** query. A current snapshot, not a time series — say so.
 - **"When should we post?"** → `timestamp` with `dayOfWeekName` + `media_reach`
