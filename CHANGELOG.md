@@ -27,6 +27,9 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   `ad-creative-performance`, `campaign-performance-review`, `budget-pacing-allocation`,
   `ecommerce-roas-analysis`, `executive-marketing-report`, `funnel-and-tracking-audit`, `b2b-pipeline-analysis`,
   `seo-and-content-performance` and `event-and-webinar-roi`, with helper scripts and report templates.
+- TikTok reference (`marketing-data-queries`): to track a `CLICK` ad group with a pixel, set it on each ad as
+  `platform_settings.tracking_pixel_id` (the numeric pixel id); an ad group `pixel_id` with goal `CLICK` is sent
+  to its new ads that way. On an existing ad the pixel changes only together with a creative change.
 - Skill reference guides no longer name Claude-only features (artifacts, Recharts, `ask_user_input_v0`,
   `AskUserQuestion`); they describe the same steps in client-neutral terms, as the ChatGPT plugin directory requires.
 
