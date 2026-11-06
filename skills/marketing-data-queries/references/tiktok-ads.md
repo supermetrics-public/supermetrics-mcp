@@ -134,19 +134,23 @@ Read first with `campaign_and_resource_get(ds_id="TIK", account_id=…)`. Never 
 
 `manage_campaign(ds_id="TIK", account_id=…)`:
 
-- **Create** — omit `campaign_id`; `budget_amount` required; set `platform_settings.objective_type`
+- **Create** — omit `campaign_id`; `budget_amount` required (TikTok has a minimum daily budget per account
+  currency, and a LIFETIME budget needs about that much per day; a lower budget is refused and the refusal names
+  the minimum); set `platform_settings.objective_type`
   (`TRAFFIC`|`WEB_CONVERSIONS`|`REACH`|`LEAD_GENERATION`|`VIDEO_VIEWS`) and `budget_optimize_switch`
   (`ON` = budget at campaign level, so ad groups must not set their own; create only).
-- **Ad groups** take `optimization_goal` (`CLICK`|`SHOW`|`REACH`|`ENGAGED_VIEW`|`INSTALL`|`CONVERT`;
+- **Ad groups** take `optimization_goal` (`CLICK`|`SHOW`|`REACH`|`ENGAGED_VIEW`|`INSTALL`|`CONVERT`|`FOLLOWERS`;
   `CONVERT` needs `pixel_id` + `pixel_event`, e.g. `SHOPPING`|`ON_WEB_CART`|`ON_WEB_REGISTER`;
   on a `CLICK` group `pixel_id` is not sent on the ad group but as `tracking_pixel_id` on its new ads,
   so prefer setting `platform_settings.tracking_pixel_id` (the numeric pixel id) on each ad; on an existing
   ad it changes only together with a creative change),
-  `billing_event` (`CPC` for CLICK, `OCPM` for CONVERT/INSTALL, `CPM` for SHOW/REACH, `CPV` for
-  ENGAGED_VIEW), `placement_type`, `placements`. `REACH` also needs a `frequency` cap.
+  `billing_event` (`CPC` for CLICK, `OCPM` for CONVERT/FOLLOWERS/INSTALL, `CPM` for SHOW/REACH, `CPV` for
+  ENGAGED_VIEW; other billing with CONVERT or FOLLOWERS is refused), `placement_type`, `placements`. A `REACH`
+  ad group without a `frequency` cap is refused.
 - **Video creatives must use `asset_id`** — a public `asset_url` will not work, and this is the most
   common creation failure. Upload via `creative_picker` first. Spark Ads use `tiktok_item_id` in the
-  ad's `platform_settings`.
+  ad's `platform_settings`. An ad identity must be an authorized TikTok account: `CUSTOMIZED_USER` is refused;
+  list identities with `campaign_and_resource_get` `resource_type='assets'`, `asset_type='identity'`.
 - **Targeting needs at least one location**: `locations` takes country codes or TikTok numeric
   location ids (reuse ids from an existing ad group's targeting; do not guess ids or send GeoNames ids).
   City names are not resolved and there is no city search. `location_details` is not supported: a
