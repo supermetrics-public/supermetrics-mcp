@@ -21,6 +21,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- TikTok reference (`marketing-data-queries`): states the minimum daily budget per currency (also for LIFETIME
+  budgets), that `FOLLOWERS` is a goal billed as `OCPM`, that other billing with `CONVERT` or `FOLLOWERS` and a
+  `REACH` ad group without `frequency` are refused, that `CUSTOMIZED_USER` identities are refused, and how to list
+  identities (`asset_type='identity'`).
 - Skills restructured into thirteen focused skills, one per job, so each is matched to the right request:
   `get-started`, `marketing-data-queries` (replaces `marketing-data-analysis` and the seven connector skills,
   which are now its per-platform references), `campaign-management`, `wasted-spend-audit`,
