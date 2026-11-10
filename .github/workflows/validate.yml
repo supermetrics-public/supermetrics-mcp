@@ -41,15 +41,63 @@ jobs:
             .claude-plugin/plugin.json \
             .codex-plugin/plugin.json \
             .cursor-plugin/plugin.json \
+            .gemini-plugin/plugin.json \
             GEMINI.md \
             llms.txt \
             CHANGELOG.md \
-            skills/marketing-data-queries/SKILL.md \
-            skills/campaign-management/SKILL.md
+            skills/supermetrics-marketing-data-queries/SKILL.md \
+            skills/supermetrics-campaign-management/SKILL.md
           do
             if [ -f "$f" ]; then echo "ok    $f"; else echo "MISSING $f"; fail=1; fi
           done
           exit $fail
+
+      - name: Check skills follow the plugin directory rules
+        # Plugin directories reject packages that break these (brand-prefixed names, short
+        # descriptions, bounded skill size), so every manifest is held to the strictest rules.
+        run: |
+          python3 - <<'PY'
+          import json, pathlib, re, sys
+
+          errors = []
+          skill_dirs = sorted(p.parent for p in pathlib.Path("skills").glob("*/SKILL.md"))
+          for d in skill_dirs:
+              text = (d / "SKILL.md").read_text(encoding="utf-8")
+              fm = re.match(r"---\n(.*?)\n---\n", text, re.S)
+              if not fm:
+                  errors.append(f"{d}: no YAML front matter")
+                  continue
+              name = re.search(r"^name:\s*(\S+)\s*$", fm.group(1), re.M)
+              desc = re.search(r"^description:\s*(.*?)(?=^\w[\w-]*:|\Z)", fm.group(1), re.M | re.S)
+              if not name or name.group(1) != d.name:
+                  errors.append(f"{d}: name must equal the folder name")
+              if not d.name.startswith("supermetrics-"):
+                  errors.append(f"{d}: skill names must start with 'supermetrics-'")
+              if not re.fullmatch(r"[a-z0-9-]{1,64}", d.name):
+                  errors.append(f"{d}: name must be lowercase kebab-case, at most 64 characters")
+              d_text = re.sub(r"\s+", " ", desc.group(1).replace(">-", "", 1)).strip() if desc else ""
+              if not 0 < len(d_text) <= 1024:
+                  errors.append(f"{d}: description must be 1-1024 characters (is {len(d_text)})")
+              if text.count("\n") > 500 or len(text.split()) >= 3000:
+                  errors.append(f"{d}: SKILL.md must stay within 500 lines and under 3,000 words")
+              if re.search(r"[\u200b-\u200f\u2060-\u206f\ufeff]", text):
+                  errors.append(f"{d}: invisible Unicode characters")
+
+          manifest = json.load(open(".gemini-plugin/plugin.json"))
+          listed = sorted(manifest["skills"])
+          expected = sorted(f"./skills/{d.name}/SKILL.md" for d in skill_dirs)
+          if listed != expected:
+              errors.append(f".gemini-plugin/plugin.json skills {listed} != skill folders {expected}")
+
+          versions = {f: json.load(open(f))["version"] for f in (
+              ".gemini-plugin/plugin.json", ".claude-plugin/plugin.json", ".codex-plugin/plugin.json",
+              ".cursor-plugin/plugin.json", "gemini-extension.json")}
+          if len(set(versions.values())) != 1:
+              errors.append(f"plugin versions differ: {versions}")
+
+          print("\n".join(errors) or f"ok    {len(skill_dirs)} skills")
+          sys.exit(1 if errors else 0)
+          PY
 
       - name: Check the server URL is consistent everywhere
         run: |

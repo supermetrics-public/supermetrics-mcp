@@ -191,22 +191,22 @@ actually ask for.
 
 | Skill | What it does |
 |-------|--------------|
-| `get-started` | Sign-in check, connect a first platform, first report, save goals |
-| `marketing-data-queries` | Query workflow and per-platform field references, so queries don't fail |
-| `campaign-management` | Create and update campaigns safely: read first, created paused, approval per change |
-| `live-dashboards` | Plan and publish live Studio dashboards, including campaign actions such as pause or budget changes |
-| `wasted-spend-audit` | Zero-conversion spend, expensive CPAs, budget traps, search terms to negate |
-| `ad-creative-performance` | Ad fatigue, creative tests, winning formats, refresh briefs |
-| `campaign-performance-review` | Week-over-week review, daily morning check, attribution differences |
-| `budget-pacing-allocation` | Month-to-date pacing and forecast, ROAS benchmarking, budget shifts |
-| `ecommerce-roas-analysis` | Blended ROAS, promo anomalies, SKU, new vs returning, AOV, cohorts |
-| `executive-marketing-report` | 90-day overview, efficiency vs goals, CAC/LTV, planning, Studio dashboards |
-| `funnel-and-tracking-audit` | Ad platforms vs GA4 vs CRM/store, tracking breaks, landing page leaks |
-| `b2b-pipeline-analysis` | Lead-gen efficiency, pipeline by channel, MQL-to-SQL, ABM |
-| `seo-and-content-performance` | Search Console, content attribution, newsletters, video, content gaps |
-| `event-and-webinar-roi` | Event ROI, geo-lift, event pipeline, webinar funnels, partner events |
+| `supermetrics-get-started` | Sign-in check, connect a first platform, first report, save goals |
+| `supermetrics-marketing-data-queries` | Query workflow and per-platform field references, so queries don't fail |
+| `supermetrics-campaign-management` | Create and update campaigns safely: read first, created paused, approval per change |
+| `supermetrics-live-dashboards` | Plan and publish live Studio dashboards, including campaign actions such as pause or budget changes |
+| `supermetrics-wasted-spend-audit` | Zero-conversion spend, expensive CPAs, budget traps, search terms to negate |
+| `supermetrics-ad-creative-performance` | Ad fatigue, creative tests, winning formats, refresh briefs |
+| `supermetrics-campaign-performance-review` | Week-over-week review, daily morning check, attribution differences |
+| `supermetrics-budget-pacing-allocation` | Month-to-date pacing and forecast, ROAS benchmarking, budget shifts |
+| `supermetrics-ecommerce-roas-analysis` | Blended ROAS, promo anomalies, SKU, new vs returning, AOV, cohorts |
+| `supermetrics-executive-marketing-report` | 90-day overview, efficiency vs goals, CAC/LTV, planning, Studio dashboards |
+| `supermetrics-funnel-and-tracking-audit` | Ad platforms vs GA4 vs CRM/store, tracking breaks, landing page leaks |
+| `supermetrics-b2b-pipeline-analysis` | Lead-gen efficiency, pipeline by channel, MQL-to-SQL, ABM |
+| `supermetrics-seo-and-content-performance` | Search Console, content attribution, newsletters, video, content gaps |
+| `supermetrics-event-and-webinar-roi` | Event ROI, geo-lift, event pipeline, webinar funnels, partner events |
 
-`marketing-data-queries` carries per-platform references (Google Ads, Meta Ads, GA4, LinkedIn Ads, TikTok Ads,
+`supermetrics-marketing-data-queries` carries per-platform references (Google Ads, Meta Ads, GA4, LinkedIn Ads, TikTok Ads,
 Microsoft Advertising, Instagram) with real field IDs and the combinations that fail. The workflow skills include
 Python helper scripts (CSV in, table out) and report templates; agents that can run code use them, others compute
 the same results directly.
