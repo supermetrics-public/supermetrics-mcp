@@ -11,8 +11,14 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [2.0.0] - 2026-11-11
+
 ### Added
 
+- `.gemini-plugin/plugin.json`, a plugin manifest in the Gemini plugin format, listing the skills and the server.
+- CI checks every skill against the plugin directory rules: name equals its folder and starts with `supermetrics-`,
+  description of at most 1,024 characters, `SKILL.md` within 500 lines and under 3,000 words, and the same version in
+  every manifest.
 - `live-dashboards` skill: plans, builds and publishes live Supermetrics Studio dashboards, including dashboards
   with campaign actions (pause or enable a campaign, change a budget). It covers when to offer a dashboard, how to
   plan it and what makes it useful, and defers the code details to the `manage_dashboards` tool instructions.
@@ -21,6 +27,14 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- **Breaking:** every skill name now starts with `supermetrics-` (for example `campaign-management` is now
+  `supermetrics-campaign-management`), as plugin directories require brand-prefixed skill names. Scripts or
+  instructions that refer to a skill by its old name need updating.
+- Skill descriptions now list the requests each skill is for, in quotes, and name the skill to use instead for
+  nearby requests, so the right skill is picked more often.
+- The four longest skills (`supermetrics-event-and-webinar-roi`, `supermetrics-ecommerce-roas-analysis`,
+  `supermetrics-seo-and-content-performance`, `supermetrics-executive-marketing-report`) keep their workflow steps in
+  `SKILL.md` and move the detailed output specifications to `references/`, read only when that workflow runs.
 - TikTok reference (`marketing-data-queries`): states the minimum daily budget per currency (also for LIFETIME
   budgets), that `FOLLOWERS` is a goal billed as `OCPM`, that other billing with `CONVERT` or `FOLLOWERS` and a
   `REACH` ad group without `frequency` are refused, that `CUSTOMIZED_USER` identities are refused, and how to list
@@ -88,5 +102,6 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Issue templates routing account and billing questions to Supermetrics support and product ideas to
   the public wishlist.
 
+[2.0.0]: https://github.com/supermetrics-public/supermetrics-mcp/releases/tag/v2.0.0
 [1.1.0]: https://github.com/supermetrics-public/supermetrics-mcp/compare/v1.0.0...main
 [1.0.0]: https://github.com/supermetrics-public/supermetrics-mcp/releases/tag/v1.0.0
