@@ -11,6 +11,17 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [2.1.0] - 2026-11-10
+
+### Added
+
+- `supermetrics-social-media-publishing` skill: publishes and schedules Instagram, LinkedIn page and Google Business
+  Profile posts, manages scheduled posts, replies to and moderates comments and reviews, and finds the best time to
+  post. Every post needs the user's approval and a dry run (`validate_only`) first.
+- `supermetrics-audits-and-monitors` skill: runs a one-off Google Ads or Meta Ads account audit, and creates, runs and
+  updates scheduled monitors (metric thresholds on Google Ads, Meta Ads and GA4, landing page checks, naming
+  convention checks) that alert by email or Slack.
+
 ## [2.0.0] - 2026-11-11
 
 ### Added
@@ -102,6 +113,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Issue templates routing account and billing questions to Supermetrics support and product ideas to
   the public wishlist.
 
+[2.1.0]: https://github.com/supermetrics-public/supermetrics-mcp/releases/tag/v2.1.0
 [2.0.0]: https://github.com/supermetrics-public/supermetrics-mcp/releases/tag/v2.0.0
 [1.1.0]: https://github.com/supermetrics-public/supermetrics-mcp/compare/v1.0.0...main
 [1.0.0]: https://github.com/supermetrics-public/supermetrics-mcp/releases/tag/v1.0.0

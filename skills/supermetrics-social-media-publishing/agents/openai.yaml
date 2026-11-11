@@ -1,0 +1,6 @@
+interface:
+  display_name: "Social Media Publishing"
+  short_description: "Schedule posts and manage comments"
+  icon_small: "./assets/icon-small.png"
+  brand_color: "#F6252F"
+  default_prompt: "Schedule an Instagram post for Friday morning"

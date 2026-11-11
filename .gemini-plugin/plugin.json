@@ -1,8 +1,8 @@
 {
 	"name": "supermetrics",
 	"displayName": "Supermetrics Ads & Marketing Analytics",
-	"version": "2.0.0",
-	"description": "Analyze, report on and manage your marketing with live data from Google Ads, Meta Ads, GA4, LinkedIn Ads, TikTok Ads, Microsoft Ads, Shopify, HubSpot and the rest of your marketing stack. Find wasted spend, track ROAS and budget pacing, spot ad fatigue, reconcile tracking, create and update campaigns with your approval, and publish live dashboards.",
+	"version": "2.1.0",
+	"description": "Analyze, report on and manage your marketing with live data from Google Ads, Meta Ads, GA4, LinkedIn Ads, TikTok Ads, Microsoft Ads, Shopify, HubSpot and the rest of your marketing stack. Find wasted spend, track ROAS and budget pacing, spot ad fatigue, reconcile tracking, create and update campaigns with your approval, schedule social posts, set up alerts, and publish live dashboards.",
 	"author": {
 		"name": "Supermetrics",
 		"email": "support@supermetrics.com",
@@ -45,7 +45,9 @@
 		"./skills/supermetrics-executive-marketing-report/SKILL.md",
 		"./skills/supermetrics-funnel-and-tracking-audit/SKILL.md",
 		"./skills/supermetrics-seo-and-content-performance/SKILL.md",
-		"./skills/supermetrics-wasted-spend-audit/SKILL.md"
+		"./skills/supermetrics-wasted-spend-audit/SKILL.md",
+		"./skills/supermetrics-social-media-publishing/SKILL.md",
+		"./skills/supermetrics-audits-and-monitors/SKILL.md"
 	],
 	"mcpServers": "./.mcp.json"
 }
