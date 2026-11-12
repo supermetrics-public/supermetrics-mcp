@@ -142,14 +142,21 @@ Read first with `campaign_and_resource_get(ds_id="FA", account_id=…)`. Never u
   set's own `start_date`/`end_date`.
 - **Every ad needs `page_id`** in the ad's `platform_settings` — the most common creation failure.
 - **Creative** — `headlines[0]` = title, `descriptions[0]` = message. Carousels use `carousel_cards`
-  (2–10), not `assets`. Video needs `asset_url` or `asset_id` with `asset_type: "video"`. To boost a
-  post set `object_story_id` = `{page_id}_{post_id}` (IDs via `resource_type="posts"`); CTA and URL
-  are inherited. `creative_picker` when there's no asset yet.
+  (2–10), not `assets`. Video needs `asset_type: "video"` and one source: `asset_url`, `asset_id`, or
+  `upload_ref`. For a local video file, call `creative_picker` action `create_upload_url` with
+  `params.content_type` (`video/mp4` or `video/quicktime`) and `params.size` (bytes), PUT the bytes to
+  the returned `upload_url` with that Content-Type within 1 hour, then pass its `upload_ref`; base64
+  does not work for video. To boost a post set `object_story_id` =
+  `{page_id}_{post_id}` (IDs via `resource_type="posts"`); CTA and URL are inherited.
+  `creative_picker` when there's no asset yet.
 - **Update** — pass `campaign_id`; only sent fields change. Objective is fixed at creation; ABO
   campaigns can't switch bidding strategy.
 - **`targeting` updates per field.** Omitted fields are kept; a field you send replaces that whole
   list, so send its complete value. `[]` clears a field.
   Campaign-level targeting is applied to every existing ad set. `advantage_audience` toggles Advantage+.
+- **Advantage+ placements** has no switch: it is on only while `targeting` has no `platforms`,
+  `devices`, `placements` or `excluded_placements`; sending any of them turns it off. Send `placements`
+  or `excluded_placements` together with `platforms`.
 
 Safety:
 
