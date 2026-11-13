@@ -206,7 +206,7 @@ actually ask for.
 | `supermetrics-seo-and-content-performance` | Search Console, content attribution, newsletters, video, content gaps |
 | `supermetrics-event-and-webinar-roi` | Event ROI, geo-lift, event pipeline, webinar funnels, partner events |
 | `supermetrics-social-media-publishing` | Publish and schedule Instagram, LinkedIn page and Google Business Profile posts; reply to and moderate comments |
-| `supermetrics-audits-and-monitors` | One-off Google Ads or Meta Ads account audit; scheduled alerts on metrics, landing pages and naming conventions |
+| `supermetrics-audits-and-monitors` | One-off Google Ads, Facebook Ads or Snapchat Marketing account audit; scheduled alerts on metrics, landing pages and naming conventions |
 
 `supermetrics-marketing-data-queries` carries per-platform references (Google Ads, Meta Ads, GA4, LinkedIn Ads, TikTok Ads,
 Microsoft Advertising, Instagram) with real field IDs and the combinations that fail. The workflow skills include
