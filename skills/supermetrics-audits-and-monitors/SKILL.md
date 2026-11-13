@@ -1,16 +1,16 @@
 ---
 name: supermetrics-audits-and-monitors
 description: >-
-  Runs a one-off health audit of a Google Ads, Meta Ads or Snapchat Marketing account and sets
-  up scheduled monitors that alert by email or Slack: metric thresholds (spend, CPA,
-  conversions, sessions) on Google Ads, Meta Ads and GA4, landing page checks for broken or
-  redirecting URLs, and campaign naming convention checks. Audit findings are grouped by
-  severity across tracking trust, delivery, waste, efficiency, allocation, change and upside.
-  Use when the user asks to "audit my Google Ads account", "what's wrong with my Meta account",
-  "alert me if spend spikes", "set up a daily check that conversions are still tracking", "check
-  our ad landing pages work", or "flag campaigns that break our naming convention". Don't use
-  for a one-off metric question (use supermetrics-marketing-data-queries) or a week-over-week
-  performance review (use supermetrics-campaign-performance-review).
+  Runs a one-off health audit of a Google Ads, Facebook Ads or Snapchat Ads account and sets up
+  scheduled monitors that alert by email or Slack: metric thresholds (spend, CPA, conversions,
+  sessions) on Google Ads, Facebook Ads and GA4, landing page checks for broken or redirecting
+  URLs, and campaign naming convention checks. Audit findings are grouped by severity across
+  tracking trust, delivery, waste, efficiency, allocation, change and upside. Use when the user
+  asks to "audit my Google Ads account", "what's wrong with my Meta account", "alert me if spend
+  spikes", "set up a daily check that conversions are still tracking", "check our ad landing
+  pages work", or "flag campaigns that break our naming convention". Don't use for a one-off
+  metric question (use supermetrics-marketing-data-queries) or a week-over-week performance
+  review (use supermetrics-campaign-performance-review).
 ---
 
 # Audits and monitors
@@ -19,7 +19,7 @@ Two tools: `manage_audits_and_monitors` starts audits and creates, updates or ru
 
 ## Audit an account
 
-One account at a time, Google Ads (`AW`), Meta Ads (`FA`) or Snapchat Marketing (`SCM`) only.
+One account at a time, Google Ads (`AW`), Facebook Ads (`FA`) or Snapchat Ads (`SCM`) only.
 
 1. **Pick the account.** `accounts_discovery` for the platform. Ask which account if there are several, and ask the account's time zone if you don't know it; don't guess.
 2. **Start.** `manage_audits_and_monitors` with `action: audit`, `ds_id`, `account_ids` (exactly one), `timezone`, and `date_range` (`last_7_days`, `last_14_days`, `last_30_days` default, `last_90_days`).
@@ -35,9 +35,9 @@ Monitors run on a schedule and notify by email or Slack.
 
 | Type | Platforms | Checks |
 |---|---|---|
-| `metrics` | Google Ads, Meta Ads, GA4 | A metric crosses a threshold, optionally filtered by dimension (for example sessions from one channel) |
-| `page_check` | Google Ads, Meta Ads | Ad landing pages return the expected status code without too many redirects |
-| `naming_convention` | Google Ads, Meta Ads | Campaign or ad names follow the team's segments and delimiter |
+| `metrics` | Google Ads, Facebook Ads, GA4 | A metric crosses a threshold, optionally filtered by dimension (for example sessions from one channel) |
+| `page_check` | Google Ads, Facebook Ads | Ad landing pages return the expected status code without too many redirects |
+| `naming_convention` | Google Ads, Facebook Ads | Campaign or ad names follow the team's segments and delimiter |
 
 1. **Clarify** what to watch, the threshold and direction, which accounts, how often (`hourly`, `every6hours`, `daily`, `weekly`), the time zone, and who gets notified. Check `get_business_context` for an existing naming convention or targets.
 2. **Get the schema.** `read_audits_and_monitors` with `action: schema`, `monitor_type` and `ds_id`. Build the config from its example; take metric and dimension IDs from `field_discovery`, never from memory.
