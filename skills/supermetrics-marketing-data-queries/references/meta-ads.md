@@ -155,8 +155,10 @@ Read first with `campaign_and_resource_get(ds_id="FA", account_id=…)`. Never u
   list, so send its complete value. `[]` clears a field.
   Campaign-level targeting is applied to every existing ad set. `advantage_audience` toggles Advantage+.
 - **Advantage+ placements** has no switch: it is on only while `targeting` has no `platforms`,
-  `devices`, `placements` or `excluded_placements`; sending any of them turns it off. Send `placements`
-  or `excluded_placements` together with `platforms`.
+  `devices`, `placements` or `excluded_placements`; sending any of them turns it off. `placements` and
+  `excluded_placements` set Facebook and Instagram positions only; on an ad set without a stored platform
+  list, Meta's other default platforms (such as Audience Network and Messenger) still apply, so send
+  `platforms` only to choose which platforms serve.
 
 Safety:
 
