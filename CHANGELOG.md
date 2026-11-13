@@ -13,7 +13,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
-- `supermetrics-audits-and-monitors` skill: audits also cover Snapchat Ads accounts.
+- `supermetrics-audits-and-monitors` skill: audits also cover Snapchat Marketing accounts.
 
 ## [2.1.0] - 2026-11-10
 
