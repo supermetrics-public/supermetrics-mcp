@@ -1,8 +1,8 @@
 ---
 name: supermetrics-audits-and-monitors
 description: >-
-  Runs a one-off health audit of a Google Ads, Facebook Ads or Snapchat Marketing account and sets up
-  scheduled monitors that alert by email or Slack: metric thresholds (spend, CPA, conversions,
+  Runs a one-off health audit of a Google Ads, Facebook Ads, Snapchat Marketing or TikTok Ads account
+  and sets up scheduled monitors that alert by email or Slack: metric thresholds (spend, CPA, conversions,
   sessions) on Google Ads, Facebook Ads and Google Analytics 4, landing page checks for broken or redirecting
   URLs, and campaign naming convention checks. Audit findings are grouped by severity across
   tracking trust, delivery, waste, efficiency, allocation, change and upside. Use when the user
@@ -19,7 +19,7 @@ Two tools: `manage_audits_and_monitors` starts audits and creates, updates or ru
 
 ## Audit an account
 
-One account at a time, Google Ads (`AW`), Facebook Ads (`FA`) or Snapchat Marketing (`SCM`) only.
+One account at a time, Google Ads (`AW`), Facebook Ads (`FA`), Snapchat Marketing (`SCM`) or TikTok Ads (`TIK`) only.
 
 1. **Pick the account.** `accounts_discovery` for the platform. Ask which account if there are several, and ask the account's time zone if you don't know it; don't guess.
 2. **Start.** `manage_audits_and_monitors` with `action: audit`, `ds_id`, `account_ids` (exactly one), `timezone`, and `date_range` (`last_7_days`, `last_14_days`, `last_30_days` default, `last_90_days`).
