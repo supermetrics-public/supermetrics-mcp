@@ -14,6 +14,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Changed
 
 - `supermetrics-audits-and-monitors` skill: audits also cover Snapchat Marketing accounts.
+- `supermetrics-audits-and-monitors` skill: monitors also cover Google Display & Video 360 (metrics and naming
+  convention), and schedule options come from the data source's schema.
 - Meta reference (`supermetrics-marketing-data-queries`): Advantage+ placements is on only while `platforms`,
   `devices`, `placements` and `excluded_placements` are unset, and sending any of them turns it off; a local video file goes
   through `creative_picker` `create_upload_url` (with a video `content_type` and `size`) and its `upload_ref`.
