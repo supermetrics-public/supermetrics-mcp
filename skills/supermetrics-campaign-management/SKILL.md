@@ -71,7 +71,9 @@ Platform quirks worth knowing before you build the payload:
   `carousel_cards`, not `assets`.
 - **TikTok**: a video creative takes a public `asset_url` (uploaded and processed by TikTok
   before the ad is created) or the `asset_id` of an already-uploaded video.
-- **LinkedIn**: single image only.
+- **LinkedIn**: set `format` in the ad set's `platform_settings` (`SINGLE_IMAGE`, `VIDEO`,
+  `CAROUSEL`, `DOCUMENT`, `TEXT_AD`, `SPOTLIGHT`); every ad in the ad set must match it.
+  Required fields per format: `supermetrics_guide(mode="linkedin_ads_capabilities")`.
 
 ## Updating
 

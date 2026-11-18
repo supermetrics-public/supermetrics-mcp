@@ -13,6 +13,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- Campaign and query skills: LinkedIn ads are no longer single image only; the ad set's `format` picks
+  video, carousel, document, text or Spotlight ads, and `object_story_id` sponsors an existing post.
 - `supermetrics-campaign-management` skill: loads `supermetrics-marketing-data-queries` for per-platform
   detail instead of pointing at its files; explains a write held for approval (`approval_ref`, checked
   with `resource_type: "approval_status"`) and the `write_access` guide for refused writes; reads ad
