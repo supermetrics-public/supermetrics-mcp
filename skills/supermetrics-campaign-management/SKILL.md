@@ -66,7 +66,9 @@ Platform quirks worth knowing before you build the payload:
 - **Meta**: budget sits on the campaign under CBO, on each ad set under ABO. Carousels use
   `carousel_cards`, not `assets`.
 - **TikTok**: video creatives must use `asset_id`; a URL will not work.
-- **LinkedIn**: single image only.
+- **LinkedIn**: set `format` in the ad set's `platform_settings` (`SINGLE_IMAGE`, `VIDEO`,
+  `CAROUSEL`, `DOCUMENT`, `TEXT_AD`, `SPOTLIGHT`); every ad in the ad set must match it.
+  Required fields per format: `supermetrics_guide(mode="linkedin_ads_capabilities")`.
 
 ## Updating
 

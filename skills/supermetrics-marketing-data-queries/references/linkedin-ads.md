@@ -144,8 +144,11 @@ Read first with `campaign_and_resource_get(ds_id="LIA", account_id=…)`. Never 
   `daily_budget`, `campaign_type`, `billing_event`, `objective_type` go in
   `ad_groups[].platform_settings`.
 - **Update** — pass `campaign_id`; only sent fields change. Objective and campaign type fixed at creation.
-- **Creative** — **single image only** through this tool. `descriptions[0]` = primary text,
-  `headlines[0]` = headline. Media via `asset_url` | `asset_id` | `upload_ref` from `creative_picker`.
+- **Creative** — the ad set's `platform_settings.format` (`SINGLE_IMAGE`, `VIDEO`, `CAROUSEL`,
+  `DOCUMENT`, `TEXT_AD`, `SPOTLIGHT`) decides the ad; without it the ads decide (video, `carousel_cards`,
+  document), else single image. `descriptions[0]` = primary text, `headlines[0]` = headline. Media via
+  `asset_url` | `asset_id` | `upload_ref` from `creative_picker`. `object_story_id` (a post URN) sponsors an
+  existing post. Fields per format: `supermetrics_guide(mode="linkedin_ads_capabilities")`.
 - **`targeting` updates per field.** Omitted fields are kept; a field you send replaces that whole
   list, so send its complete value. `[]` clears a field.
   Campaign-level targeting doesn't reach existing ad groups — use `ad_groups[].targeting`.

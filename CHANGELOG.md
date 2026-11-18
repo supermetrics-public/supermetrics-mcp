@@ -11,6 +11,11 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- Campaign and query skills: LinkedIn ads are no longer single image only; the ad set's `format` picks
+  video, carousel, document, text or Spotlight ads, and `object_story_id` sponsors an existing post.
+
 ## [2.2.0] - 2026-11-18
 
 ### Changed
