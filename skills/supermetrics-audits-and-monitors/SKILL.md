@@ -23,7 +23,7 @@ Two tools: `manage_audits_and_monitors` starts audits and creates, updates or ru
 One account at a time, Google Ads (`AW`), Facebook Ads (`FA`), Snapchat Marketing (`SCM`) or LinkedIn Ads (`LIA`) only.
 For LinkedIn Ads, the conversion checks leave out the last 7 days because LinkedIn conversions arrive late, so `last_7_days` gives no conversion verdicts; suggest `last_30_days`.
 
-1. **Pick the account.** `accounts_discovery` for the platform. Ask which account if there are several, and ask the account's time zone if you don't know it; don't guess.
+1. **Pick the account.** `accounts_discovery` for the platform. Ask which account if there are several, and ask the account's time zone if you don't know it; don't guess. LinkedIn Ads reports days in UTC: pass `timezone: UTC` without asking.
 2. **Start.** `manage_audits_and_monitors` with `action: audit`, `ds_id`, `account_ids` (exactly one), `timezone`, and `date_range` (`last_7_days`, `last_14_days`, `last_30_days` default, `last_90_days`).
 3. **Wait for the report.** `read_audits_and_monitors` with `action: audit` and the `run_token`. While it reports pending, call again with the token it returns.
 4. **Present.** Lead with the most severe findings and what each one costs or risks. Keep the seven angles as headings only where they have findings.
