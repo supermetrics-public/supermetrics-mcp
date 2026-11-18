@@ -29,7 +29,7 @@ For LinkedIn Ads, the conversion checks leave out the last 7 days because Linked
 4. **Present.** Lead with the most severe findings and what each one costs or risks. Keep the seven angles as headings only where they have findings.
 5. **Follow up.** Use `supermetrics-marketing-data-queries` to dig into a finding; use `supermetrics-campaign-management` for any fix, with the user's approval per change.
 
-The audit doesn't judge ad copy, creative, landing page relevance, search term intent or why numbers moved; say so if the user asks. For one campaign's health use `campaign_and_resource_get` (`resource_type: health_check`); for UTM and link checks use `marketing_utilities`.
+The audit doesn't judge ad copy, creative, landing page relevance, search term intent or why numbers moved; say so if the user asks. For one campaign's health use `campaign_and_resource_get` (`resource_type: health_check`, which requires `params.campaign_id`); for UTM and link checks use `marketing_utilities`.
 
 ## Create a monitor
 
