@@ -1,7 +1,7 @@
 # TikTok Ads with Supermetrics
 
 `TIK` · accounts are **ad accounts** (advertisers) · date range always required · **at least one
-metric required** (`min_metrics: 1`) — a dimensions-only query fails.
+metric required in `fields`** — a dimensions-only query fails.
 
 ## Rules
 

@@ -13,6 +13,14 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- Query skill: recommends `compress: true` (a field-ID text table, far fewer tokens) and says to call
+  `supermetrics_guide` with `mode: query_errors` when a query ends `failed`.
+- Campaign skill: before the first write on a platform, call `supermetrics_guide` with that platform's
+  capability mode; it overrides the static reference files where they differ.
+- TikTok reference: "at least one metric in `fields`" replaces the internal `min_metrics: 1` wording.
+  Instagram reference: `hour` exists only with `online_followers`.
+- `supermetrics-get-started` mentions `get_support_tickets`, and `supermetrics-funnel-and-tracking-audit`
+  uses `marketing_utilities` (`link_check`, `utm_parse`) to confirm suspected UTM breaks.
 - `supermetrics-social-media-publishing` skill: TikTok Organic (`TIKBA`) is covered — content types, the
   username as `account_id`, background publishing and moderation, `video_id` for comments and post IDs.
 - `supermetrics-marketing-data-queries` skill: account IDs go in `ds_accounts` (required when
