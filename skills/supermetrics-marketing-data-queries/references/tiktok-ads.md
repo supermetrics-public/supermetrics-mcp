@@ -23,7 +23,8 @@ metric required in `fields`** — a dimensions-only query fails.
 4. `field_discovery(ds_id="TIK", filter="…")` — always filter. `filter="purchase"` returns the
    standard, SKAN, onsite, offline and GMV Max variants side by side so you can pick deliberately.
 5. `data_query(…)` — dimensions before metrics, at least one metric.
-6. `get_async_query_results(schedule_id=…)` — poll until `completed`.
+6. `get_async_query_results(schedule_id=…)` — poll until `completed`. On `failed`, read `error`
+   and call `supermetrics_guide(mode="query_errors")`.
 
 `get_today` before resolving any relative date.
 
@@ -119,7 +120,8 @@ side**; `clicks>5` and an HTML-escaped `&gt;` are both rejected. Ops: `==` `!=` 
 
 ## Reading results
 
-- 2D array; row 0 is **display labels**, not field IDs. Map by `requested_field_ids`.
+- Pass `compress: true`: `data` is then a compact text table whose columns are the requested field
+  IDs. Uncompressed, it is a 2D array; row 0 is **display labels**, not field IDs. Map by `requested_field_ids`.
 - **Check `canonical_field_ids`** — present and different means an alias silently resolved your name
   to another metric, and on TikTok that can mean a different conversion family. Report what came back.
 - `null` is not 0. Say "no data". Values may be strings; parse before arithmetic.
@@ -147,8 +149,9 @@ Read first with `campaign_and_resource_get(ds_id="TIK", account_id=…)`. Never 
   `billing_event` (`CPC` for CLICK, `OCPM` for CONVERT/FOLLOWERS/INSTALL, `CPM` for SHOW/REACH, `CPV` for
   ENGAGED_VIEW; other billing with CONVERT or FOLLOWERS is refused), `placement_type`, `placements`. A `REACH`
   ad group without a `frequency` cap is refused.
-- **Video creatives must use `asset_id`** — a public `asset_url` will not work, and this is the most
-  common creation failure. Upload via `creative_picker` first. Spark Ads use `tiktok_item_id` in the
+- **Video creatives** take a public `asset_url` (uploaded, then processed by TikTok before the ad is
+  created; `TIK_VIDEO_UPLOAD_FAILED` or a still-processing error means TikTok couldn't use it) or the
+  `asset_id` of an already-uploaded video. Spark Ads use `tiktok_item_id` in the
   ad's `platform_settings`. An ad identity must be an authorized TikTok account: `CUSTOMIZED_USER` is refused;
   list identities with `campaign_and_resource_get` `resource_type='assets'`, `asset_type='identity'`.
 - **Targeting needs at least one location**: `locations` takes country codes or TikTok numeric

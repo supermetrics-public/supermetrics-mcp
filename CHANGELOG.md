@@ -15,6 +15,31 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Campaign and query skills: LinkedIn ads are no longer single image only; the ad set's `format` picks
   video, carousel, document, text or Spotlight ads, and `object_story_id` sponsors an existing post.
+- `supermetrics-campaign-management` skill: loads `supermetrics-marketing-data-queries` for per-platform
+  detail instead of pointing at its files; explains a write held for approval (`approval_ref`, checked
+  with `resource_type: "approval_status"`) and the `write_access` guide for refused writes; reads ad
+  groups and ads with `params.campaign_id` and `params.campaign_detail_level`.
+- `supermetrics-social-media-publishing` skill: `validate_only` dry runs cover every write except
+  `cancel_scheduled`; the best-time-to-post query names `ds_accounts` and a root-level `date_range_type`.
+- `supermetrics-get-started` skill: saving goals includes `context_text` and `tags`; inviting a colleague
+  uses `manage_user_and_team` (`action: invite_member`), sent after the user approves the link.
+- Platform references in `supermetrics-marketing-data-queries`: each recommends `compress: true` and
+  stops polling on a `failed` query. Meta video creatives lead with a public `asset_url` or existing
+  `asset_id`; the upload-URL flow is for local files only.
+- `GEMINI.md` and `llms.txt` list all 23 server tools.
+
+### Fixed
+
+- Campaign skill and TikTok reference: a TikTok video ad accepts a public `asset_url`, not only an
+  `asset_id`.
+- Campaign skill and Meta reference: a budget can sit on each ad group (Meta ABO ad sets) instead of the
+  campaign.
+- Instagram reference: organic posting, scheduling and comments go through `manage_social_media`; only
+  Insights data is read-only.
+- Query skill: business context is read with `get_business_context` and saved with
+  `manage_business_context` (`action: "save"`, `context_text`, `tags`); `GEMINI.md` no longer says
+  `manage_business_context` reads it.
+- Audits skill: `health_check` requires `params.campaign_id`.
 
 ## [2.2.0] - 2026-11-18
 

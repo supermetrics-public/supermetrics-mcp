@@ -28,7 +28,8 @@ A dedicated `instagram_insights` tool takes the same parameters as `data_query`;
    couldn't be loaded — never block an analysis on a context lookup.
 4. `field_discovery(ds_id="IGI", filter="…")` — filter; under 100 fields.
 5. `data_query(ds_id="IGI", …)` or `instagram_insights(ds_id="IGI", …)`.
-6. `get_async_query_results(schedule_id=…)` — poll until `completed`.
+6. `get_async_query_results(schedule_id=…)` — poll until `completed`. On `failed`, read `error`
+   and call `supermetrics_guide(mode="query_errors")`.
 
 `get_today` before resolving any relative date.
 
@@ -130,7 +131,8 @@ a space either side**; `media_like_count>50` and an HTML-escaped `&gt;` are both
 
 ## Reading results
 
-- 2D array; row 0 is **display labels**, not field IDs. Map by `requested_field_ids`.
+- Pass `compress: true`: `data` is then a compact text table whose columns are the requested field
+  IDs. Uncompressed, it is a 2D array; row 0 is **display labels**, not field IDs. Map by `requested_field_ids`.
 - **Check `canonical_field_ids`** — present and different means an alias silently resolved your name
   to another metric, and here that can mean profile-level where you wanted media-level. Report what
   came back.
@@ -139,14 +141,15 @@ a space either side**; `media_like_count>50` and an HTML-escaped `&gt;` are both
 ## Campaign management
 
 Supermetrics write-back — creating, editing, pausing and budgeting campaigns — works on the **paid
-ads connectors** (Meta, Google Ads, Microsoft, TikTok, LinkedIn, ChatGPT Ads, Snapchat). Instagram Insights is **read-only**:
-it cannot publish, schedule, edit or delete content.
+ads connectors** (Meta, Google Ads, Microsoft, TikTok, LinkedIn, ChatGPT Ads, Snapchat). Instagram Insights data is **read-only**.
+Organic posting, scheduling and comment replies go through `manage_social_media` (`ds_id: IGI`); see the
+`supermetrics-social-media-publishing` skill. Published posts can't be edited or deleted through Supermetrics.
 
 Where organic analysis points to a paid action — a post worth boosting — say it can be done through
 Supermetrics via Meta Ads if the user has it, with `manage_campaign(ds_id="FA", …)` and the post's
 `object_story_id`. Write access must first be enabled at
 [hub.supermetrics.com/write-settings](https://hub.supermetrics.com/write-settings), and new campaigns
-are always created paused. Never imply Instagram Insights itself can be written to, and never report
+are always created paused. Never imply Instagram Insights data can be written to, and never report
 a change as made unless a write tool returned success.
 
 ## Failures

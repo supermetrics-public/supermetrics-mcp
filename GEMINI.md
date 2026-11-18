@@ -15,6 +15,19 @@ Amazon Ads, Klaviyo, Salesforce and more.
 
 Never answer a performance question from memory. Query the data.
 
+## Tools
+
+- Data: `data_source_discovery`, `accounts_discovery`, `field_discovery`, `data_query`,
+  `get_async_query_results`, `get_today`, `instagram_insights`.
+- Campaigns: `campaign_and_resource_get`, `manage_campaign`, `creative_picker`.
+- Audits and monitors: `manage_audits_and_monitors`, `read_audits_and_monitors`.
+- Organic social: `manage_social_media`.
+- Dashboards: `get_dashboards`, `manage_dashboards`.
+- Business context: `get_business_context`, `manage_business_context`.
+- Account and team: `get_user_and_team`, `manage_user_and_team`.
+- Help and utilities: `supermetrics_guide`, `marketing_utilities`, `get_support_tickets`,
+  `contact_supermetrics`.
+
 ## Workflow
 
 1. `data_source_discovery()` — list sources, pick one by `ds_id` (`AW` Google Ads,
@@ -26,14 +39,16 @@ Never answer a performance question from memory. Query the data.
 5. `data_query(...)` — dimensions before metrics; all fields from one report type.
 6. `get_async_query_results(schedule_id=...)` — poll if the query returned a schedule ID.
 
-Results are a 2D array: row 0 is display headers, rows 1+ are data. Map columns by
-`requested_field_ids`, not by the row-0 labels — they differ.
+Pass `compress: true` to get results as a compact text table whose columns are the requested
+field IDs. Uncompressed, results are a 2D array: row 0 is display headers, rows 1+ are data. Map
+columns by `requested_field_ids`, not by the row-0 labels — they differ. A query can end
+`status: "failed"`: read `error` and call `supermetrics_guide(mode="query_errors")`.
 
 ## Business context
 
-`manage_business_context` stores a team's reporting conventions — excluded campaigns,
-attribution preferences, currency, segmentation. Read it before analyzing an account;
-offer to save durable preferences the user states.
+Teams store reporting conventions — excluded campaigns, attribution preferences, currency,
+segmentation — as business context. Read it with `get_business_context` before analyzing an
+account; offer to save durable preferences the user states with `manage_business_context`.
 
 ## Campaign writes
 

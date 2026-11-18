@@ -23,7 +23,8 @@ always required.
    couldn't be loaded — never block an analysis on a context lookup.
 4. `field_discovery(ds_id="FA", filter="…")` — always filter; there are hundreds of fields.
 5. `data_query(…)` — dimensions before metrics.
-6. `get_async_query_results(schedule_id=…)` — poll until `completed`.
+6. `get_async_query_results(schedule_id=…)` — poll until `completed`. On `failed`, read `error`
+   and call `supermetrics_guide(mode="query_errors")`.
 
 `get_today` before resolving any relative date.
 
@@ -118,7 +119,8 @@ Split Instagram from Facebook by breaking out or filtering on `publisher_platfor
 
 ## Reading results
 
-- 2D array; row 0 is **display labels**, not field IDs — `cost` renders as "Cost", `Clicks` as
+- Pass `compress: true`: `data` is then a compact text table whose columns are the requested field
+  IDs. Uncompressed, it is a 2D array; row 0 is **display labels**, not field IDs — `cost` renders as "Cost", `Clicks` as
   "Clicks (all)". Map by `requested_field_ids`.
 - **Check `canonical_field_ids`** — present and different means an alias silently resolved your name
   to another metric. Report what actually came back.
@@ -133,7 +135,7 @@ Read first with `campaign_and_resource_get(ds_id="FA", account_id=…)`. Never u
 
 `manage_campaign(ds_id="FA", account_id=…)`:
 
-- **Create** — omit `campaign_id`; `budget_amount` required; set `platform_settings.objective`
+- **Create** — omit `campaign_id`; a budget is required (campaign or ad sets, see below); set `platform_settings.objective`
   (`OUTCOME_TRAFFIC`|`OUTCOME_ENGAGEMENT`|`OUTCOME_LEADS`|`OUTCOME_SALES`|`OUTCOME_AWARENESS`) and
   `campaign_budget_optimization` — `true` puts budget on the campaign (CBO), `false` on each ad set
   (ABO). That decides where `budget_amount` belongs.
@@ -142,8 +144,9 @@ Read first with `campaign_and_resource_get(ds_id="FA", account_id=…)`. Never u
   set's own `start_date`/`end_date`.
 - **Every ad needs `page_id`** in the ad's `platform_settings` — the most common creation failure.
 - **Creative** — `headlines[0]` = title, `descriptions[0]` = message. Carousels use `carousel_cards`
-  (2–10), not `assets`. Video needs `asset_type: "video"` and one source: `asset_url`, `asset_id`, or
-  `upload_ref`. For a local video file, call `creative_picker` action `create_upload_url` with
+  (2–10), not `assets`. Video needs `asset_type: "video"` and one source: a public https `asset_url` (uploaded
+  automatically) or an existing `asset_id` from `campaign_and_resource_get(resource_type="assets")`.
+  Only for a local video file, call `creative_picker` action `create_upload_url` with
   `params.content_type` (`video/mp4` or `video/quicktime`) and `params.size` (bytes), PUT the bytes to
   the returned `upload_url` with that Content-Type within 1 hour, then pass its `upload_ref`; base64
   does not work for video. To boost a post set `object_story_id` =

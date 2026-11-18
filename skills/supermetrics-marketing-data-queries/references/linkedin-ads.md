@@ -33,7 +33,8 @@ which level your numbers are at.
    couldn't be loaded — never block an analysis on a context lookup.
 4. `field_discovery(ds_id="LIA", filter="…")` — filter; there are close to 200 fields.
 5. `data_query(…)` — dimensions before metrics.
-6. `get_async_query_results(schedule_id=…)` — poll until `completed`.
+6. `get_async_query_results(schedule_id=…)` — poll until `completed`. On `failed`, read `error`
+   and call `supermetrics_guide(mode="query_errors")`.
 
 `get_today` before resolving any relative date.
 
@@ -125,7 +126,8 @@ side**; `clicks>5` and an HTML-escaped `&gt;` are both rejected. Ops: `==` `!=` 
 
 ## Reading results
 
-- 2D array; row 0 is **display labels**, not field IDs. Map by `requested_field_ids`.
+- Pass `compress: true`: `data` is then a compact text table whose columns are the requested field
+  IDs. Uncompressed, it is a 2D array; row 0 is **display labels**, not field IDs. Map by `requested_field_ids`.
 - **Check `canonical_field_ids`** — present and different means an alias silently resolved your name
   to another metric. Report what actually came back.
 - `null` is not 0. Say "no data" — and on LinkedIn a null Reach beside a demographic dimension means
