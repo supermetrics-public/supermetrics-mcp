@@ -16,7 +16,7 @@ description: >-
 
 These tools spend real money. Treat every write as consequential.
 
-Platform payload details (Google Ads, Meta, Microsoft, TikTok, LinkedIn) are in the `supermetrics-marketing-data-queries` skill's `references/<platform>.md` files.
+Before the first write on a platform, call `supermetrics_guide` with that platform's capability mode (`google_ads_capabilities`, `facebook_meta_capabilities`, `microsoft_advertising_capabilities`, `tiktok_ads_capabilities`, `linkedin_ads_capabilities`, `chatgpt_ads_capabilities`, `snapchat_marketing_capabilities`). It lists the operations, `platform_settings` keys, targeting fields and refusals the server currently applies, and it wins where it differs from a reference file. Field and query detail per platform is in the `supermetrics-marketing-data-queries` skill's `references/<platform>.md` files.
 
 ## Before writing anything
 

@@ -96,7 +96,8 @@ way — compare `report_types` arrays from `field_discovery` before combining, a
   `media_story_taps_forward` and `media_story_exits` against `media_story_reach`.
 - Intent: `media_profile_visits`, `media_follows`, `profile_links_taps` and the profile-activity taps
   show which posts drove action rather than applause.
-- Timing via `timestamp` with `dayOfWeekName` (there is no hour dimension) — only claim a best time with enough posts to
+- Timing via `timestamp` with `dayOfWeekName`. The `hour` dimension exists only with `online_followers` (followers online
+  per hour, last 30 days, accounts with 100+ followers), not with post metrics. Only claim a best time with enough posts to
   mean something, and say how many. Ten posts is an anecdote, not a pattern.
 - Compare with `compare_type="prev_range"` or `"prev_year"`.
 

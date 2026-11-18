@@ -27,7 +27,7 @@ Call `get_user_and_team` with `action: get_info`.
 
 Call `data_source_discovery` with `compress: true`; each source's `authentication_status` shows what's connected. Then call `accounts_discovery` for the connected platforms the user cares about. Summarise in one short list: connected platforms and account counts. Don't dump every source.
 
-If nothing relevant is connected, ask which platform they want first (Google Ads, Meta Ads, GA4, LinkedIn Ads, TikTok Ads, Microsoft Ads, Shopify, HubSpot…) and call `get_user_and_team` with `action: login_data_source` and its `ds_id`. Give them the login link and wait. Never describe clicking through menus; hand over the link. For platform-specific connection help, call `supermetrics_guide` with `mode: connect_data_source`.
+If nothing relevant is connected, ask which platform they want first (Google Ads, Meta Ads, GA4, LinkedIn Ads, TikTok Ads, Microsoft Ads, Shopify, HubSpot…) and call `get_user_and_team` with `action: login_data_source` and its `ds_id`. Give them the login link and wait. Never describe clicking through menus; hand over the link. For platform-specific connection help, call `supermetrics_guide` with `mode: connect_data_source`. If the user asks about an earlier support request, `get_support_tickets` lists their own tickets and reads one by `ticket_id`.
 
 ## 3. First answer
 

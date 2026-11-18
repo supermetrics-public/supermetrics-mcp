@@ -56,7 +56,8 @@ Follow these steps in order. Skipping discovery is the most common cause of fail
    to the same report type. `ds_accounts` and the date range are root-level parameters
    (`date_range_type`, plus `start_date`/`end_date` for `custom`), never entries in `settings`.
 5. **`get_async_query_results(schedule_id=...)`** — if the query returns a schedule ID
-   instead of rows, poll immediately and keep polling until `completed`.
+   instead of rows, poll immediately and keep polling until `completed`. If it ends `failed`, read
+   `error` and call `supermetrics_guide` with `mode: query_errors` before retrying.
 
 ## Business context
 
@@ -83,7 +84,9 @@ campaigns", "we report in EUR"), offer to save it with `action="save"`.
 
 ## Reading results
 
-Rows come back as a 2D array: row 0 is display headers, rows 1+ are data. Map columns by
+Pass `compress: true` on `data_query` and `get_async_query_results`: `data` then comes back as a compact
+text table whose columns are the requested field IDs, which costs far fewer tokens. Without it, rows come
+back as a 2D array: row 0 is display headers, rows 1+ are data. Either way, map columns by
 `requested_field_ids`, **not** by the row-0 labels — the labels are human-readable names
 that differ from field IDs (`screenPageViews` displays as "Views"), so matching on labels
 silently reads the wrong column.
