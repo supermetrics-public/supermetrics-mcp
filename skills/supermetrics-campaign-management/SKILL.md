@@ -16,16 +16,18 @@ description: >-
 
 These tools spend real money. Treat every write as consequential.
 
-Before the first write on a platform, call `supermetrics_guide` with that platform's capability mode (`google_ads_capabilities`, `facebook_meta_capabilities`, `microsoft_advertising_capabilities`, `tiktok_ads_capabilities`, `linkedin_ads_capabilities`, `chatgpt_ads_capabilities`, `snapchat_marketing_capabilities`). It lists the operations, `platform_settings` keys, targeting fields and refusals the server currently applies, and it wins where it differs from a reference file. Field and query detail per platform is in the `supermetrics-marketing-data-queries` skill's `references/<platform>.md` files.
+Before the first write on a platform, call `supermetrics_guide` with that platform's capability mode (`google_ads_capabilities`, `facebook_meta_capabilities`, `microsoft_advertising_capabilities`, `tiktok_ads_capabilities`, `linkedin_ads_capabilities`, `chatgpt_ads_capabilities`, `snapchat_marketing_capabilities`). It lists the operations, `platform_settings` keys, targeting fields and refusals the server currently applies, and it wins where it differs from a reference file. For field and payload detail per platform, load the `supermetrics-marketing-data-queries` skill; its `references/<platform>.md` files hold it.
 
 ## Before writing anything
 
 1. Campaign writes must be enabled per advertising account at
    [hub.supermetrics.com/write-settings](https://hub.supermetrics.com/write-settings), where the
    account owner also sets an approval level: no human approval, going live, budget + going live,
-   or all live changes. If a write fails with a permissions error, that is usually why.
+   or all live changes. If a write is refused with `WRITE_ACCESS_NOT_ENABLED`, give the user the
+   link in the error and call `supermetrics_guide` with `mode: write_access` for the steps.
 2. Read before you write. `campaign_and_resource_get` shows current state — campaigns,
-   ad groups, ads, keywords, audiences, budgets. Never update a campaign you have not read.
+   budgets, audiences. For ad groups, ads and keywords pass `params.campaign_id` with
+   `params.campaign_detail_level` (`ad_group` or `full`). Never update a campaign you have not read.
 3. Check business context with `get_business_context` (plus `ds_id`
    and `account_id`). Naming conventions, budget ceilings and excluded campaigns live there.
 
@@ -47,7 +49,9 @@ Before the first write on a platform, call `supermetrics_guide` with that platfo
 
 ## Creating a campaign
 
-Use `manage_campaign` without a `campaign_id`. `budget_amount` is required. Structure:
+Use `manage_campaign` without a `campaign_id`. A budget is required: `budget_amount` on the
+campaign, or on each ad group where the setup puts it there (for example Meta ad-set budgets
+under ABO). Structure:
 
 - Campaign level: name, budget, bidding strategy, dates, campaign-level targeting.
 - `ad_groups[]`: ad sets or ad groups. Omit `id` to create, include `id` to update.
@@ -65,7 +69,8 @@ Platform quirks worth knowing before you build the payload:
   required. Performance Max images must be 1.91:1, 1:1 or 4:5 — 16:9 and 9:16 are rejected.
 - **Meta**: budget sits on the campaign under CBO, on each ad set under ABO. Carousels use
   `carousel_cards`, not `assets`.
-- **TikTok**: video creatives must use `asset_id`; a URL will not work.
+- **TikTok**: a video creative takes a public `asset_url` (uploaded and processed by TikTok
+  before the ad is created) or the `asset_id` of an already-uploaded video.
 - **LinkedIn**: single image only.
 
 ## Updating
@@ -76,6 +81,10 @@ are fixed at creation and cannot be changed afterwards.
 Partial success is possible on multi-entity writes. Always check `write_status` and
 `failures` in the response — do not assume success and do not blindly retry, which can
 create duplicates.
+
+If the result includes `approval_ref`, the account needs human approval and the change is not
+applied yet. Tell the user, do not resend the write, and check the outcome later with
+`campaign_and_resource_get` (`resource_type: "approval_status"`, `params.approval_ref`).
 
 When adding Google Ads keywords, read the response notes: a keyword that wasn't added is named
 there with the reason. Report those to the user rather than assuming every keyword landed.

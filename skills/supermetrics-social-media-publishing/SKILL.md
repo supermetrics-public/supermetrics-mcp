@@ -34,7 +34,7 @@ Get `account_id` from `accounts_discovery` with the same `ds_id` — on TikTok i
 1. **Resolve the account.** `accounts_discovery` for the platform; confirm which account if there are several.
 2. **Read the house rules.** `get_business_context` with `ds_id` and `account_id` for brand voice, hashtag and posting rules, and apply them to the draft.
 3. **Draft and confirm.** Show the user the final caption, media, account and time with time zone. Wait for a clear yes before any write.
-4. **Dry run.** Send the exact call with `validate_only: true`. It checks parameters, media, permissions, write access and quota without posting. Fix anything it reports.
+4. **Dry run.** Send the exact call with `validate_only: true` (accepted by every write except `cancel_scheduled`: publish, comments, moderation and scheduled-post updates). It checks parameters, media, permissions, write access and quota without posting. Fix anything it reports.
 5. **Publish or schedule.** Repeat the call without `validate_only`.
 6. **Verify.** Report what was published or scheduled, with the post link or `scheduled_id`. Follow the result's `next_action` if it has one.
 
@@ -64,12 +64,12 @@ Use `action: publish` with `content_type`, `caption` and one media source:
 - Add `publish_at`, 5 minutes to 75 days ahead. Without a UTC offset, also send `timezone` (IANA, for example `Europe/Helsinki`); ask the user if unsure.
 - `status` with no target lists scheduled posts (`state`: `scheduled`, `published`, `failed`, `cancelled`, `all`). Change caption or time with `update_post` and `scheduled_id`; to change media, `cancel_scheduled` and publish again.
 - Space one account's posts at least 5 minutes apart; Instagram throttles bursts.
-- **Best time to post (Instagram).** Run `data_query` with `ds_id: IGI`, fields `date,hour,online_followers`, the last 30 days and `timezone` set to the user's zone, then suggest the hours with the most followers online. This needs an account with 100+ followers, and the latest 1–2 days may be missing; if it returns nothing, say so instead of guessing.
+- **Best time to post (Instagram).** Run `data_query` with `ds_id: IGI`, `ds_accounts` set to the account id from `accounts_discovery`, fields `date,hour,online_followers`, root-level `date_range_type: "last_30_days"` and `timezone` set to the user's zone, then suggest the hours with the most followers online. This needs an account with 100+ followers, and the latest 1–2 days may be missing; if it returns nothing, say so instead of guessing.
 
 ## Comments and reviews
 
 - `list_comments` with `media_id`. Find recent post IDs with `instagram_insights` or `data_query` (ds_id `IGI`), the share or post IDs for `LIP`, or the `video_id` for `TIKBA`.
-- Reply with `action: comment` and `comment_id`; hide, unhide or delete with `moderate_comment`; turn comments on or off with `update_post` and `media_id`.
+- Reply with `action: comment` and `comment_id`; hide, unhide or delete with `moderate_comment`; turn comments on or off with `update_post` and `media_id`. Dry-run each with `validate_only: true` first.
 - LinkedIn can't hide comments, threads replies one level deep and shows commenters as LinkedIn IDs, not names.
 - Google Business Profile: `list_comments` without `media_id` lists the location's reviews with their rating. A reply replaces the previous one; deleting removes only your reply, not the review.
 - TikTok comment IDs are `<post id>_<comment id>`, as `list_comments` returns them. Only the account's own comments can be deleted; hide anyone else's. Comments can't be turned on or off after publishing.

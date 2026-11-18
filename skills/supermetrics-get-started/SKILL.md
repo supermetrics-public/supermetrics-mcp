@@ -27,7 +27,7 @@ Call `get_user_and_team` with `action: get_info`.
 
 Call `data_source_discovery` with `compress: true`; each source's `authentication_status` shows what's connected. Then call `accounts_discovery` for the connected platforms the user cares about. Summarise in one short list: connected platforms and account counts. Don't dump every source.
 
-If nothing relevant is connected, ask which platform they want first (Google Ads, Meta Ads, GA4, LinkedIn Ads, TikTok Ads, Microsoft Ads, Shopify, HubSpot…) and call `get_user_and_team` with `action: login_data_source` and its `ds_id`. Give them the login link and wait. Never describe clicking through menus; hand over the link. For platform-specific connection help, call `supermetrics_guide` with `mode: connect_data_source`. If the user asks about an earlier support request, `get_support_tickets` lists their own tickets and reads one by `ticket_id`.
+If nothing relevant is connected, ask which platform they want first (Google Ads, Meta Ads, GA4, LinkedIn Ads, TikTok Ads, Microsoft Ads, Shopify, HubSpot…) and call `get_user_and_team` with `action: login_data_source` and its `ds_id`. Give them the login link and wait. Never describe clicking through menus; hand over the link. For platform-specific connection help, call `supermetrics_guide` with `mode: connect_data_source`. If the user asks about an earlier support request, `get_support_tickets` lists their own tickets and reads one by `ticket_id`. To invite a colleague to the team, use `manage_user_and_team` with `action: invite_member`, `email` and `role`; the invite is sent only after the user approves it on the link the tool returns.
 
 ## 3. First answer
 
@@ -35,7 +35,7 @@ Once at least one account is connected, run one small useful report straight awa
 
 ## 4. Save their goals
 
-Ask what they're optimizing for (target CPA, ROAS or monthly budget). Save it with `manage_business_context` (`action: save`, tags like `targets`) so later analyses judge results against it. Skip this if a profile already exists.
+Ask what they're optimizing for (target CPA, ROAS or monthly budget). Save it with `manage_business_context` (`action: save`, `context_text` with the goal, `tags` like `targets`) so later analyses judge results against it. Skip this if a profile already exists.
 
 ## 5. Point to what's next
 
