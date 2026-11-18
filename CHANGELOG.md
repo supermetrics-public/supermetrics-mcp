@@ -11,6 +11,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [2.2.0] - 2026-11-18
+
 ### Changed
 
 - Query skill: recommends `compress: true` (a field-ID text table, far fewer tokens) and says to call
@@ -139,6 +141,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Issue templates routing account and billing questions to Supermetrics support and product ideas to
   the public wishlist.
 
+[2.2.0]: https://github.com/supermetrics-public/supermetrics-mcp/releases/tag/v2.2.0
 [2.1.0]: https://github.com/supermetrics-public/supermetrics-mcp/releases/tag/v2.1.0
 [2.0.0]: https://github.com/supermetrics-public/supermetrics-mcp/releases/tag/v2.0.0
 [1.1.0]: https://github.com/supermetrics-public/supermetrics-mcp/compare/v1.0.0...main
