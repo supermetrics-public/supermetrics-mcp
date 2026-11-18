@@ -2,12 +2,13 @@
 name: supermetrics-social-media-publishing
 description: >-
   Publishes and schedules organic social posts and manages comments through Supermetrics on
-  Instagram professional accounts, LinkedIn company pages and Google Business Profile: images,
-  carousels, reels, stories, text and link posts; listing, rescheduling and cancelling scheduled
-  posts; replying to, hiding or deleting comments; answering Google reviews; and finding the best
-  time to post. Every post needs the user's explicit approval and a dry run first. Use when the
-  user asks to "schedule an Instagram post for Friday", "post this on our LinkedIn page", "reply
-  to yesterday's comments", "what's scheduled this week", or "when is the best time to post".
+  Instagram professional accounts, LinkedIn company pages, TikTok accounts and Google Business
+  Profile: images, carousels, reels, stories, text and link posts; listing, rescheduling and
+  cancelling scheduled posts; replying to, hiding or deleting comments; answering Google reviews;
+  and finding the best time to post. Every post needs the user's explicit approval and a dry run
+  first. Use when the user asks to "schedule an Instagram post for Friday", "post this on our
+  LinkedIn page", "reply to yesterday's comments", "what's scheduled this week", or "when is the
+  best time to post".
   Don't use for analysing organic content performance (use
   supermetrics-seo-and-content-performance) or for paid ads and boosting (use
   supermetrics-campaign-management).
@@ -15,7 +16,7 @@ description: >-
 
 # Social media publishing and comments
 
-Publish, schedule and moderate posts with the `manage_social_media` tool. Posts go out under the user's brand, so treat every write as public and permanent. If the Supermetrics tools aren't connected or a source isn't signed in, follow the `supermetrics-get-started` skill first.
+Publish, schedule and moderate posts with the `manage_social_media` tool. Posts go out under the user's brand, so treat every write as public and permanent. If the Supermetrics tools aren't connected or a source isn't signed in, follow the `supermetrics-get-started` skill first. If `manage_social_media` is not in the tool list, social publishing is not enabled for this team.
 
 ## Platforms
 
@@ -24,8 +25,9 @@ Publish, schedule and moderate posts with the `manage_social_media` tool. Posts 
 | Instagram (professional account) | `IGI` (default) | `IMAGE`, `VIDEO` (a reel), `CAROUSEL` (2–10), `STORY` (no caption; `frames` for a sequence) |
 | LinkedIn company page | `LIP` | `TEXT`, `LINK`, `IMAGE`, `CAROUSEL` (2–20 images); no video or stories |
 | Google Business Profile | `GMB` | `TEXT`, `IMAGE` (one image); caption required, up to 1,500 characters |
+| TikTok account (organic) | `TIKBA` | `IMAGE` (one photo), `VIDEO`, `CAROUSEL` (2–35 photos); `upload_to_draft` leaves the post in the TikTok app for the user to finish |
 
-Get `account_id` from `accounts_discovery` with the same `ds_id`; for Google Business Profile pick a single location. Before the first publish, call `supermetrics_guide` with `mode: social_publishing` for the exact limits and `platform_options` of each type (Instagram user tags and collaborators, Google event, offer and call-to-action posts).
+Get `account_id` from `accounts_discovery` with the same `ds_id` — on TikTok it is the username; for Google Business Profile pick a single location. Before the first publish, call `supermetrics_guide` with `mode: social_publishing` for the exact limits and `platform_options` of each type (Instagram user tags and collaborators, Google event, offer and call-to-action posts).
 
 ## Workflow
 
@@ -55,7 +57,7 @@ Use `action: publish` with `content_type`, `caption` and one media source:
 
 - `media_url` (a public https URL), or `upload_ref` from `creative_picker`, which browses, uploads or AI-generates images with a preview. Use `media_prompt` (an AI image without preview) only if the user says they don't need to review it.
 - Carousels take several: `media_urls`, `media_prompts` or a comma-separated `upload_ref`.
-- AI images, videos and story sequences run in the background: poll `status` with `job_id` and `wait_seconds`.
+- AI images, videos, story sequences and every TikTok post run in the background: poll `status` with `job_id` and `wait_seconds`. A TikTok post can finish with a `publish_id` and `write_status: pending` while TikTok still moderates it, so it may be live a few minutes later.
 
 ## Scheduling
 
@@ -66,11 +68,12 @@ Use `action: publish` with `content_type`, `caption` and one media source:
 
 ## Comments and reviews
 
-- `list_comments` with `media_id`. Find recent post IDs with `instagram_insights` or `data_query` (ds_id `IGI`), or the share or post IDs for `LIP`.
+- `list_comments` with `media_id`. Find recent post IDs with `instagram_insights` or `data_query` (ds_id `IGI`), the share or post IDs for `LIP`, or the `video_id` for `TIKBA`.
 - Reply with `action: comment` and `comment_id`; hide, unhide or delete with `moderate_comment`; turn comments on or off with `update_post` and `media_id`.
 - LinkedIn can't hide comments, threads replies one level deep and shows commenters as LinkedIn IDs, not names.
 - Google Business Profile: `list_comments` without `media_id` lists the location's reviews with their rating. A reply replaces the previous one; deleting removes only your reply, not the review.
+- TikTok comment IDs are `<post id>_<comment id>`, as `list_comments` returns them. Only the account's own comments can be deleted; hide anyone else's. Comments can't be turned on or off after publishing.
 
 ## After publishing
 
-Analyse results later with `instagram_insights` or `data_query` (`IGI` for Instagram, `LIP` for LinkedIn page posts, `GMB` for Google Business Profile), following the `supermetrics-marketing-data-queries` skill.
+Analyse results later with `instagram_insights` or `data_query` (`IGI` for Instagram, `LIP` for LinkedIn page posts, `TIKBA` for TikTok videos and photo posts, `GMB` for Google Business Profile), following the `supermetrics-marketing-data-queries` skill.

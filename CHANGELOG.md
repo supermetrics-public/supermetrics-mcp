@@ -13,6 +13,12 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- `supermetrics-social-media-publishing` skill: TikTok Organic (`TIKBA`) is covered — content types, the
+  username as `account_id`, background publishing and moderation, `video_id` for comments and post IDs.
+- `supermetrics-marketing-data-queries` skill: account IDs go in `ds_accounts` (required when
+  `has_account_list` is true, `ALL_ACCOUNTS` only on request), a report type that needs a free-text
+  identifier takes it in `ds_accounts`, and the date range and `ds_accounts` are root-level parameters
+  rather than `settings` entries.
 - `supermetrics-audits-and-monitors` skill: audits also cover Snapchat Marketing accounts.
 - `supermetrics-audits-and-monitors` skill: monitors also cover Google Display & Video 360 (metrics and naming
   convention), and schedule options come from the data source's schema.
