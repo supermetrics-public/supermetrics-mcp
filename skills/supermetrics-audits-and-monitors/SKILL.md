@@ -1,16 +1,17 @@
 ---
 name: supermetrics-audits-and-monitors
 description: >-
-  Runs a one-off health audit of a Google Ads, Facebook Ads or Snapchat Marketing account and sets
-  up scheduled monitors that alert by email or Slack: metric thresholds (spend, CPA, conversions,
-  sessions) on Google Ads, Facebook Ads, Google Display & Video 360 (DV360) and Google Analytics 4,
-  landing page checks for broken or redirecting URLs, and campaign naming convention checks. Audit
-  findings are grouped by severity across tracking trust, delivery, waste, efficiency, allocation,
-  change and upside. Use when the user asks to "audit my Google Ads account", "what's wrong with my
-  Meta account", "alert me if spend spikes", "set up a daily check that conversions are still
-  tracking", "check our ad landing pages work", or "flag campaigns that break our naming
-  convention". Don't use for a one-off metric question (use supermetrics-marketing-data-queries) or
-  a week-over-week performance review (use supermetrics-campaign-performance-review).
+  Runs a one-off health audit of a Google Ads, Facebook Ads, Snapchat Marketing or LinkedIn Ads
+  account and sets up scheduled monitors that alert by email or Slack: metric thresholds (spend,
+  CPA, conversions, sessions) on Google Ads, Facebook Ads, Google Display & Video 360 (DV360) and
+  Google Analytics 4, landing page checks for broken or redirecting URLs, and campaign naming
+  convention checks. Audit findings are grouped by severity across tracking trust, delivery, waste,
+  efficiency, allocation, change and upside. Use when the user asks to "audit my Google Ads
+  account", "audit my LinkedIn Ads account", "what's wrong with my Meta account", "alert me if spend
+  spikes", "set up a daily check that conversions are still tracking", "check our ad landing pages
+  work", or "flag campaigns that break our naming convention". Don't use for a one-off metric
+  question (use supermetrics-marketing-data-queries) or a week-over-week performance review (use
+  supermetrics-campaign-performance-review).
 ---
 
 # Audits and monitors
@@ -19,9 +20,10 @@ Two tools: `manage_audits_and_monitors` starts audits and creates, updates or ru
 
 ## Audit an account
 
-One account at a time, Google Ads (`AW`), Facebook Ads (`FA`) or Snapchat Marketing (`SCM`) only.
+One account at a time, Google Ads (`AW`), Facebook Ads (`FA`), Snapchat Marketing (`SCM`) or LinkedIn Ads (`LIA`) only.
+For LinkedIn Ads, the conversion checks leave out the last 7 days because LinkedIn conversions arrive late, so `last_7_days` gives no conversion verdicts; suggest `last_30_days`.
 
-1. **Pick the account.** `accounts_discovery` for the platform. Ask which account if there are several, and ask the account's time zone if you don't know it; don't guess.
+1. **Pick the account.** `accounts_discovery` for the platform. Ask which account if there are several, and ask the account's time zone if you don't know it; don't guess. LinkedIn Ads reports days in UTC: pass `timezone: UTC` without asking.
 2. **Start.** `manage_audits_and_monitors` with `action: audit`, `ds_id`, `account_ids` (exactly one), `timezone`, and `date_range` (`last_7_days`, `last_14_days`, `last_30_days` default, `last_90_days`).
 3. **Wait for the report.** `read_audits_and_monitors` with `action: audit` and the `run_token`. While it reports pending, call again with the token it returns.
 4. **Present.** Lead with the most severe findings and what each one costs or risks. Keep the seven angles as headings only where they have findings.
