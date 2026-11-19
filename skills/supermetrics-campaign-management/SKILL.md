@@ -33,7 +33,7 @@ Before the first write on a platform, call `supermetrics_guide` with that platfo
 
 ## Safety rules
 
-- **New campaigns are always created paused.** This is enforced by the platform layer;
+- **New campaigns are never created live** (paused; a LinkedIn `status: "DRAFT"` stays a draft). This is enforced by the platform layer;
   do not try to work around it.
 - **Only set `status: "ENABLED"` when the user has explicitly approved that specific
   campaign going live.** Enabling starts spend immediately.

@@ -160,7 +160,7 @@ Safety:
 - Write access is enabled per account at
   [hub.supermetrics.com/write-settings](https://hub.supermetrics.com/write-settings) with an approval
   level. Permission errors are almost always this.
-- **New campaigns are always created paused.** `status: "ENABLED"` only on explicit approval of that campaign.
+- **New campaigns are never created live:** paused, or a draft when sent `status: "DRAFT"`. `status: "ENABLED"` only on explicit approval of that campaign.
 - Confirm budget in writing first: amount, currency, daily vs lifetime.
 - Check `write_status` and `failures`; partial success happens, and blind retries duplicate.
 

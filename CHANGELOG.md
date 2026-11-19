@@ -11,6 +11,11 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- Campaign and query skills: a LinkedIn campaign created with `status: "DRAFT"` stays a draft; new
+  campaigns are described as never created live rather than always paused.
+
 ## [2.3.0] - 2026-11-18
 
 ### Changed
