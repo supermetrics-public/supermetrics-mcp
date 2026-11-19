@@ -11,6 +11,15 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- `supermetrics-get-started` skill: starts from the user's data instead of a sign-in check (new users
+  already have a trial; sign-in, license and trial errors are handled when they happen); suggests what
+  to connect in three groups (ad platforms Supermetrics can also manage, organic social accounts it can
+  post to, and report-only sources); after the first report, offers one hands-on action on a manageable
+  platform (a campaign change or a scheduled post) through the campaign or social skill; shows the
+  report as a chart where the app can draw one and offers a live Studio dashboard.
+
 ## [2.3.0] - 2026-11-18
 
 ### Changed
