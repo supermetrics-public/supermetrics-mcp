@@ -1,6 +1,6 @@
 interface:
   display_name: "Get Started"
-  short_description: "Connect sources and run a first query"
+  short_description: "Connect platforms, see results, take action"
   icon_small: "./assets/icon-small.png"
   brand_color: "#F6252F"
   default_prompt: "Help me get started with Supermetrics"
