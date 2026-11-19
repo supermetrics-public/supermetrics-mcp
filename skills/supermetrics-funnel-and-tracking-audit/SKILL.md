@@ -27,7 +27,7 @@ description: >-
 Two separate pulls. Do ad platforms first, confirm the data, then GA4 split by `sessionSourceMedium` or `sessionCampaignName` (not default channel grouping, which lumps LinkedIn and Facebook into "Paid Social"). Map GA4 rows to the same channel names as the ad data before reconciling. If GA4 isn't connected, stop and tell the user this workflow requires it.
 
 ### Step 2 — Reconcile
-Use `scripts/funnel_reconciler.py --ad-platform ads.csv --ga4 ga4.csv`. The script joins by channel name (the `channel` column in both files must use identical values) and computes the divergence between platform-reported and GA4-measured outcomes. Channels where the click-to-session gap exceeds 25% get flagged as likely UTM/tracking issues.
+Use `scripts/funnel_reconciler.py --ad-platform ads.csv --ga4 ga4.csv`. The script joins by channel name (the `channel` column in both files must use identical values) and computes the divergence between platform-reported and GA4-measured outcomes. Channels where the click-to-session gap exceeds 25% get flagged as likely UTM/tracking issues. To confirm a suspected break, run `marketing_utilities` with `action: link_check` on the ad's final URLs: it shows whether UTM and click-id parameters survive each redirect to the landing page, and `utm_parse` checks the tags against the team's naming conventions.
 
 ### Step 3 — Visualize the reconciliation
 The question the chart needs to answer: **where's the leak — is each channel converting the traffic it bought, or losing it somewhere?**

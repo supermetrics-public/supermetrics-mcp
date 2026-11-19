@@ -13,7 +13,62 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
-- `supermetrics-audits-and-monitors` skill: audits also cover Snapchat Marketing and TikTok Ads accounts.
+- `supermetrics-audits-and-monitors` skill: audits also cover TikTok Ads accounts.
+
+## [2.3.0] - 2026-11-18
+
+### Changed
+
+- Campaign and query skills: LinkedIn ads are no longer single image only; the ad set's `format` picks
+  video, carousel, document, text or Spotlight ads, and `object_story_id` sponsors an existing post.
+- `supermetrics-campaign-management` skill: loads `supermetrics-marketing-data-queries` for per-platform
+  detail instead of pointing at its files; explains a write held for approval (`approval_ref`, checked
+  with `resource_type: "approval_status"`) and the `write_access` guide for refused writes; reads ad
+  groups and ads with `params.campaign_id` and `params.campaign_detail_level`.
+- `supermetrics-social-media-publishing` skill: `validate_only` dry runs cover every write except
+  `cancel_scheduled`; the best-time-to-post query names `ds_accounts` and a root-level `date_range_type`.
+- `supermetrics-get-started` skill: saving goals includes `context_text` and `tags`; inviting a colleague
+  uses `manage_user_and_team` (`action: invite_member`), sent after the user approves the link.
+- Platform references in `supermetrics-marketing-data-queries`: each recommends `compress: true` and
+  stops polling on a `failed` query. Meta video creatives lead with a public `asset_url` or existing
+  `asset_id`; the upload-URL flow is for local files only.
+- `GEMINI.md` and `llms.txt` list all 23 server tools.
+
+### Fixed
+
+- Campaign skill and TikTok reference: a TikTok video ad accepts a public `asset_url`, not only an
+  `asset_id`.
+- Campaign skill and Meta reference: a budget can sit on each ad group (Meta ABO ad sets) instead of the
+  campaign.
+- Instagram reference: organic posting, scheduling and comments go through `manage_social_media`; only
+  Insights data is read-only.
+- Query skill: business context is read with `get_business_context` and saved with
+  `manage_business_context` (`action: "save"`, `context_text`, `tags`); `GEMINI.md` no longer says
+  `manage_business_context` reads it.
+- Audits skill: `health_check` requires `params.campaign_id`.
+
+## [2.2.0] - 2026-11-18
+
+### Changed
+
+- Query skill: recommends `compress: true` (a field-ID text table, far fewer tokens) and says to call
+  `supermetrics_guide` with `mode: query_errors` when a query ends `failed`.
+- Campaign skill: before the first write on a platform, call `supermetrics_guide` with that platform's
+  capability mode; it overrides the static reference files where they differ.
+- TikTok reference: "at least one metric in `fields`" replaces the internal `min_metrics: 1` wording.
+  Instagram reference: `hour` exists only with `online_followers`.
+- `supermetrics-get-started` mentions `get_support_tickets`, and `supermetrics-funnel-and-tracking-audit`
+  uses `marketing_utilities` (`link_check`, `utm_parse`) to confirm suspected UTM breaks.
+- `supermetrics-social-media-publishing` skill: TikTok Organic (`TIKBA`) is covered — content types, the
+  username as `account_id`, background publishing and moderation, `video_id` for comments and post IDs.
+- `supermetrics-marketing-data-queries` skill: account IDs go in `ds_accounts` (required when
+  `has_account_list` is true, `ALL_ACCOUNTS` only on request), a report type that needs a free-text
+  identifier takes it in `ds_accounts`, and the date range and `ds_accounts` are root-level parameters
+  rather than `settings` entries.
+- `supermetrics-audits-and-monitors` skill: audits also cover Snapchat Marketing accounts.
+- `supermetrics-audits-and-monitors` skill: audits also cover LinkedIn Ads accounts.
+- `supermetrics-audits-and-monitors` skill: monitors also cover Google Display & Video 360 (metrics and naming
+  convention), and schedule options come from the data source's schema.
 - Meta reference (`supermetrics-marketing-data-queries`): Advantage+ placements is on only while `platforms`,
   `devices`, `placements` and `excluded_placements` are unset, and sending any of them turns it off; a local video file goes
   through `creative_picker` `create_upload_url` (with a video `content_type` and `size`) and its `upload_ref`.
@@ -123,6 +178,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Issue templates routing account and billing questions to Supermetrics support and product ideas to
   the public wishlist.
 
+[2.3.0]: https://github.com/supermetrics-public/supermetrics-mcp/releases/tag/v2.3.0
+[2.2.0]: https://github.com/supermetrics-public/supermetrics-mcp/releases/tag/v2.2.0
 [2.1.0]: https://github.com/supermetrics-public/supermetrics-mcp/releases/tag/v2.1.0
 [2.0.0]: https://github.com/supermetrics-public/supermetrics-mcp/releases/tag/v2.0.0
 [1.1.0]: https://github.com/supermetrics-public/supermetrics-mcp/compare/v1.0.0...main

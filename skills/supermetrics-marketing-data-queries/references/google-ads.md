@@ -21,7 +21,8 @@
    couldn't be loaded — never block an analysis on a context lookup.
 4. `field_discovery(ds_id="AW", filter="…")` — always filter; the catalogue runs to hundreds of fields.
 5. `data_query(…)` — dimensions before metrics.
-6. `get_async_query_results(schedule_id=…)` — poll until `completed`.
+6. `get_async_query_results(schedule_id=…)` — poll until `completed`. On `failed`, read `error`
+   and call `supermetrics_guide(mode="query_errors")`.
 
 `get_today` before resolving any relative date.
 
@@ -101,7 +102,8 @@
 
 ## Reading results
 
-- 2D array; row 0 is **display labels**, not field IDs. Map by `requested_field_ids`.
+- Pass `compress: true`: `data` is then a compact text table whose columns are the requested field
+  IDs. Uncompressed, it is a 2D array; row 0 is **display labels**, not field IDs. Map by `requested_field_ids`.
 - **Check `canonical_field_ids`** — present and different means an alias silently resolved your name
   to another metric. Report what actually came back.
 - `null` is not 0. Say "no data". Values may be strings; parse before arithmetic.

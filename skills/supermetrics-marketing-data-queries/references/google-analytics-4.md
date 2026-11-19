@@ -26,7 +26,8 @@ Web and app analytics: what happened on the site. No ad spend of its own beyond 
 4. `field_discovery(ds_id="GAWA", filter="…")` — always filter. This property's custom key events
    appear as `c_keyevents_*`, `c_sessionkeyeventrate_*`, `c_userkeyeventrate_*` — discover, never assume.
 5. `data_query(…)` — dimensions before metrics.
-6. `get_async_query_results(schedule_id=…)` — poll until `completed`.
+6. `get_async_query_results(schedule_id=…)` — poll until `completed`. On `failed`, read `error`
+   and call `supermetrics_guide(mode="query_errors")`.
 
 `get_today` before resolving any relative date.
 
@@ -118,7 +119,8 @@ side**; `sessions>100` and an HTML-escaped `&gt;` are both rejected. Ops: `==` `
 
 ## Reading results
 
-- 2D array; row 0 is **display labels**, not field IDs — `screenPageViews` renders as "Views". Map by
+- Pass `compress: true`: `data` is then a compact text table whose columns are the requested field
+  IDs. Uncompressed, it is a 2D array; row 0 is **display labels**, not field IDs — `screenPageViews` renders as "Views". Map by
   `requested_field_ids`.
 - **Check `canonical_field_ids`** — present and different means an alias silently resolved your name
   to another metric. Report what actually came back.

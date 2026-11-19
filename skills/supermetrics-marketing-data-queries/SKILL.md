@@ -42,31 +42,39 @@ Follow these steps in order. Skipping discovery is the most common cause of fail
    "GA4" is `GAWA`.
 2. **`data_source_discovery(ds_id=X)`** — read that source's configuration before
    querying. It tells you what the next steps must be:
-   - `has_account_list: true` → call `accounts_discovery(ds_id=X)` for account IDs.
-   - `has_report_type_selection: true` → choose a `report_type` and pass it in `settings`.
+   - `has_account_list: true` → call `accounts_discovery(ds_id=X)` for account IDs and pass them in
+     `ds_accounts`, which is then required. `ALL_ACCOUNTS` covers every account of the login and can be
+     slow or rate-limited, so use it only when the user asks for all accounts.
+   - `has_report_type_selection: true` → choose a `report_type` and pass it in `settings`. If that
+     report type has `is_free_text_account_required`, put the user's free-text identifier (a page
+     alias, URL or profile name) in `ds_accounts` instead of an account ID.
    - `has_fields: true` → call `field_discovery(ds_id=X)` to get valid field IDs.
    - `is_date_range_required: true` → set a date range (nearly always true).
 3. **`field_discovery(ds_id=X, filter="...")`** — filter rather than dumping every field.
    `filter="cost,click,conversion"` is far more useful than the full catalogue.
 4. **`data_query(...)`** — dimensions before metrics in `fields`. All fields must belong
-   to the same report type.
+   to the same report type. `ds_accounts` and the date range are root-level parameters
+   (`date_range_type`, plus `start_date`/`end_date` for `custom`), never entries in `settings`.
 5. **`get_async_query_results(schedule_id=...)`** — if the query returns a schedule ID
-   instead of rows, poll immediately and keep polling until `completed`.
+   instead of rows, poll immediately and keep polling until `completed`. If it ends `failed`, read
+   `error` and call `supermetrics_guide` with `mode: query_errors` before retrying.
 
 ## Business context
 
 Before analyzing a specific account, call `get_business_context`
-and the `ds_id` (plus `account_id` where relevant). Teams store reporting conventions
+with the `ds_id` (plus `account_id` where relevant). Teams store reporting conventions
 there — which campaigns to exclude, which attribution window to use, how to segment.
 Applying them is the difference between a correct answer and a plausible one.
 
 If the user states a durable preference mid-conversation ("always exclude brand
-campaigns", "we report in EUR"), offer to save it with `action="save"`.
+campaigns", "we report in EUR"), offer to save it with `manage_business_context` (`action: "save"`, `context_text`, `tags`, plus
+`ds_id`/`account_id` to scope it to a source or account).
 
 ## Writing good queries
 
-- **Dates**: prefer relative ranges (`last_30_days`, `last_month`, `this_month_inc`).
-  For anything relative to "now", call `get_today` first — do not assume the date.
+- **Dates**: pass `date_range_type` at the top level, not inside `settings`, where it is ignored.
+  Prefer relative ranges (`last_30_days`, `last_month`, `this_month_inc`); append `_inc` to include
+  the current period. For anything relative to "now", call `get_today` first — do not assume the date.
 - **Comparisons**: `compare_type="prev_range"` or `"prev_year"` answers "how does that
   compare?" in one query instead of two. Other values: `prev_year_weekday`, or `custom` with
   `compare_start_date`/`compare_end_date`. `compare_show` picks `perc_change` (default),
@@ -77,7 +85,9 @@ campaigns", "we report in EUR"), offer to save it with `action="save"`.
 
 ## Reading results
 
-Rows come back as a 2D array: row 0 is display headers, rows 1+ are data. Map columns by
+Pass `compress: true` on `data_query` and `get_async_query_results`: `data` then comes back as a compact
+text table whose columns are the requested field IDs, which costs far fewer tokens. Without it, rows come
+back as a 2D array: row 0 is display headers, rows 1+ are data. Either way, map columns by
 `requested_field_ids`, **not** by the row-0 labels — the labels are human-readable names
 that differ from field IDs (`screenPageViews` displays as "Views"), so matching on labels
 silently reads the wrong column.

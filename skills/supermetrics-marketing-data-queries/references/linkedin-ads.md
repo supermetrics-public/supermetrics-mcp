@@ -33,7 +33,8 @@ which level your numbers are at.
    couldn't be loaded — never block an analysis on a context lookup.
 4. `field_discovery(ds_id="LIA", filter="…")` — filter; there are close to 200 fields.
 5. `data_query(…)` — dimensions before metrics.
-6. `get_async_query_results(schedule_id=…)` — poll until `completed`.
+6. `get_async_query_results(schedule_id=…)` — poll until `completed`. On `failed`, read `error`
+   and call `supermetrics_guide(mode="query_errors")`.
 
 `get_today` before resolving any relative date.
 
@@ -125,7 +126,8 @@ side**; `clicks>5` and an HTML-escaped `&gt;` are both rejected. Ops: `==` `!=` 
 
 ## Reading results
 
-- 2D array; row 0 is **display labels**, not field IDs. Map by `requested_field_ids`.
+- Pass `compress: true`: `data` is then a compact text table whose columns are the requested field
+  IDs. Uncompressed, it is a 2D array; row 0 is **display labels**, not field IDs. Map by `requested_field_ids`.
 - **Check `canonical_field_ids`** — present and different means an alias silently resolved your name
   to another metric. Report what actually came back.
 - `null` is not 0. Say "no data" — and on LinkedIn a null Reach beside a demographic dimension means
@@ -144,8 +146,11 @@ Read first with `campaign_and_resource_get(ds_id="LIA", account_id=…)`. Never 
   `daily_budget`, `campaign_type`, `billing_event`, `objective_type` go in
   `ad_groups[].platform_settings`.
 - **Update** — pass `campaign_id`; only sent fields change. Objective and campaign type fixed at creation.
-- **Creative** — **single image only** through this tool. `descriptions[0]` = primary text,
-  `headlines[0]` = headline. Media via `asset_url` | `asset_id` | `upload_ref` from `creative_picker`.
+- **Creative** — the ad set's `platform_settings.format` (`SINGLE_IMAGE`, `VIDEO`, `CAROUSEL`,
+  `DOCUMENT`, `TEXT_AD`, `SPOTLIGHT`) decides the ad; without it the ads decide (video, `carousel_cards`,
+  document), else single image. `descriptions[0]` = primary text, `headlines[0]` = headline. Media via
+  `asset_url` | `asset_id` | `upload_ref` from `creative_picker`. `object_story_id` (a post URN) sponsors an
+  existing post. Fields per format: `supermetrics_guide(mode="linkedin_ads_capabilities")`.
 - **`targeting` updates per field.** Omitted fields are kept; a field you send replaces that whole
   list, so send its complete value. `[]` clears a field.
   Campaign-level targeting doesn't reach existing ad groups — use `ad_groups[].targeting`.
