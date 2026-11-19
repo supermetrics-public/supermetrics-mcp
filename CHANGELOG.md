@@ -11,6 +11,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- `supermetrics-audits-and-monitors` skill: audits also cover Microsoft Ads accounts.
+
 ## [2.3.0] - 2026-11-18
 
 ### Changed
