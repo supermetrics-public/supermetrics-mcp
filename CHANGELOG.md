@@ -13,7 +13,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
-- `supermetrics-audits-and-monitors` skill: audits also cover Microsoft Ads accounts.
+- `supermetrics-audits-and-monitors` skill: audits also cover TikTok Ads and Microsoft Ads accounts.
 
 ## [2.3.0] - 2026-11-18
 
