@@ -1,7 +1,7 @@
 ---
 name: supermetrics-audits-and-monitors
 description: >-
-  Runs a one-off health audit of a Google Ads, Facebook Ads, Snapchat Marketing or LinkedIn Ads
+  Runs a one-off health audit of a Google Ads, Facebook Ads, Snapchat Marketing, LinkedIn Ads or TikTok Ads
   account and sets up scheduled monitors that alert by email or Slack: metric thresholds (spend,
   CPA, conversions, sessions) on Google Ads, Facebook Ads, Google Display & Video 360 (DV360) and
   Google Analytics 4, landing page checks for broken or redirecting URLs, and campaign naming
@@ -20,7 +20,7 @@ Two tools: `manage_audits_and_monitors` starts audits and creates, updates or ru
 
 ## Audit an account
 
-One account at a time, Google Ads (`AW`), Facebook Ads (`FA`), Snapchat Marketing (`SCM`) or LinkedIn Ads (`LIA`) only.
+One account at a time, Google Ads (`AW`), Facebook Ads (`FA`), Snapchat Marketing (`SCM`), LinkedIn Ads (`LIA`) or TikTok Ads (`TIK`) only.
 For LinkedIn Ads, the conversion checks leave out the last 7 days because LinkedIn conversions arrive late, so `last_7_days` gives no conversion verdicts; suggest `last_30_days`.
 
 1. **Pick the account.** `accounts_discovery` for the platform. Ask which account if there are several, and ask the account's time zone if you don't know it; don't guess. LinkedIn Ads reports days in UTC: pass `timezone: UTC` without asking.
