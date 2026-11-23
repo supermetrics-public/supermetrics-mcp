@@ -13,6 +13,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- `supermetrics-audits-and-monitors` skill: audits also cover TikTok Ads accounts.
 - Campaign and query skills: a LinkedIn campaign created with `status: "DRAFT"` stays a draft; new
   campaigns are described as never created live rather than always paused.
 
