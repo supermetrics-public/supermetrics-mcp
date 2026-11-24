@@ -24,7 +24,7 @@ Call `data_source_discovery` with `compress: true`; `authentication_status` show
 
 On success, if some sources are connected, list them in one short list grouped as **ads**, **analytics & sales**, and **social**, not the full catalogue of available sources. If nothing is connected yet, the usual case for a new user, skip the list.
 
-When suggesting a platform to connect, start from the ones that work best for a first result: Google Ads, Meta Ads, Google Analytics 4 and Google Search Console; for social, Instagram, Facebook Pages, LinkedIn pages, TikTok, YouTube and Google Business Profile; for other ads, LinkedIn Ads, TikTok Ads and Microsoft Ads.
+When suggesting a platform to connect, start from the ones that work best for a first result: Google Ads, Meta Ads, Google Analytics 4 and Google Search Console; for social, Instagram, Facebook Insights, LinkedIn pages, TikTok, YouTube and Google Business Profile; for other ads, LinkedIn Ads, TikTok Ads and Microsoft Ads.
 
 Then tell them briefly what they can do, in your own words and relating it to what's connected, and let them say what they want. The main capabilities:
 
