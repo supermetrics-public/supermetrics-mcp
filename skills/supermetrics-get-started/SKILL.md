@@ -13,7 +13,7 @@ description: >-
 
 # Get started with Supermetrics
 
-Get the user from install to a first real result in as few turns as possible. Do each step only if the previous one succeeded. Don't run every step for a user who arrives with a concrete request: connect what that request needs, and go straight to the matching path in step 2.
+Get the user from install to a first real result in as few turns as possible. Do each step only if the previous one succeeded. Don't run every step for a user who arrives with a concrete request: connect what that request needs, and go straight to the matching part of step 2.
 
 ## 1. See what's connected, and ask what they came for
 
@@ -24,14 +24,14 @@ Call `data_source_discovery` with `compress: true`; `authentication_status` show
 
 On success, if some sources are connected, list them in one short list grouped as **ads**, **analytics & sales**, and **social**, not the full catalogue of available sources. If nothing is connected yet, the usual case for a new user, skip the list.
 
-Then offer the four directions in one line each, marking any that their connections already allow:
+Then tell them briefly what they can do, in your own words and relating it to what's connected, and let them say what they want. The main capabilities:
 
-1. **Analyse performance** — spend, conversions, ROAS, traffic, across channels
-2. **Manage campaigns** — budgets, bids, pausing, targeting, new campaigns
-3. **Publish social posts** — post, schedule and reply to comments on Instagram, LinkedIn pages, TikTok and Google Business Profile
-4. **Live dashboard** — a shareable Supermetrics Studio page that stays up to date
+- **Analyse performance:** spend, conversions, ROAS and traffic, across channels
+- **Manage campaigns:** budgets, bids, pausing, targeting and new campaigns
+- **Publish social posts:** post, schedule and reply to comments on Instagram, LinkedIn pages, TikTok and Google Business Profile
+- **Live dashboards:** shareable Supermetrics Studio pages that stay up to date
 
-Once they pick a direction, ask which platform it should use if that isn't clear (for example Google Ads or Meta Ads for campaigns, Instagram or LinkedIn for social). If that platform isn't connected, call `get_user_and_team` with `action: login_data_source` and the `ds_id` (add `include_management_scopes: true` for social publishing and campaign management), hand over the link and wait. Never describe clicking through menus. For connection trouble, `supermetrics_guide` with `mode: connect_data_source`.
+Once they say what they want, ask which platform it should use if that isn't clear (for example Google Ads or Meta Ads for campaigns, Instagram or LinkedIn for social). If that platform isn't connected, call `get_user_and_team` with `action: login_data_source` and the `ds_id` (add `include_management_scopes: true` for social publishing and campaign management), hand over the link and wait. Never describe clicking through menus. For connection trouble, `supermetrics_guide` with `mode: connect_data_source`.
 
 ## 2. First result
 
@@ -57,6 +57,6 @@ After the first result, ask once what they're working towards (target CPA or ROA
 
 ## 4. Point to what's next
 
-Suggest three follow-ups that cross into the other directions, based on what they connected, for example: after an analysis, "pause the campaigns wasting spend" and "turn this into a live dashboard"; after a social post, "which posts drove the most engagement last month"; after a campaign change, "a pacing dashboard to watch the effect".
+Suggest three follow-ups that cross into the other capabilities, based on what they connected, for example: after an analysis, "pause the campaigns wasting spend" and "turn this into a live dashboard"; after a social post, "which posts drove the most engagement last month"; after a campaign change, "a pacing dashboard to watch the effect".
 
 If the user asks about an earlier support request, `get_support_tickets` lists their own tickets and reads one by `ticket_id`. To invite a colleague to the team, use `manage_user_and_team` with `action: invite_member`, `email` and `role`; the invite is sent only after the user approves it on the link the tool returns.
