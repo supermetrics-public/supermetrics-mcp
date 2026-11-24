@@ -19,7 +19,7 @@ Get the user from install to a first real result in as few turns as possible. Do
 
 Call `data_source_discovery` with `compress: true`; `authentication_status` shows what's connected.
 
-- **Tool missing or auth error:** the Supermetrics app isn't connected or signed in. Ask the user to connect or reconnect Supermetrics in ChatGPT's app settings and sign in with their Supermetrics account, then wait. Never ask for an API key or password in chat.
+- **Auth error:** the Supermetrics sign-in has expired. Ask the user to reconnect Supermetrics in their AI app's connector settings, then wait. Never ask for an API key or password in chat.
 - **License or trial error (here or later):** don't loop on sign-in. Say so plainly and follow the note in the response; `supermetrics_guide` with `mode: license_and_trials` has the details.
 
 On success, summarise in one short list grouped as **ads**, **analytics & sales**, and **social**. Don't list unconnected sources.
