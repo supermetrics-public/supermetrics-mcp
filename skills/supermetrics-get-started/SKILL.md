@@ -2,7 +2,7 @@
 name: supermetrics-get-started
 description: >-
   Onboards a new Supermetrics user: lists connected data sources, hands over login links to
-  connect Google Ads, Meta Ads, GA4, Instagram, LinkedIn, TikTok, Shopify, HubSpot and other
+  connect Google Ads, Meta Ads, GA4, Search Console, Instagram, LinkedIn, TikTok and other
   platforms, then takes the user to a first real result in analysis, campaign management, social
   publishing or a live Supermetrics Studio dashboard, and saves their goals as business context.
   Also recovers from sign-in, license, trial and "source not connected" errors. Use when the user
@@ -24,6 +24,8 @@ Call `data_source_discovery` with `compress: true`; `authentication_status` show
 
 On success, if some sources are connected, list them in one short list grouped as **ads**, **analytics & sales**, and **social**, not the full catalogue of available sources. If nothing is connected yet, the usual case for a new user, skip the list.
 
+When suggesting a platform to connect, start from the ones that work best for a first result: Google Ads, Meta Ads, Google Analytics 4 and Google Search Console; for social, Instagram, Facebook Pages, LinkedIn pages, TikTok, YouTube and Google Business Profile; for other ads, LinkedIn Ads, TikTok Ads and Microsoft Ads.
+
 Then tell them briefly what they can do, in your own words and relating it to what's connected, and let them say what they want. The main capabilities:
 
 - **Analyse performance:** spend, conversions, ROAS and traffic, across channels
@@ -36,7 +38,7 @@ Once they say what they want, ask which platform it should use if that isn't cle
 ## 2. First result
 
 ### Analyse performance
-Run one small report straight away: last 7 days vs the previous 7 for spend, clicks, conversions and cost per conversion (sessions and conversions for GA4; revenue and orders for Shopify). Show a compact table or chart, and call out the one change that matters most.
+Run one small report straight away: last 7 days vs the previous 7 for spend, clicks, conversions and cost per conversion (sessions and conversions for GA4; clicks, impressions and position for Search Console; reach and engagement for social accounts). Show a compact table or chart, and call out the one change that matters most.
 
 ### Manage campaigns
 1. List campaigns with `campaign_and_resource_get` for the chosen account, with last-7-day spend from `data_query`.
