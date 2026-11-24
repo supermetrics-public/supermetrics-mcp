@@ -13,6 +13,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- `supermetrics-get-started` skill: no separate sign-in step; after showing what's connected it offers
+  four directions (analyse performance, manage campaigns, publish social posts, live Studio dashboard)
+  and gives each a short first-result path that hands off to its own skill. Social and campaign login
+  links ask for write permissions, and a user with a concrete request goes straight to that path.
 - `supermetrics-audits-and-monitors` skill: audits also cover TikTok Ads and Microsoft Ads accounts.
 - Campaign and query skills: a LinkedIn campaign created with `status: "DRAFT"` stays a draft; new
   campaigns are described as never created live rather than always paused.

@@ -191,7 +191,7 @@ actually ask for.
 
 | Skill | What it does |
 |-------|--------------|
-| `supermetrics-get-started` | Sign-in check, connect a first platform, first report, save goals |
+| `supermetrics-get-started` | See what's connected, connect a platform, then a first result in analysis, campaigns, social publishing or a live dashboard; save goals |
 | `supermetrics-marketing-data-queries` | Query workflow and per-platform field references, so queries don't fail |
 | `supermetrics-campaign-management` | Create and update campaigns safely: read first, created paused, approval per change |
 | `supermetrics-live-dashboards` | Plan and publish live Studio dashboards, including campaign actions such as pause or budget changes |
