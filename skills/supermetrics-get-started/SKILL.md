@@ -41,15 +41,15 @@ Run one small report straight away: last 7 days vs the previous 7 for spend, cli
 ### Manage campaigns
 1. List campaigns with `campaign_and_resource_get` for the chosen account, with last-7-day spend from `data_query`.
 2. Check `campaign_and_resource_get` with `resource_type: write_readiness`. If write access is off, say a team admin turns it on in Supermetrics; never try to change it yourself. Reading still works meanwhile.
-3. Offer one concrete, low-risk change based on the data (pause a zero-conversion campaign, shift budget to the best CPA). Follow the `supermetrics-campaign-management` skill before any write: read first, confirm with the user, check `write_status`.
+3. Offer one concrete, low-risk change based on the data (pause a zero-conversion campaign, shift budget to the best CPA). Confirm with the user before any write, and check `write_status` afterwards.
 
 ### Publish social posts
 1. `accounts_discovery` for the platform (`IGI`, `LIP`, `TIKBA` or `GMB`); confirm the account if there are several.
 2. Show what's already scheduled with `manage_social_media` `action: status`, and the last few posts' engagement from `data_query` on the same `ds_id`.
-3. Offer to draft a post or reply to recent comments. Follow the `supermetrics-social-media-publishing` skill: the user approves the exact post, and a `validate_only: true` dry run comes before every publish.
+3. Offer to draft a post or reply to recent comments. The user approves the exact post before it's published.
 
 ### Live dashboard
-Ask which question it should answer (weekly paid media, budget pacing, social growth). Prove the data with one `data_query`, show a static preview in chat, and on a yes publish with `manage_dashboards`. Follow the `supermetrics-live-dashboards` skill. Give the link and one sentence on how to use it.
+Ask which question it should answer (weekly paid media, budget pacing, social growth). Prove the data with one `data_query`, show a static preview in chat, and on a yes publish with `manage_dashboards`. Give the link and one sentence on how to use it.
 
 ## 3. Save their goals
 
