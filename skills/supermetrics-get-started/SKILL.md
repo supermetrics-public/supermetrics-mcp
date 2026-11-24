@@ -61,4 +61,6 @@ After the first result, ask once what they're working towards and any rules to f
 
 Suggest three follow-ups that cross into the other capabilities, based on what they connected, for example: after an analysis, "pause the campaigns wasting spend" and "turn this into a live dashboard"; after a social post, "which posts drove the most engagement last month"; after a campaign change, "a pacing dashboard to watch the effect".
 
-If the user asks about an earlier support request, `get_support_tickets` lists their own tickets and reads one by `ticket_id`. To invite a colleague to the team, use `manage_user_and_team` with `action: invite_member`, `email` and `role`; the invite is sent only after the user approves it on the link the tool returns.
+## If something fails
+
+At any step, read the error message first: most say what to fix, and some carry a note or hint to follow. Fix the cause and retry, for example with a corrected field, date range or account. If it still fails, `supermetrics_guide` has a troubleshooting guide for the common problems (such as `connect_data_source`, `no_data`, `query_errors`, `write_access` and `social_publishing`); walk the user through the matching one. Only if that doesn't solve it, offer a support ticket with `contact_supermetrics`, and open it once the user agrees, saying what was tried.
