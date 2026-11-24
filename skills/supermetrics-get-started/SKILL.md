@@ -43,12 +43,12 @@ Run one small report straight away: last 7 days vs the previous 7 for spend, cli
 ### Manage campaigns
 1. List campaigns with `campaign_and_resource_get` for the chosen account, with last-7-day spend from `data_query`.
 2. Check `campaign_and_resource_get` with `resource_type: write_readiness`. If write access is off, say a team admin turns it on in Supermetrics; never try to change it yourself. Reading still works meanwhile.
-3. Offer one concrete, low-risk change based on the data (pause a zero-conversion campaign, shift budget to the best CPA). Confirm with the user before any write, and check `write_status` afterwards.
+3. Offer one concrete, low-risk change based on the data (pause a zero-conversion campaign, shift budget to the best CPA). Confirm with the user before any write, and check `write_status` afterwards. For a new ad or a creative refresh, `creative_picker` lets the user upload an image or video, or generate one with AI, and see it before it's used.
 
 ### Publish social posts
 1. `accounts_discovery` for the platform (`IGI`, `LIP`, `TIKBA` or `GMB`); confirm the account if there are several.
 2. Show the last few posts' engagement from `data_query` on the same `ds_id`.
-3. Offer to draft a post or reply to recent comments. The user approves the exact post before it's published. Once it's out, give the link to the post; for a scheduled post, the time it goes out.
+3. Offer to draft a post or reply to recent comments. For the post's image or video, `creative_picker` lets the user upload one or generate it with AI, and see it first. The user approves the exact post before it's published. Once it's out, give the link to the post; for a scheduled post, the time it goes out.
 
 ### Live dashboard
 Ask which question it should answer (weekly paid media, budget pacing, social growth). Prove the data with one `data_query`, show a static preview in chat, and on a yes publish with `manage_dashboards`. Give the link and one sentence on how to use it.
