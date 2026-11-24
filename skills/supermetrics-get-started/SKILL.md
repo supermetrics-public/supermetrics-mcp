@@ -1,42 +1,66 @@
 ---
 name: supermetrics-get-started
 description: >-
-  Onboards a new Supermetrics user: checks sign-in and license, lists connected data sources and
-  accounts, hands over login links to connect Google Ads, Meta Ads, GA4, LinkedIn Ads, TikTok
-  Ads, Shopify, HubSpot and other platforms, runs a first 7-day performance snapshot and saves
-  the user's targets (CPA, ROAS, budget) as business context. Also recovers from sign-in,
-  license, trial and "source not connected" errors. Use when the user asks "how do I get started
-  with Supermetrics", "what data can I access", "connect my Google Ads account", or "why does
-  Supermetrics say I'm not signed in". Don't use for building specific data queries once sources
-  are connected (use supermetrics-marketing-data-queries).
+  Onboards a new Supermetrics user: lists connected data sources, hands over login links to
+  connect Google Ads, Meta Ads, GA4, Search Console, Instagram, LinkedIn, TikTok and other
+  platforms, then takes the user to a first real result in analysis, campaign management, social
+  publishing or a live Supermetrics Studio dashboard, and saves their goals and guidelines as business context.
+  Also recovers from sign-in, license, trial and "source not connected" errors. Use when the user
+  asks "how do I get started with Supermetrics", "what can I do with Supermetrics", "connect my
+  Google Ads account", or "why does Supermetrics say I'm not signed in". Don't use for building
+  specific data queries once sources are connected (use supermetrics-marketing-data-queries).
 ---
 
 # Get started with Supermetrics
 
-Take the user from install to their first real answer in as few turns as possible. Do each step only if the previous one succeeded.
+Get the user from install to a first real result in as few turns as possible. Do each step only if the previous one succeeded. Don't run every step for a user who arrives with a concrete request: connect what that request needs, and go straight to the matching part of step 2.
 
-## 1. Check sign-in
+## 1. See what's connected, and ask what they came for
 
-Call `get_user_and_team` with `action: get_info`.
+Call `data_source_discovery` with `compress: true`; `authentication_status` shows what's connected.
 
-- **Tool not available or auth error:** the Supermetrics connector isn't connected or signed in. Ask the user to connect or reconnect Supermetrics in their AI app's connector or app settings and sign in with their Supermetrics account (new users get a 14-day free trial, no card). Then stop and wait. Never ask for an API key or password in chat.
-- **Signed in, but `license` holds an error, or a tool returns a license or trial error:** don't loop on sign-in. Say so plainly and follow the note in the response; buying is at https://supermetrics.com/pricing, and the plan must include the AI Chats destination. For details, call `supermetrics_guide` with `mode: license_and_trials`.
-- **Success:** greet them by name and team in one line.
+- **Auth error:** the Supermetrics sign-in has expired. Ask the user to reconnect Supermetrics in their AI app's connector settings, then wait. Never ask for an API key or password in chat.
+- **License or trial error (here or later):** don't loop on sign-in. Say so plainly and follow the note in the response; `supermetrics_guide` with `mode: license_and_trials` has the details.
 
-## 2. See what's connected
+On success, if some sources are connected, list them in one short list grouped as **ads**, **analytics & sales**, and **social**, not the full catalogue of available sources. If nothing is connected yet, the usual case for a new user, skip the list.
 
-Call `data_source_discovery` with `compress: true`; each source's `authentication_status` shows what's connected. Then call `accounts_discovery` for the connected platforms the user cares about. Summarise in one short list: connected platforms and account counts. Don't dump every source.
+When suggesting a platform to connect, start from the ones that work best for a first result: Google Ads, Meta Ads, Google Analytics 4 and Google Search Console; for social, Instagram, Facebook Insights, LinkedIn pages, TikTok, YouTube and Google Business Profile; for other ads, LinkedIn Ads, TikTok Ads and Microsoft Ads.
 
-If nothing relevant is connected, ask which platform they want first (Google Ads, Meta Ads, GA4, LinkedIn Ads, TikTok Ads, Microsoft Ads, Shopify, HubSpot…) and call `get_user_and_team` with `action: login_data_source` and its `ds_id`. Give them the login link and wait. Never describe clicking through menus; hand over the link. For platform-specific connection help, call `supermetrics_guide` with `mode: connect_data_source`. If the user asks about an earlier support request, `get_support_tickets` lists their own tickets and reads one by `ticket_id`. To invite a colleague to the team, use `manage_user_and_team` with `action: invite_member`, `email` and `role`; the invite is sent only after the user approves it on the link the tool returns.
+Then tell them briefly what they can do, in your own words and relating it to what's connected, and let them say what they want. The main capabilities:
 
-## 3. First answer
+- **Analyse performance:** spend, conversions, ROAS and traffic, across channels
+- **Manage campaigns:** budgets, bids, pausing, targeting and new campaigns
+- **Publish social posts:** post, schedule and reply to comments on Instagram, LinkedIn pages, TikTok and Google Business Profile
+- **Live dashboards:** shareable Supermetrics Studio pages that stay up to date
 
-Once at least one account is connected, run one small useful report straight away — last 7 days vs the previous 7 for spend, clicks, conversions and cost per conversion (or sessions and conversions for GA4) — and show it as a compact chart or table.
+Once they say what they want, ask which platform it should use if that isn't clear (for example Google Ads or Meta Ads for campaigns, Instagram or LinkedIn for social). Call `data_source_discovery` with its `ds_id`; when the platform isn't connected, the response includes a login link. Hand over the link and wait. Never describe clicking through menus. For connection trouble, `supermetrics_guide` with `mode: connect_data_source`.
 
-## 4. Save their goals
+## 2. First result
 
-Ask what they're optimizing for (target CPA, ROAS or monthly budget). Save it with `manage_business_context` (`action: save`, `context_text` with the goal, `tags` like `targets`) so later analyses judge results against it. Skip this if a profile already exists.
+### Analyse performance
+Run one small report straight away: last 7 days vs the previous 7 for spend, clicks, conversions and cost per conversion (sessions and conversions for GA4; clicks, impressions and position for Search Console; reach and engagement for social accounts). Show a compact table or chart, and call out the one change that matters most.
 
-## 5. Point to what's next
+### Manage campaigns
+1. List campaigns with `campaign_and_resource_get` for the chosen account, with last-7-day spend from `data_query`.
+2. Check `campaign_and_resource_get` with `resource_type: write_readiness`. If write access is off, say a team admin turns it on in Supermetrics; never try to change it yourself. Reading still works meanwhile.
+3. Offer one concrete, low-risk change based on the data (pause a zero-conversion campaign, shift budget to the best CPA). Confirm with the user before any write, and check `write_status` afterwards. For a new ad or a creative refresh, `creative_picker` lets the user upload an image or video, or generate one with AI, and see it before it's used.
 
-Suggest three questions tailored to what they connected, for example a wasted-spend audit, a weekly performance review, budget pacing, or launching a campaign. Mention that results can be published as a live Supermetrics Studio dashboard.
+### Publish social posts
+1. `accounts_discovery` for the platform (`IGI`, `LIP`, `TIKBA` or `GMB`); confirm the account if there are several.
+2. Show the last few posts' engagement from `data_query` on the same `ds_id`.
+3. Offer to draft a post or reply to recent comments. For the post's image or video, `creative_picker` lets the user upload one or generate it with AI, and see it first. The user approves the exact post before it's published. Once it's out, give the link to the post; for a scheduled post, the time it goes out.
+
+### Live dashboard
+Ask which question it should answer (weekly paid media, budget pacing, social growth). Prove the data with one `data_query`, show a static preview in chat, and on a yes publish with `manage_dashboards`. Give the link and one sentence on how to use it.
+
+## 3. Save their goals and guidelines
+
+After the first result, ask once what they're working towards and any rules to follow: goals such as target CPA or ROAS, monthly budget, posting frequency or follower goal; guidelines such as brand voice, campaign naming, campaigns to exclude from reports or hashtag rules. Save them with `manage_business_context` (`action: save`, `context_text`, and `tags` such as `targets`, `brand-language` or `naming-conventions`) so later work follows them. Skip what's already saved.
+
+## 4. Point to what's next
+
+Suggest three follow-ups that cross into the other capabilities, based on what they connected, for example: after an analysis, "pause the campaigns wasting spend" and "turn this into a live dashboard"; after a social post, "which posts drove the most engagement last month"; after a campaign change, "a pacing dashboard to watch the effect".
+
+## If something fails
+
+At any step, read the error message first: most say what to fix, and some carry a note or hint to follow. Fix the cause and retry, for example with a corrected field, date range or account. If it still fails, `supermetrics_guide` has a troubleshooting guide for the common problems (such as `connect_data_source`, `no_data`, `query_errors`, `write_access` and `social_publishing`); walk the user through the matching one. Only if that doesn't solve it, offer a support ticket with `contact_supermetrics`, and open it once the user agrees, saying what was tried.
