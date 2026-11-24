@@ -22,16 +22,16 @@ Call `data_source_discovery` with `compress: true`; `authentication_status` show
 - **Auth error:** the Supermetrics sign-in has expired. Ask the user to reconnect Supermetrics in their AI app's connector settings, then wait. Never ask for an API key or password in chat.
 - **License or trial error (here or later):** don't loop on sign-in. Say so plainly and follow the note in the response; `supermetrics_guide` with `mode: license_and_trials` has the details.
 
-On success, summarise in one short list grouped as **ads**, **analytics & sales**, and **social**. Don't list unconnected sources.
+On success, if some sources are connected, list them in one short list grouped as **ads**, **analytics & sales**, and **social**, not the full catalogue of available sources. If nothing is connected yet, the usual case for a new user, skip the list.
 
-Then offer the four directions in one line each, marking the ones their connections already allow:
+Then offer the four directions in one line each, marking any that their connections already allow:
 
 1. **Analyse performance** — spend, conversions, ROAS, traffic, across channels
 2. **Manage campaigns** — budgets, bids, pausing, targeting, new campaigns
 3. **Publish social posts** — post, schedule and reply to comments on Instagram, LinkedIn pages, TikTok and Google Business Profile
 4. **Live dashboard** — a shareable Supermetrics Studio page that stays up to date
 
-If they pick a direction whose platform isn't connected, call `get_user_and_team` with `action: login_data_source` and the `ds_id` (add `include_management_scopes: true` for social publishing and campaign management), hand over the link and wait. Never describe clicking through menus. For connection trouble, `supermetrics_guide` with `mode: connect_data_source`.
+Once they pick a direction, ask which platform it should use if that isn't clear (for example Google Ads or Meta Ads for campaigns, Instagram or LinkedIn for social). If that platform isn't connected, call `get_user_and_team` with `action: login_data_source` and the `ds_id` (add `include_management_scopes: true` for social publishing and campaign management), hand over the link and wait. Never describe clicking through menus. For connection trouble, `supermetrics_guide` with `mode: connect_data_source`.
 
 ## 2. First result
 
