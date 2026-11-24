@@ -36,7 +36,7 @@ Once they say what they want, ask which platform it should use if that isn't cle
 ## 2. First result
 
 ### Analyse performance
-Run one small report straight away: last 7 days vs the previous 7 for spend, clicks, conversions and cost per conversion (sessions and conversions for GA4; revenue and orders for Shopify). Show a compact table or chart, and call out the one change that matters most. Follow the `supermetrics-marketing-data-queries` skill for discovery and field IDs.
+Run one small report straight away: last 7 days vs the previous 7 for spend, clicks, conversions and cost per conversion (sessions and conversions for GA4; revenue and orders for Shopify). Show a compact table or chart, and call out the one change that matters most.
 
 ### Manage campaigns
 1. List campaigns with `campaign_and_resource_get` for the chosen account, with last-7-day spend from `data_query`.
