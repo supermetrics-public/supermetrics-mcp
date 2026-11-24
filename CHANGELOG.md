@@ -20,6 +20,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   `data_source_discovery`, saves goals and guidelines, and ends with how to troubleshoot: error
   message, retry, troubleshooting guide, then a support ticket as the last resort.
 - `supermetrics-audits-and-monitors` skill: audits also cover TikTok Ads and Microsoft Ads accounts.
+- `supermetrics-audits-and-monitors` skill: monitors also cover Microsoft Ads (metrics, landing
+  page and naming convention checks).
 - Campaign and query skills: a LinkedIn campaign created with `status: "DRAFT"` stays a draft; new
   campaigns are described as never created live rather than always paused.
 
