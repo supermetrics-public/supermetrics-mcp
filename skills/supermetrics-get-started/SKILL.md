@@ -4,7 +4,7 @@ description: >-
   Onboards a new Supermetrics user: lists connected data sources, hands over login links to
   connect Google Ads, Meta Ads, GA4, Search Console, Instagram, LinkedIn, TikTok and other
   platforms, then takes the user to a first real result in analysis, campaign management, social
-  publishing or a live Supermetrics Studio dashboard, and saves their goals as business context.
+  publishing or a live Supermetrics Studio dashboard, and saves their goals and guidelines as business context.
   Also recovers from sign-in, license, trial and "source not connected" errors. Use when the user
   asks "how do I get started with Supermetrics", "what can I do with Supermetrics", "connect my
   Google Ads account", or "why does Supermetrics say I'm not signed in". Don't use for building
@@ -53,9 +53,9 @@ Run one small report straight away: last 7 days vs the previous 7 for spend, cli
 ### Live dashboard
 Ask which question it should answer (weekly paid media, budget pacing, social growth). Prove the data with one `data_query`, show a static preview in chat, and on a yes publish with `manage_dashboards`. Give the link and one sentence on how to use it.
 
-## 3. Save their goals
+## 3. Save their goals and guidelines
 
-After the first result, ask once what they're working towards (target CPA or ROAS, monthly budget, posting frequency, follower goal). Save it with `manage_business_context` (`action: save`, `context_text` with the goal, `tags` such as `targets` or `brand-language`) so later work is judged against it. Skip if context already exists.
+After the first result, ask once what they're working towards and any rules to follow: goals such as target CPA or ROAS, monthly budget, posting frequency or follower goal; guidelines such as brand voice, campaign naming, campaigns to exclude from reports or hashtag rules. Save them with `manage_business_context` (`action: save`, `context_text`, and `tags` such as `targets`, `brand-language` or `naming-conventions`) so later work follows them. Skip what's already saved.
 
 ## 4. Point to what's next
 
