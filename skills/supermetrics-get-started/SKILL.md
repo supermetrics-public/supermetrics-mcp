@@ -48,7 +48,7 @@ Run one small report straight away: last 7 days vs the previous 7 for spend, cli
 ### Publish social posts
 1. `accounts_discovery` for the platform (`IGI`, `LIP`, `TIKBA` or `GMB`); confirm the account if there are several.
 2. Show the last few posts' engagement from `data_query` on the same `ds_id`.
-3. Offer to draft a post or reply to recent comments. The user approves the exact post before it's published.
+3. Offer to draft a post or reply to recent comments. The user approves the exact post before it's published. Once it's out, give the link to the post; for a scheduled post, the time it goes out.
 
 ### Live dashboard
 Ask which question it should answer (weekly paid media, budget pacing, social growth). Prove the data with one `data_query`, show a static preview in chat, and on a yes publish with `manage_dashboards`. Give the link and one sentence on how to use it.
