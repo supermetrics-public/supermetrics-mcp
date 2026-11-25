@@ -1,6 +1,6 @@
 {
 	"name": "supermetrics",
-	"version": "2.3.0",
+	"version": "2.4.0",
 	"description": "Query live marketing data and manage ad campaigns with Supermetrics.",
 	"contextFileName": "GEMINI.md",
 	"mcpServers": {
