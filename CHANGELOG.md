@@ -11,6 +11,11 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- `supermetrics-audits-and-monitors` skill: monitors also cover LinkedIn Ads (metrics, landing
+  page and naming convention checks).
+
 ## [2.4.0] - 2026-11-25
 
 ### Changed
