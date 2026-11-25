@@ -11,6 +11,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [2.5.0] - 2026-11-25
+
 ### Changed
 
 - `supermetrics-audits-and-monitors` skill: monitors also cover LinkedIn Ads (metrics, landing
@@ -195,6 +197,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Issue templates routing account and billing questions to Supermetrics support and product ideas to
   the public wishlist.
 
+[2.5.0]: https://github.com/supermetrics-public/supermetrics-mcp/releases/tag/v2.5.0
 [2.4.0]: https://github.com/supermetrics-public/supermetrics-mcp/releases/tag/v2.4.0
 [2.3.0]: https://github.com/supermetrics-public/supermetrics-mcp/releases/tag/v2.3.0
 [2.2.0]: https://github.com/supermetrics-public/supermetrics-mcp/releases/tag/v2.2.0
