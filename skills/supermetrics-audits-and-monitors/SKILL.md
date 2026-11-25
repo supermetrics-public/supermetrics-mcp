@@ -2,15 +2,16 @@
 name: supermetrics-audits-and-monitors
 description: >-
   Runs a one-off health audit of a Google Ads, Facebook Ads, Snapchat Marketing, LinkedIn Ads,
-  TikTok Ads or Microsoft Ads account and sets up scheduled monitors that alert by email or Slack:
-  metric thresholds (spend, CPA, conversions, sessions) on Google Ads, Facebook Ads, Microsoft Ads,
-  Google Display & Video 360 (DV360) and Google Analytics 4, landing page checks for broken or
-  redirecting URLs, and campaign naming convention checks. Audit findings are grouped by severity
-  across tracking trust, delivery, waste, efficiency, allocation, change and upside. Use when the
-  user asks to "audit my Google Ads account", "what's wrong with my Meta account", "alert me if
-  spend spikes", "set up a daily check that conversions are still tracking", "check our ad landing
-  pages work", or "flag campaigns that break our naming convention". Don't use for a one-off metric
-  question (use supermetrics-marketing-data-queries) or a week-over-week performance review (use
+  TikTok Ads or Microsoft Ads account over the last 7–90 days, showing how it is performing and
+  what's wrong, and sets up scheduled monitors that alert by email or Slack: metric thresholds on
+  Google Ads, Facebook Ads, Microsoft Ads, Google Display & Video 360 (DV360) and
+  Google Analytics 4, landing page checks for broken or redirecting URLs, and campaign naming
+  convention checks. Audit findings are grouped by severity across tracking trust, delivery,
+  waste, efficiency, allocation, change and upside. Use when the user asks to "audit my Google
+  Ads account", "how is my Google Ads account performing", "what's wrong with my Meta account",
+  "alert me if spend spikes", "check our ad landing pages work", or "flag campaigns that break
+  our naming convention". Don't use for a one-off metric question (use
+  supermetrics-marketing-data-queries) or a week-over-week performance review (use
   supermetrics-campaign-performance-review).
 ---
 
