@@ -1,18 +1,17 @@
 ---
 name: supermetrics-audits-and-monitors
 description: >-
-  Runs a one-off health audit of a Google Ads, Facebook Ads, Snapchat Marketing, LinkedIn Ads,
-  TikTok Ads or Microsoft Ads account over the last 7–90 days, showing how it is performing and
-  what's wrong, and sets up scheduled monitors that alert by email or Slack: metric thresholds on
-  Google Ads, Facebook Ads, Microsoft Ads, Google Display & Video 360 (DV360) and
-  Google Analytics 4, landing page checks for broken or redirecting URLs, and campaign naming
-  convention checks. Audit findings are grouped by severity across tracking trust, delivery,
-  waste, efficiency, allocation, change and upside. Use when the user asks to "audit my Google
-  Ads account", "how is my Google Ads account performing", "what's wrong with my Meta account",
-  "alert me if spend spikes", "check our ad landing pages work", or "flag campaigns that break
-  our naming convention". Don't use for a one-off metric question (use
-  supermetrics-marketing-data-queries) or a week-over-week performance review (use
-  supermetrics-campaign-performance-review).
+  Runs a health audit of a Google Ads, Facebook Ads, Snapchat Marketing, LinkedIn Ads, TikTok Ads
+  or Microsoft Ads account over the last 7–90 days, showing how it performs and what's wrong, and
+  sets up scheduled monitors that alert by email or Slack: metric thresholds on Google Ads,
+  Facebook Ads, Microsoft Ads, LinkedIn Ads, DV360 and Google Analytics 4, landing page checks for
+  broken or redirecting URLs, and campaign naming convention checks. Findings are grouped by
+  severity across tracking, delivery, waste, efficiency, allocation, change and upside. Use when
+  asked to "audit my Google Ads account", "how is my Google Ads account performing", "what's wrong
+  with my Meta account", "alert me if spend spikes", "set up a daily check that conversions are
+  still tracking", "check our ad landing pages work", or "flag campaigns that break our naming
+  convention". Not for one-off metric questions (use supermetrics-marketing-data-queries) or a
+  week-over-week performance review (use supermetrics-campaign-performance-review).
 ---
 
 # Audits and monitors
@@ -38,9 +37,9 @@ Monitors run on a schedule and notify by email or Slack.
 
 | Type | Platforms | Checks |
 |---|---|---|
-| `metrics` | Google Ads, Facebook Ads, Microsoft Ads, Google Analytics 4, Google Display & Video 360 | A metric crosses a threshold, optionally filtered by dimension (for example sessions from one channel) |
-| `page_check` | Google Ads, Facebook Ads, Microsoft Ads | Ad landing pages return the expected status code without too many redirects |
-| `naming_convention` | Google Ads, Facebook Ads, Microsoft Ads, Google Display & Video 360 | Campaign or ad names follow the team's segments and delimiter |
+| `metrics` | Google Ads, Facebook Ads, Microsoft Ads, LinkedIn Ads, Google Analytics 4, Google Display & Video 360 | A metric crosses a threshold, optionally filtered by dimension (for example sessions from one channel) |
+| `page_check` | Google Ads, Facebook Ads, Microsoft Ads, LinkedIn Ads | Ad landing pages return the expected status code without too many redirects |
+| `naming_convention` | Google Ads, Facebook Ads, Microsoft Ads, LinkedIn Ads, Google Display & Video 360 | Campaign or ad names follow the team's segments and delimiter |
 
 1. **Pick the type and platform**, then get the schema: `read_audits_and_monitors` with `action: schema`, `monitor_type` and `ds_id`. Allowed values for entity, url_field and date_range differ by ds_id and monitor_type: use the schema for that exact pair, not values from another source or type.
 2. **Clarify** what to watch, the threshold and direction, over which period (one of the schema's `date_ranges`), how often (one of its `schedule_frequencies`), which accounts, the time zone, and who gets notified. Check `get_business_context` for an existing naming convention or targets.
