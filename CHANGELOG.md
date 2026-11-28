@@ -13,6 +13,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- `supermetrics-social-media-publishing` skill: Google Business Profile special (holiday) opening hours
+  and profile photos with `update_profile`.
 - `supermetrics-audits-and-monitors` skill: monitors also cover LinkedIn Ads (metrics, landing
   page and naming convention checks).
 

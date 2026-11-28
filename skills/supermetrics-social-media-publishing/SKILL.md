@@ -66,6 +66,12 @@ Use `action: publish` with `content_type`, `caption` and one media source:
 - Space one account's posts at least 5 minutes apart; Instagram throttles bursts.
 - **Best time to post (Instagram).** Run `data_query` with `ds_id: IGI`, `ds_accounts` set to the account id from `accounts_discovery`, fields `date,hour,online_followers`, root-level `date_range_type: "last_30_days"` and `timezone` set to the user's zone, then suggest the hours with the most followers online. This needs an account with 100+ followers, and the latest 1–2 days may be missing; if it returns nothing, say so instead of guessing.
 
+## Business Profile listing (GMB)
+
+- Special (holiday) hours: `update_profile` with the location's `account_id` and `special_hours`, a list of `{date: "YYYY-MM-DD", closed: true}` or `{date, periods: [{open: "10:00", close: "14:00"}]}` in the location's local time. `remove_dates` puts dates back on the regular hours. Only the dates you name change; others keep their special hours. A period ending after midnight closes by 11:59 the next day. Google needs regular hours set first. Dry-run with `validate_only: true`, then confirm the returned `special_hours` with the user.
+- Photo: `update_profile` with `photo_category` (COVER, PROFILE, EXTERIOR, INTERIOR, PRODUCT, AT_WORK, FOOD_AND_DRINK, MENU, COMMON_AREA, ROOMS, TEAMS, ADDITIONAL) and `media_url` or `upload_ref` (JPEG or PNG, at least 250x250 px). A new COVER or PROFILE photo replaces the current one. Photos can't be deleted here.
+- Hours and a photo go in separate calls; both may return an approval link.
+
 ## Comments and reviews
 
 - `list_comments` with `media_id`. Find recent post IDs with `instagram_insights` or `data_query` (ds_id `IGI`), the share or post IDs for `LIP`, or the `video_id` for `TIKBA`.
